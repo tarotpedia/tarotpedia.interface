@@ -1,0 +1,2 @@
+# gptarot.interface
+🔮 GPTarot - Frontend
