@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #fdfdf8;
+  --foreground: #ecebe3;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-serif: var(--font-caudex);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-caudex), serif;
+  line-height: 1.5;
+  backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+  -webkit-font-smoothing: subpixel-antialiased !important;
+}
