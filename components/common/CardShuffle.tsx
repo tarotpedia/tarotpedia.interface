@@ -48,56 +48,6 @@ const CardShuffle: React.FC<{ onComplete?: () => void }> = ({ onComplete }) => {
 
   return (
     <>
-      <style jsx global>{`
-        @layer utilities {
-          @keyframes casino-shuffle {
-            0% {
-              transform: translateY(0) rotate(0deg);
-            }
-            25% {
-              transform: translateY(-20px) rotate(-5deg);
-            }
-            50% {
-              transform: translateY(0) rotate(0deg);
-            }
-            75% {
-              transform: translateY(20px) rotate(5deg);
-            }
-            100% {
-              transform: translateY(0) rotate(0deg);
-            }
-          }
-
-          @keyframes card-fadeout {
-            from {
-              opacity: 1;
-            }
-            to {
-              opacity: 0;
-            }
-          }
-
-          .animate-shuffle {
-            animation: casino-shuffle 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-            transform-origin: center;
-            max-width: 105px;
-            max-height: 180px;
-          }
-
-          .animate-fadeout {
-            animation: card-fadeout 1s ease-in-out forwards;
-            transform-origin: center;
-            max-width: 105px;
-            max-height: 180px;
-          }
-
-          .card-container {
-            position: absolute;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-        }
-      `}</style>
-
       <div className="flex flex-col items-center justify-center gap-8 animate-fade-in duration-700">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-[#3d3a2a] mb-2">Shuffling</h2>

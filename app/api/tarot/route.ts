@@ -1,5 +1,6 @@
+import { BASE_API_URL } from '@/lib/variables';
+
 import { NextResponse } from 'next/server';
-import { BASE_API_URL } from '@/utils/variables';
 
 export async function POST(req: Request) {
   try {

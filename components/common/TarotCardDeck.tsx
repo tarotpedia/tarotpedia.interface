@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { BASE_API_URL } from '@/lib/variables';
 import { TarotCard } from '@/types/tarot';
-import { BASE_API_URL } from '@/utils/variables';
+
+import React, { useEffect, useState } from 'react';
 
 interface CardDeckProps {
   cards: TarotCard[];
@@ -9,28 +10,23 @@ interface CardDeckProps {
   revealedCards: TarotCard[];
 }
 
-const TarotCardDeck: React.FC<CardDeckProps> = ({
-  cards,
-  onCardSelect,
-  selectedCards,
-  revealedCards,
-}) => {
+const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedCards, revealedCards }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [visibleCards, setVisibleCards] = useState<number>(0);
+  let hoverTimeout: NodeJS.Timeout;
 
   const isSelected = (card: TarotCard) => selectedCards.some(sc => sc.name === card.name);
   const isRevealed = (card: TarotCard) => revealedCards.some(rc => rc.name === card.name);
   const getCardFrontUrl = (card: TarotCard) =>
     card.image_url.startsWith('http') ? card.image_url : `${BASE_API_URL}${card.image_url}`;
 
-  // gradually reveal cards
   useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
       index++;
       setVisibleCards(index);
       if (index >= cards.length) clearInterval(interval);
-    }, 350);
+    }, 50);
     return () => clearInterval(interval);
   }, [cards.length]);
 
@@ -54,8 +50,13 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({
                 transitionDelay: `${index * 0.1}s`,
                 transform: 'translateY(0)',
               }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={() => {
+                clearTimeout(hoverTimeout);
+                setHoveredIndex(index);
+              }}
+              onMouseLeave={() => {
+                hoverTimeout = setTimeout(() => setHoveredIndex(null), 1000);
+              }}
               onClick={() => onCardSelect(card)}
             >
               {/* Card Container */}
@@ -78,7 +79,7 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({
                 >
                   {/* Card Back */}
                   <div
-                    className="absolute w-full h-full overflow-hidden shadow-lg"
+                    className="absolute w-full h-full overflow-hidden shadow-lg hover:-translate-y-4 transition-transform duration-300"
                     style={{
                       backfaceVisibility: 'hidden',
                       background: 'linear-gradient(135deg, #8b7355 0%, #a0956b 50%, #8b7355 100%)',

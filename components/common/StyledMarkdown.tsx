@@ -1,5 +1,6 @@
 'use client';
 import ReactMarkdown from 'react-markdown';
+
 import remarkGfm from 'remark-gfm';
 
 export default function StyledMarkdown({ content }: { content: string }) {
@@ -20,9 +21,7 @@ export default function StyledMarkdown({ content }: { content: string }) {
 
         strong: p => <strong className="text-amber-600 font-semibold" {...p} />,
         em: p => <em className="text-amber-600 italic" {...p} />,
-        code: p => (
-          <code className="bg-amber-950/40 px-1.5 py-0.5 rounded text-amber-600 text-sm" {...p} />
-        ),
+        code: p => <code className="bg-amber-950/40 px-1.5 py-0.5 rounded text-amber-600 text-sm" {...p} />,
         pre: p => <pre className="bg-amber-950/30 p-4 rounded-lg overflow-x-auto mb-4" {...p} />,
         blockquote: p => (
           <blockquote
@@ -34,19 +33,14 @@ export default function StyledMarkdown({ content }: { content: string }) {
 
         table: p => (
           <div className="w-full overflow-x-auto mb-6">
-            <table
-              className="min-w-full border border-amber-800/30 rounded-lg text-sm text-[#3d3a2a]"
-              {...p}
-            />
+            <table className="min-w-full border border-amber-800/30 rounded-lg text-sm text-[#3d3a2a]" {...p} />
           </div>
         ),
 
         thead: p => <thead className="text-amber-800" {...p} />,
         tbody: p => <tbody className="divide-y divide-amber-700/20" {...p} />,
         tr: p => <tr className="hover:bg-amber-50/40 transition-colors" {...p} />,
-        th: p => (
-          <th className="px-3 py-2 text-left font-semibold border-b border-amber-800/30" {...p} />
-        ),
+        th: p => <th className="px-3 py-2 text-left font-semibold border-b border-amber-800/30" {...p} />,
         td: p => <td className="px-3 py-2 align-top border-b border-amber-800/20" {...p} />,
       }}
     >

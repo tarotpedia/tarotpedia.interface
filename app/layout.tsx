@@ -1,4 +1,7 @@
+import { Toaster } from '@/components/ui/sonner';
+
 import { Caudex, Geist_Mono } from 'next/font/google';
+
 import './globals.css';
 
 const caudex = Caudex({
@@ -25,7 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${caudex.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <head>
+        <link rel="icon" href="/favicon.png" />
+      </head>
+      <body className={`${caudex.variable} ${geistMono.variable} antialiased`}>
+        {children}
+        <Toaster theme="light" position="top-right" richColors />
+      </body>
     </html>
   );
 }

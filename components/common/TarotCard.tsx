@@ -1,13 +1,12 @@
 'use client';
+import { BASE_API_URL } from '@/lib/variables';
 import { TarotCard } from '@/types/tarot';
+
 import { ArrowDown, ArrowUp } from 'lucide-react';
-import { BASE_API_URL } from '@/utils/variables';
 
 export default function TarotCardComponent({ card }: { card: TarotCard }) {
   const isReversed = !card.is_upright;
-  const imageUrl = card.image_url.startsWith('http')
-    ? card.image_url
-    : `${BASE_API_URL}${card.image_url}`;
+  const imageUrl = card.image_url.startsWith('http') ? card.image_url : `${BASE_API_URL}${card.image_url}`;
 
   return (
     <div className="relative group w-96 sm:w-64 md:w-72 mx-auto">
@@ -30,11 +29,7 @@ export default function TarotCardComponent({ card }: { card: TarotCard }) {
         <div className="mt-3 text-center">
           <h3 className="font-semibold text-sm sm:text-base text-[#3d3a2a] mb-1">{card.name}</h3>
           <p className={`text-lg sm:text-xl ${isReversed ? 'text-rose-700' : 'text-emerald-700'}`}>
-            {isReversed ? (
-              <ArrowDown className="inline w-3 h-3 mr-1" />
-            ) : (
-              <ArrowUp className="inline w-3 h-3 mr-1" />
-            )}
+            {isReversed ? <ArrowDown className="inline w-3 h-3 mr-1" /> : <ArrowUp className="inline w-3 h-3 mr-1" />}
             {isReversed ? 'Reversed' : 'Upright'}
           </p>
         </div>

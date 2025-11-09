@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+
+import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface DatePickerProps {
   value: string;
@@ -8,11 +9,7 @@ interface DatePickerProps {
   placeholder?: string;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({
-  value,
-  onChange,
-  placeholder = 'Select date',
-}) => {
+const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 'Select date' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(() => {
     if (value) {
@@ -24,6 +21,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLDivElement>(null);
+  const firstDateButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (value) {
@@ -48,12 +46,24 @@ const DatePicker: React.FC<DatePickerProps> = ({
       }
     };
 
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+        // Return focus to input when closing with Escape
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }
+    };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen]);
 
@@ -64,6 +74,19 @@ const DatePicker: React.FC<DatePickerProps> = ({
         top: rect.bottom + window.scrollY + 8,
         left: rect.left + window.scrollX + rect.width / 2,
       });
+    }
+  }, [isOpen]);
+
+  // Focus management when calendar opens
+  useEffect(() => {
+    if (isOpen && containerRef.current) {
+      // Small delay to ensure the calendar is rendered
+      const timer = setTimeout(() => {
+        if (firstDateButtonRef.current) {
+          firstDateButtonRef.current.focus();
+        }
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
@@ -103,6 +126,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
     const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     onChange(formattedDate);
     setIsOpen(false);
+    // Return focus to input after selection
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(currentMonth);
@@ -114,11 +141,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   const isSelectedDate = (day: number) => {
     if (!selectedDate) return false;
-    return (
-      selectedDate.getDate() === day &&
-      selectedDate.getMonth() === month &&
-      selectedDate.getFullYear() === year
-    );
+    return selectedDate.getDate() === day && selectedDate.getMonth() === month && selectedDate.getFullYear() === year;
   };
 
   const isToday = (day: number) => {
@@ -129,11 +152,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   const calendarPopup = isOpen
     ? createPortal(
         <>
-          <div
-            className="fixed inset-0"
-            style={{ zIndex: 9998 }}
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="fixed inset-0" style={{ zIndex: 9998 }} onClick={() => setIsOpen(false)} />
           <div
             ref={containerRef}
             className="fixed top-1/2 left-1/2 w-[340px] bg-linear-to-br from-[#fdfdf8] via-[#faf7f0] to-[#f5f0e8] border-2 border-amber-800/40 rounded-xl shadow-[0_0_80px_-20px_rgba(100,70,20,0.6)] p-6 backdrop-blur-md animate-fade-in"
@@ -148,53 +167,51 @@ const DatePicker: React.FC<DatePickerProps> = ({
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-600/10 rounded-full blur-2xl"></div>
             </div>
 
-            <div className="relative">
-              {/* Header with year controls */}
-              <div className="flex items-center justify-between mb-6">
-                <button
-                  onClick={handlePrevMonth}
-                  className="p-2 hover:bg-amber-100/60 rounded-lg transition-all hover:shadow-md active:scale-95"
-                  type="button"
-                  title="Previous month"
-                >
-                  <ChevronLeft className="w-5 h-5 text-amber-900" />
-                </button>
+            <div className="relative"></div>
+            {/* Header with year controls */}
+            <div className="flex items-center justify-between mb-6">
+              <button
+                onClick={handlePrevMonth}
+                className="p-2 hover:bg-amber-100/60 rounded-lg transition-all hover:shadow-md active:scale-95 hover:cursor-pointer"
+                type="button"
+                title="Previous month"
+              >
+                <ChevronLeft className="w-5 h-5 text-amber-900" />
+              </button>
 
-                <div className="flex items-center gap-3">
-                  <span className="text-lg font-bold text-amber-900 tracking-wide">
-                    {monthName}
-                  </span>
-                  <div className="flex flex-col gap-0.5">
-                    <button
-                      onClick={() => handleYearChange('up')}
-                      className="p-0.5 hover:bg-amber-100/60 rounded transition-all active:scale-95 flex items-center justify-center"
-                      type="button"
-                      title="Next year"
-                    >
-                      <ChevronLeft className="w-3 h-3 text-amber-800 rotate-90" />
-                    </button>
-                    <span className="text-sm font-semibold text-amber-800 px-1">{year}</span>
-                    <button
-                      onClick={() => handleYearChange('down')}
-                      className="p-0.5 hover:bg-amber-100/60 rounded transition-all active:scale-95 flex items-center justify-center"
-                      type="button"
-                      title="Previous year"
-                    >
-                      <ChevronLeft className="w-3 h-3 text-amber-800 -rotate-90" />
-                    </button>
-                  </div>
+              <div className="flex items-center gap-3">
+                <span className="text-lg font-bold text-amber-900 tracking-wide">{monthName}</span>
+                <div className="flex flex-col gap-0.5 items-center">
+                  <button
+                    onClick={() => handleYearChange('up')}
+                    className="p-0.5 hover:bg-amber-100/60 rounded transition-all active:scale-95 flex items-center justify-center hover:cursor-pointer"
+                    type="button"
+                    title="Next year"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-amber-800 rotate-90" />
+                  </button>
+                  <span className="text-sm font-semibold text-amber-800 px-1">{year}</span>
+                  <button
+                    onClick={() => handleYearChange('down')}
+                    className="p-0.5 hover:bg-amber-100/60 rounded transition-all active:scale-95 flex items-center justify-center hover:cursor-pointer"
+                    type="button"
+                    title="Previous year"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-amber-800 -rotate-90" />
+                  </button>
                 </div>
-
-                <button
-                  onClick={handleNextMonth}
-                  className="p-2 hover:bg-amber-100/60 rounded-lg transition-all hover:shadow-md active:scale-95"
-                  type="button"
-                  title="Next month"
-                >
-                  <ChevronRight className="w-5 h-5 text-amber-900" />
-                </button>
               </div>
 
+              <button
+                onClick={handleNextMonth}
+                className="p-2 hover:bg-amber-100/60 rounded-lg transition-all hover:shadow-md active:scale-95 hover:cursor-pointer"
+                type="button"
+                title="Next month"
+              >
+                <ChevronRight className="w-5 h-5 text-amber-900" />
+              </button>
+            </div>
+            <div>
               {/* Weekday headers */}
               <div className="grid grid-cols-7 gap-2 mb-3">
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
@@ -209,17 +226,19 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 {blanks.map(i => (
                   <div key={`blank-${i}`} />
                 ))}
-                {days.map(day => {
+                {days.map((day, index) => {
                   const selected = isSelectedDate(day);
                   const today = isToday(day);
+                  const isFirst = index === 0;
 
                   return (
                     <button
                       key={day}
+                      ref={isFirst ? firstDateButtonRef : undefined}
                       onClick={() => handleDateSelect(day)}
                       type="button"
                       className={`
-                    aspect-square flex items-center justify-center text-sm rounded-lg transition-all font-medium
+                    aspect-square flex items-center justify-center text-sm rounded-lg transition-all font-medium hover:cursor-pointer
                     ${
                       selected
                         ? 'bg-linear-to-br from-amber-800 to-amber-900 text-[#fdfdf8] shadow-lg scale-105 ring-2 ring-amber-600/50'
@@ -227,7 +246,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           ? 'bg-amber-200/50 text-amber-900 font-bold ring-2 ring-amber-400/50'
                           : 'hover:bg-amber-100/70 text-[#3d3a2a] hover:scale-105 hover:shadow-md'
                     }
-                    active:scale-95
+                    active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1
                   `}
                     >
                       {day}
@@ -238,9 +257,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
               {/* Footer hint */}
               <div className="mt-4 pt-4 border-t border-amber-800/20 text-center">
-                <p className="text-xs text-amber-800/70">
-                  Click a date to select • Click outside to close
-                </p>
+                <p className="text-xs text-amber-800/70">Click a date to select • Press Esc to close</p>
               </div>
             </div>
           </div>
@@ -254,7 +271,17 @@ const DatePicker: React.FC<DatePickerProps> = ({
       <div ref={inputRef} className="relative">
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-4 py-3 rounded-md border border-amber-900/30 bg-[#fdfdf8]/80 hover:border-amber-700 hover:bg-[#fdfdf8] text-[#3d3a2a] cursor-pointer transition-all duration-200 flex items-center justify-between group"
+          tabIndex={0}
+          role="button"
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          onKeyDown={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setIsOpen(!isOpen);
+            }
+          }}
+          className="w-full px-4 py-3 rounded-md border border-amber-900/30 bg-[#fdfdf8]/80 hover:border-amber-700 hover:bg-[#fdfdf8] text-[#3d3a2a] cursor-pointer transition-all duration-200 flex items-center justify-between group focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1"
         >
           <span className={value ? 'text-[#3d3a2a]' : 'text-amber-800/50'}>
             {value ? formatDisplayDate(value) : placeholder}
