@@ -27,10 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.png" />
-      </head>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${caudex.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Toaster theme="light" position="top-right" richColors />

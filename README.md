@@ -16,7 +16,7 @@ To set up the development environment for tarotpedia, follow these steps:
 
    ```bash
    git clone https://github.com/tarotpedia/tarotpedia.interface
-    cd tarotpedia.interface
+   cd tarotpedia.interface
    ```
 
 2. Install dependencies:

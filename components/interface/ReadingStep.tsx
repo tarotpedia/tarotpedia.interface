@@ -7,12 +7,11 @@ interface ReadingStepProps {
 }
 
 const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   return (
     <>
       <div className="relative max-w-3xl mx-auto text-center px-4 py-16 mt-48 mb-32">
-        {/* Small, subtle eclipse core */}
         <div className="absolute top-1/2 left-1/2 w-56 h-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-br from-amber-200/60 to-purple-300/40 blur-2xl animate-pulse" />
-        {/* Enhanced magical orbit rings with particles */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40">
           {[...Array(6)].map((_, i) => (
             <div
@@ -38,7 +37,6 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {/* Floating mystical particles */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {[...Array(12)].map((_, i) => (
             <div
@@ -58,7 +56,6 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {/* Pulsing energy waves */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {[...Array(3)].map((_, i) => (
             <div
@@ -79,11 +76,9 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {/* Floating card - centered in rings */}
         <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-md px-6 py-8">
           <h2 className="text-xl md:text-2xl font-bold text-amber-700 mb-4 tracking-wide">{progressText}</h2>
 
-          {/* Progress bar */}
           <div className="relative w-full h-3 bg-amber-100 rounded-xl overflow-hidden">
             <div
               className="absolute left-0 top-0 h-full bg-amber-800 rounded-xl transition-all duration-700 ease-out"

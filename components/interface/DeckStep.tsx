@@ -21,7 +21,7 @@ export default function DeckStep() {
 
   const { handleCardSelect } = useCardSelection();
   const { handleGetInterpretation } = useReadingInterpretation();
-
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   return (
     <div className="space-y-6 z-20 relative">
       {isShuffling ? (

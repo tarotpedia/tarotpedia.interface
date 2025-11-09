@@ -1,7 +1,7 @@
 'use client';
-import ReadingStep from '@/components/common/ReadingStep';
 import DeckStep from '@/components/interface/DeckStep';
 import FormStep from '@/components/interface/FormStep';
+import ReadingStep from '@/components/interface/ReadingStep';
 import ResultsStep from '@/components/interface/ResultsStep';
 import { useTarot } from '@/context/TarotContext';
 

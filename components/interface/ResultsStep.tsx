@@ -5,15 +5,15 @@ import { useTarot } from '@/context/TarotContext';
 
 export default function ResultsStep() {
   const { reading, selectedCards, resetReading } = useTarot();
-
   if (!reading) return null;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
     <div className="space-y-6 mx-auto">
       {/* Numerology Section */}
       {reading.numerology_meaning && (
         <div className="max-w-5xl mx-auto backdrop-blur-sm rounded-2xl p-8 border border-amber-900/30">
-          <h2 className="text-xl font-bold text-[#3d3a2a] mb-4 flex items-center justify-center gap-2">Numerology</h2>
+          <h2 className="text-2xl font-bold text-center text-[#3d3a2a] mb-4">Numerology Insight</h2>
           <StyledMarkdown content={reading.numerology_meaning} />
         </div>
       )}

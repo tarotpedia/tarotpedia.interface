@@ -2,7 +2,7 @@
 import Footer from '@/app/footer';
 import Header from '@/app/header';
 import ParallaxBackground from '@/components/common/ParallaxBackground';
-import TarotFlow from '@/components/interface/TarotFlow';
+import TarotFlow from '@/components/common/TarotFlow';
 import { TarotProvider } from '@/context/TarotContext';
 
 export default function TarotpediaApp() {
