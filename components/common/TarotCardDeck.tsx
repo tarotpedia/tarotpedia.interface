@@ -50,21 +50,15 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                 transitionDelay: `${index * 0.1}s`,
                 transform: 'translateY(0)',
               }}
-              onMouseEnter={() => {
-                clearTimeout(hoverTimeout);
-                setHoveredIndex(index);
-              }}
-              onMouseLeave={() => {
-                hoverTimeout = setTimeout(() => setHoveredIndex(null), 1000);
-              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => onCardSelect(card)}
             >
               {/* Card Container */}
               <div
-                className="relative cursor-pointer"
+                className="relative cursor-pointer transition-transform duration-300 hover:-translate-y-4 w-[140px] sm:w-[175px]"
                 style={{
-                  width: '175px',
-                  height: '300px',
+                  aspectRatio: '350/600',
                   perspective: '1000px',
                   animation: visible ? 'float-in 1.5s ease forwards' : 'none',
                 }}
@@ -79,7 +73,7 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                 >
                   {/* Card Back */}
                   <div
-                    className="absolute w-full h-full overflow-hidden shadow-lg hover:-translate-y-4 transition-transform duration-300"
+                    className="absolute w-full h-full overflow-hidden shadow-lg rounded-lg"
                     style={{
                       backfaceVisibility: 'hidden',
                       background: 'linear-gradient(135deg, #8b7355 0%, #a0956b 50%, #8b7355 100%)',
@@ -95,7 +89,7 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
 
                   {/* Card Front */}
                   <div
-                    className="absolute w-full h-full overflow-hidden shadow-lg"
+                    className="absolute w-full h-full overflow-hidden shadow-lg rounded-lg"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
@@ -116,9 +110,11 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                 {/* Hover Glow */}
                 {hovered && !selected && (
                   <div
-                    className="absolute inset-0 pointer-events-none"
+                    className="absolute inset-0 pointer-events-none rounded-lg transition-opacity duration-300"
                     style={{
-                      boxShadow: '0 0 20px rgba(212, 175, 55, 0.4)',
+                      boxShadow: '0 0 20px 2px rgba(193, 150, 112, 0.6)',
+                      border: '1px solid rgba(193, 150, 112, 0.5)',
+                      zIndex: 10,
                     }}
                   />
                 )}
@@ -127,26 +123,20 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
               {/* === Card Label Section on Hover === */}
               {revealed && hovered && (
                 <div
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-50"
                   style={{
-                    top: '-3rem',
-                    width: '175px',
+                    bottom: '100%',
+                    marginBottom: '1rem',
+                    width: 'max-content',
+                    maxWidth: '200px',
                     textAlign: 'center',
-                    zIndex: 50,
                   }}
                 >
-                  <div className="inline-block px-3 py-1 bg-white/50 rounded-md backdrop-blur-md shadow-2xs">
-                    <h3
-                      className="text-[#3d3a2a] font-semibold text-sm truncate"
-                      title={card.name}
-                      style={{ lineHeight: 1 }}
-                    >
+                  <div className="px-4 py-2 bg-[#0f0e0f]/95 border border-[#c19670]/30 rounded-lg backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                    <h3 className="text-[#c19670] font-bold text-sm tracking-wide whitespace-nowrap" title={card.name}>
                       {card.name}
                     </h3>
-                    <p
-                      className={`text-xs italic mt-0.5 ${isReversed ? 'text-rose-700' : 'text-emerald-700'}`}
-                      style={{ margin: 0 }}
-                    >
+                    <p className={`text-xs font-medium mt-1 ${isReversed ? 'text-rose-400' : 'text-emerald-400'}`}>
                       {isReversed ? 'Reversed' : 'Upright'}
                     </p>
                   </div>

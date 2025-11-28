@@ -1,6 +1,6 @@
 'use client';
 import Footer from '@/app/footer';
-import Header from '@/app/header';
+import Navbar from '@/components/common/Navbar';
 import { getCardInfo } from '@/lib/api';
 import { BASE_API_URL } from '@/lib/variables';
 
@@ -79,13 +79,12 @@ export default function TarotGuidePage() {
   };
 
   return (
-    <div className="relative bg-[#fdfdf8]">
-      <div className="relative min-h-screen z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
-        <Header />
-
+    <div className="relative bg-[#060506] min-h-screen flex flex-col overflow-y-hidden">
+      <Navbar />
+      <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
         <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-[#3d3a2a] mb-4">Tarot Card Deck Guide</h1>
-          <p className="text-[#3d3a2a] max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-white mb-4">Tarot Card Deck Guide</h1>
+          <p className="text-[#c3beb6] max-w-2xl mx-auto">
             Explore the meanings and symbolism of each tarot card in the deck. Click on any card below to learn more
             about its significance, fortune telling aspects, and deeper insights.
           </p>
@@ -93,7 +92,7 @@ export default function TarotGuidePage() {
         <section className="mb-12">
           {/* Major Arcana */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-[#3d3a2a] mb-4 justify-center flex">Major Arcana</h2>
+            <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Major Arcana</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
               {Array.from({ length: 22 }, (_, i) => i + 1).map(cardNumber => (
                 <div
@@ -114,7 +113,7 @@ export default function TarotGuidePage() {
 
           {/* Minor Arcana */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#3d3a2a] mb-4 justify-center flex">Minor Arcana</h2>
+            <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Minor Arcana</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
               {Array.from({ length: 56 }, (_, i) => i + 23).map(cardNumber => (
                 <div
@@ -157,7 +156,7 @@ export default function TarotGuidePage() {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              backgroundColor: 'rgba(6, 5, 6, 0.9)',
             }}
           />
 
@@ -180,7 +179,7 @@ export default function TarotGuidePage() {
                 width: '100%',
                 maxWidth: '56rem',
                 maxHeight: '90vh',
-                backgroundColor: '#fdfdf8',
+                backgroundColor: '#0f0e0f',
                 borderRadius: '1rem',
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
                 display: 'flex',
@@ -197,7 +196,7 @@ export default function TarotGuidePage() {
                   right: '0.75rem',
                   zIndex: 10,
                   padding: '0.5rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backgroundColor: 'rgba(193, 150, 112, 0.9)',
                   borderRadius: '9999px',
                   border: 'none',
                   cursor: 'pointer',
@@ -205,12 +204,12 @@ export default function TarotGuidePage() {
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                  e.currentTarget.style.backgroundColor = 'rgba(193, 150, 112, 1)';
                   e.currentTarget.style.transform = 'scale(1.1)';
                   e.currentTarget.style.boxShadow = '0 6px 12px -2px rgba(0, 0, 0, 0.15)';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                  e.currentTarget.style.backgroundColor = 'rgba(193, 150, 112, 0.9)';
                   e.currentTarget.style.transform = 'scale(1)';
                   e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
                 }}
@@ -221,7 +220,7 @@ export default function TarotGuidePage() {
               {/* Scrollable Content */}
               <div style={{ overflowY: 'auto', maxHeight: '90vh' }}>
                 {/* Header Section */}
-                <div style={{ padding: '2rem', borderBottom: '1px solid #e5e7eb' }}>
+                <div style={{ padding: '2rem', borderBottom: '1px solid #2a2729' }}>
                   <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
                     {/* Card Image */}
                     <div
@@ -234,7 +233,7 @@ export default function TarotGuidePage() {
                         style={{
                           borderRadius: '0.5rem',
                           boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                          backgroundColor: '#e5e7eb',
+                          backgroundColor: '#1a1819',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -259,7 +258,7 @@ export default function TarotGuidePage() {
                           fontSize: '0.75rem',
                           textTransform: 'uppercase',
                           letterSpacing: '0.05em',
-                          color: '#6b7280',
+                          color: '#8a8580',
                           marginBottom: '0.5rem',
                         }}
                       >
@@ -270,7 +269,7 @@ export default function TarotGuidePage() {
                           fontSize: '2.25rem',
                           fontWeight: 'bold',
                           marginBottom: '0.5rem',
-                          color: '#111827',
+                          color: '#c19670',
                         }}
                       >
                         {cardInfo.name}
@@ -278,7 +277,7 @@ export default function TarotGuidePage() {
                       <div
                         style={{
                           fontSize: '1.125rem',
-                          color: '#374151',
+                          color: '#c3beb6',
                           marginBottom: '1rem',
                         }}
                       >
@@ -290,10 +289,10 @@ export default function TarotGuidePage() {
                             key={idx}
                             style={{
                               padding: '0.25rem 0.75rem',
-                              backgroundColor: '#e5e7eb',
+                              backgroundColor: '#1a1819',
                               borderRadius: '9999px',
                               fontSize: '0.875rem',
-                              color: '#1f2937',
+                              color: '#c3beb6',
                             }}
                           >
                             {keyword}
@@ -314,7 +313,7 @@ export default function TarotGuidePage() {
                           fontSize: '1.5rem',
                           fontWeight: '600',
                           marginBottom: '0.75rem',
-                          color: '#111827',
+                          color: '#c19670',
                         }}
                       >
                         Fortune Telling
@@ -323,7 +322,7 @@ export default function TarotGuidePage() {
                         {cardInfo.fortune_telling.map((fortune, idx) => (
                           <li key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
                             <span style={{ color: '#9333ea', marginRight: '0.5rem' }}>•</span>
-                            <span style={{ color: '#374151' }}>{fortune}</span>
+                            <span style={{ color: '#c3beb6' }}>{fortune}</span>
                           </li>
                         ))}
                       </ul>
@@ -342,7 +341,7 @@ export default function TarotGuidePage() {
                     >
                       <div
                         style={{
-                          backgroundColor: '#fef3c7',
+                          backgroundColor: '#1a1819',
                           padding: '1.5rem',
                           borderRadius: '0.5rem',
                         }}
@@ -352,7 +351,7 @@ export default function TarotGuidePage() {
                             fontSize: '1.25rem',
                             fontWeight: '600',
                             marginBottom: '0.75rem',
-                            color: '#111827',
+                            color: '#c19670',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
@@ -364,14 +363,14 @@ export default function TarotGuidePage() {
                           {cardInfo.meanings.light.map((meaning, idx) => (
                             <li key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
                               <span style={{ color: '#d97706', marginRight: '0.5rem' }}>•</span>
-                              <span style={{ color: '#374151', fontSize: '0.875rem' }}>{meaning}</span>
+                              <span style={{ color: '#c3beb6', fontSize: '0.875rem' }}>{meaning}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div
                         style={{
-                          backgroundColor: '#f3f4f6',
+                          backgroundColor: '#1a1819',
                           padding: '1.5rem',
                           borderRadius: '0.5rem',
                         }}
@@ -381,7 +380,7 @@ export default function TarotGuidePage() {
                             fontSize: '1.25rem',
                             fontWeight: '600',
                             marginBottom: '0.75rem',
-                            color: '#111827',
+                            color: '#c19670',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
@@ -392,8 +391,8 @@ export default function TarotGuidePage() {
                         <ul style={{ listStyle: 'none', padding: 0 }}>
                           {cardInfo.meanings.shadow.map((meaning, idx) => (
                             <li key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
-                              <span style={{ color: '#6b7280', marginRight: '0.5rem' }}>•</span>
-                              <span style={{ color: '#374151', fontSize: '0.875rem' }}>{meaning}</span>
+                              <span style={{ color: '#8a8580', marginRight: '0.5rem' }}>•</span>
+                              <span style={{ color: '#c3beb6', fontSize: '0.875rem' }}>{meaning}</span>
                             </li>
                           ))}
                         </ul>
@@ -405,7 +404,7 @@ export default function TarotGuidePage() {
                   {cardInfo.archetype && (
                     <div
                       style={{
-                        backgroundColor: '#f3e8ff',
+                        backgroundColor: '#1a1819',
                         padding: '1.5rem',
                         borderRadius: '0.5rem',
                         marginBottom: '1.5rem',
@@ -416,7 +415,7 @@ export default function TarotGuidePage() {
                           fontSize: '1.25rem',
                           fontWeight: '600',
                           marginBottom: '0.5rem',
-                          color: '#111827',
+                          color: '#c19670',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.5rem',
@@ -425,7 +424,7 @@ export default function TarotGuidePage() {
                         <User size={20} />
                         Archetype
                       </h4>
-                      <p style={{ color: '#374151' }}>{cardInfo.archetype}</p>
+                      <p style={{ color: '#c3beb6' }}>{cardInfo.archetype}</p>
                     </div>
                   )}
 
@@ -437,7 +436,7 @@ export default function TarotGuidePage() {
                           fontSize: '1.5rem',
                           fontWeight: '600',
                           marginBottom: '0.75rem',
-                          color: '#111827',
+                          color: '#c19670',
                         }}
                       >
                         Questions to Ask
@@ -461,7 +460,7 @@ export default function TarotGuidePage() {
                                 flexShrink: 0,
                               }}
                             />
-                            <span style={{ color: '#374151', fontStyle: 'italic' }}>{q}</span>
+                            <span style={{ color: '#c3beb6', fontStyle: 'italic' }}>{q}</span>
                           </li>
                         ))}
                       </ul>
@@ -472,7 +471,7 @@ export default function TarotGuidePage() {
                   {(cardInfo.hebrew_alphabet || cardInfo.numerology || cardInfo.elemental) && (
                     <div
                       style={{
-                        backgroundColor: '#e0e7ff',
+                        backgroundColor: '#1a1819',
                         padding: '1.5rem',
                         borderRadius: '0.5rem',
                         marginBottom: '1.5rem',
@@ -483,12 +482,12 @@ export default function TarotGuidePage() {
                           fontSize: '1.25rem',
                           fontWeight: '600',
                           marginBottom: '0.75rem',
-                          color: '#111827',
+                          color: '#c19670',
                         }}
                       >
                         Symbolism & Correspondences
                       </h4>
-                      <div style={{ color: '#374151' }}>
+                      <div style={{ color: '#c3beb6' }}>
                         {cardInfo.hebrew_alphabet && (
                           <p style={{ marginBottom: '0.5rem' }}>
                             <strong>Hebrew Alphabet:</strong> {cardInfo.hebrew_alphabet}
@@ -516,12 +515,12 @@ export default function TarotGuidePage() {
                           fontSize: '1.25rem',
                           fontWeight: '600',
                           marginBottom: '0.5rem',
-                          color: '#111827',
+                          color: '#c19670',
                         }}
                       >
                         Mythical & Spiritual Connections
                       </h4>
-                      <p style={{ color: '#374151' }}>{cardInfo.mythical_spiritual}</p>
+                      <p style={{ color: '#c3beb6' }}>{cardInfo.mythical_spiritual}</p>
                     </div>
                   )}
                 </div>
@@ -529,7 +528,7 @@ export default function TarotGuidePage() {
                 {/* Footer */}
                 <div
                   style={{
-                    backgroundColor: '#f9fafb',
+                    backgroundColor: '#1a1819',
                     padding: '1rem 1.5rem',
                     borderTop: '1px solid #e5e7eb',
                     display: 'flex',
@@ -542,20 +541,20 @@ export default function TarotGuidePage() {
                       padding: '0.5rem 1rem',
                       fontSize: '0.875rem',
                       fontWeight: '600',
-                      color: '#111827',
-                      backgroundColor: 'white',
+                      color: '#c19670',
+                      backgroundColor: '#1a1819',
                       border: '1px solid #d1d5db',
                       borderRadius: '0.375rem',
                       cursor: 'pointer',
                       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.backgroundColor = '#1a1819';
                       e.currentTarget.style.transform = 'scale(1.1)';
                       e.currentTarget.style.boxShadow = '0 6px 12px -2px rgba(0, 0, 0, 0.15)';
                     }}
                     onMouseLeave={e => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.backgroundColor = '#1a1819';
                       e.currentTarget.style.transform = 'scale(1)';
                       e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
                     }}

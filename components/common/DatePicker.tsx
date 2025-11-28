@@ -155,7 +155,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
           <div className="fixed inset-0" style={{ zIndex: 9998 }} onClick={() => setIsOpen(false)} />
           <div
             ref={containerRef}
-            className="fixed top-1/2 left-1/2 w-[340px] bg-linear-to-br from-[#fdfdf8] via-[#faf7f0] to-[#f5f0e8] border-2 border-amber-800/40 rounded-xl shadow-[0_0_80px_-20px_rgba(100,70,20,0.6)] p-6 backdrop-blur-md animate-fade-in"
+            className="fixed top-1/2 left-1/2 w-[340px] bg-linear-to-br from-[#0f0e0f] via-[#1a1819] to-[#0f0e0f] border-2 border-[#c19670]/40 rounded-xl shadow-[0_0_80px_-20px_rgba(193,150,112,0.4)] p-6 backdrop-blur-md animate-fade-in"
             style={{
               transform: 'translate(-50%, -50%)',
               zIndex: 9999,
@@ -163,8 +163,8 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
           >
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-600/10 rounded-full blur-2xl"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#c19670]/10 rounded-full blur-2xl"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#c19670]/10 rounded-full blur-2xl"></div>
             </div>
 
             <div className="relative"></div>
@@ -172,50 +172,50 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
             <div className="flex items-center justify-between mb-6">
               <button
                 onClick={handlePrevMonth}
-                className="p-2 hover:bg-amber-100/60 rounded-lg transition-all hover:shadow-md active:scale-95 hover:cursor-pointer"
+                className="p-2 hover:bg-[#c19670]/20 rounded-lg transition-all hover:shadow-md active:scale-95 hover:cursor-pointer"
                 type="button"
                 title="Previous month"
               >
-                <ChevronLeft className="w-5 h-5 text-amber-900" />
+                <ChevronLeft className="w-5 h-5 text-[#c19670]" />
               </button>
 
               <div className="flex items-center gap-3">
-                <span className="text-lg font-bold text-amber-900 tracking-wide">{monthName}</span>
+                <span className="text-lg font-bold text-[#c19670] tracking-wide">{monthName}</span>
                 <div className="flex flex-col gap-0.5 items-center">
                   <button
                     onClick={() => handleYearChange('up')}
-                    className="p-0.5 hover:bg-amber-100/60 rounded transition-all active:scale-95 flex items-center justify-center hover:cursor-pointer"
+                    className="p-0.5 hover:bg-[#c19670]/20 rounded transition-all active:scale-95 flex items-center justify-center hover:cursor-pointer"
                     type="button"
                     title="Next year"
                   >
-                    <ChevronLeft className="w-5 h-5 text-amber-800 rotate-90" />
+                    <ChevronLeft className="w-5 h-5 text-[#c3beb6] rotate-90" />
                   </button>
-                  <span className="text-sm font-semibold text-amber-800 px-1">{year}</span>
+                  <span className="text-sm font-semibold text-[#c3beb6] px-1">{year}</span>
                   <button
                     onClick={() => handleYearChange('down')}
-                    className="p-0.5 hover:bg-amber-100/60 rounded transition-all active:scale-95 flex items-center justify-center hover:cursor-pointer"
+                    className="p-0.5 hover:bg-[#c19670]/20 rounded transition-all active:scale-95 flex items-center justify-center hover:cursor-pointer"
                     type="button"
                     title="Previous year"
                   >
-                    <ChevronLeft className="w-5 h-5 text-amber-800 -rotate-90" />
+                    <ChevronLeft className="w-5 h-5 text-[#c3beb6] -rotate-90" />
                   </button>
                 </div>
               </div>
 
               <button
                 onClick={handleNextMonth}
-                className="p-2 hover:bg-amber-100/60 rounded-lg transition-all hover:shadow-md active:scale-95 hover:cursor-pointer"
+                className="p-2 hover:bg-[#c19670]/20 rounded-lg transition-all hover:shadow-md active:scale-95 hover:cursor-pointer"
                 type="button"
                 title="Next month"
               >
-                <ChevronRight className="w-5 h-5 text-amber-900" />
+                <ChevronRight className="w-5 h-5 text-[#c19670]" />
               </button>
             </div>
             <div>
               {/* Weekday headers */}
               <div className="grid grid-cols-7 gap-2 mb-3">
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                  <div key={day} className="text-center text-xs font-bold text-amber-900/70 py-2">
+                  <div key={day} className="text-center text-xs font-bold text-[#c19670]/70 py-2">
                     {day}
                   </div>
                 ))}
@@ -241,12 +241,12 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
                     aspect-square flex items-center justify-center text-sm rounded-lg transition-all font-medium hover:cursor-pointer
                     ${
                       selected
-                        ? 'bg-linear-to-br from-amber-800 to-amber-900 text-[#fdfdf8] shadow-lg scale-105 ring-2 ring-amber-600/50'
+                        ? 'bg-linear-to-br from-[#c19670] to-[#d4a574] text-[#060506] shadow-lg scale-105 ring-2 ring-[#c19670]/50'
                         : today
-                          ? 'bg-amber-200/50 text-amber-900 font-bold ring-2 ring-amber-400/50'
-                          : 'hover:bg-amber-100/70 text-[#3d3a2a] hover:scale-105 hover:shadow-md'
+                          ? 'bg-[#c19670]/20 text-[#c19670] font-bold ring-2 ring-[#c19670]/50'
+                          : 'hover:bg-[#c19670]/10 text-[#c3beb6] hover:scale-105 hover:shadow-md'
                     }
-                    active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1
+                    active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#c19670] focus:ring-offset-1
                   `}
                     >
                       {day}
@@ -256,8 +256,8 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
               </div>
 
               {/* Footer hint */}
-              <div className="mt-4 pt-4 border-t border-amber-800/20 text-center">
-                <p className="text-xs text-amber-800/70">Click a date to select • Press Esc to close</p>
+              <div className="mt-4 pt-4 border-t border-[#c19670]/20 text-center">
+                <p className="text-xs text-[#c3beb6]/70">Click a date to select • Press Esc to close</p>
               </div>
             </div>
           </div>
@@ -281,12 +281,12 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
               setIsOpen(!isOpen);
             }
           }}
-          className="w-full px-4 py-3 rounded-md border border-amber-900/30 bg-[#fdfdf8]/80 hover:border-amber-700 hover:bg-[#fdfdf8] text-[#3d3a2a] cursor-pointer transition-all duration-200 flex items-center justify-between group focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1"
+          className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] hover:border-[#c19670] hover:bg-[#1a1819] text-[#c3beb6] cursor-pointer transition-all duration-200 flex items-center justify-between group focus:outline-none focus:ring-2 focus:ring-[#c19670] focus:ring-offset-1"
         >
-          <span className={value ? 'text-[#3d3a2a]' : 'text-amber-800/50'}>
+          <span className={value ? 'text-[#c3beb6]' : 'text-[#8a8580]'}>
             {value ? formatDisplayDate(value) : placeholder}
           </span>
-          <Calendar className="w-4 h-4 text-amber-800 group-hover:text-amber-900 transition-colors" />
+          <Calendar className="w-4 h-4 text-[#c19670] group-hover:text-[#d4a574] transition-colors" />
         </div>
       </div>
       {calendarPopup}

@@ -1,4 +1,5 @@
 import { Toaster } from '@/components/ui/sonner';
+import { I18nProvider } from '@/lib/i18n';
 
 import { Caudex, Geist_Mono } from 'next/font/google';
 
@@ -29,8 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${caudex.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <Toaster theme="light" position="top-right" richColors />
+        <I18nProvider>
+          {children}
+          <Toaster theme="dark" position="top-right" richColors />
+        </I18nProvider>
       </body>
     </html>
   );

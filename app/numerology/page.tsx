@@ -1,12 +1,14 @@
 'use client';
 import Footer from '@/app/footer';
-import Header from '@/app/header';
+import Navbar from '@/components/common/Navbar';
+import { useI18n } from '@/lib/i18n';
 
 import { useState } from 'react';
 
-import { BookOpen, Briefcase, Calculator, Calendar, Heart, User } from 'lucide-react';
+import { BookOpen, Calculator, Calendar, User } from 'lucide-react';
 
 export default function NumerologyGuide() {
+  const { t } = useI18n();
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const [lifePathNumber, setLifePathNumber] = useState<number | null>(null);
@@ -41,7 +43,6 @@ export default function NumerologyGuide() {
     Z: 8,
   };
 
-  // Reduce to single digit (except master numbers 11, 22, 33)
   const reduceToSingleDigit = (num: number): number => {
     while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
       num = num
@@ -52,7 +53,6 @@ export default function NumerologyGuide() {
     return num;
   };
 
-  // Calculate Life Path Number from date of birth
   const calculateLifePath = () => {
     if (!dob) return;
 
@@ -69,7 +69,6 @@ export default function NumerologyGuide() {
     setLifePathNumber(reduceToSingleDigit(total));
   };
 
-  // Calculate Expression Number (full name)
   const calculateExpression = () => {
     if (!name) return;
 
@@ -87,70 +86,70 @@ export default function NumerologyGuide() {
   };
 
   return (
-    <div className="relative bg-[#fdfdf8]">
-      <div className="relative min-h-screen z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
-        <Header />
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Discover the ancient science of numbers and their mystical meanings. Calculate your personal numbers and
-          understand their significance in your life journey.
-        </p>
+    <div className="relative bg-[#060506] min-h-screen flex flex-col">
+      <Navbar />
+      <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
+        <p className="text-xl text-[#c3beb6] max-w-3xl mx-auto">{t.numerology.subtitle}</p>
+
         {/* Calculator Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
-            <Calculator className="w-8 h-8 text-amber-600 mr-3" />
-            Calculate Your Numbers
+        <div className="bg-[#0f0e0f] rounded-2xl shadow-xl p-8 mb-12 mt-12 border border-[#c19670]/30">
+          <h2 className="text-3xl font-bold text-[#c19670] mb-6 flex items-center">
+            <Calculator className="w-8 h-8 text-[#c19670] mr-3" />
+            {t.numerology.calculator.title}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Full Name (as on birth certificate)
+              <label className="block text-sm font-semibold text-[#c19670] mb-2">
+                {t.numerology.calculator.fullName}
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                placeholder="John Michael Smith"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-amber-500 focus:outline-none"
+                placeholder={t.numerology.calculator.fullNamePlaceholder}
+                className="w-full px-4 py-3 border-2 border-[#c19670]/30 bg-[#1a1819] text-[#c3beb6] rounded-lg focus:border-[#c19670] focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Date of Birth</label>
+              <label className="block text-sm font-semibold text-[#c19670] mb-2">
+                {t.numerology.calculator.dateOfBirth}
+              </label>
               <input
                 type="date"
                 value={dob}
                 onChange={e => setDob(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-amber-500 focus:outline-none"
+                className="w-full px-4 py-3 border-2 border-[#c19670]/30 bg-[#1a1819] text-[#c3beb6] rounded-lg focus:border-[#c19670] focus:outline-none"
               />
             </div>
           </div>
 
           <button
             onClick={calculateAll}
-            className="w-full bg-linear-to-r from-amber-500 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg"
+            className="w-full bg-[#c19670] text-[#060506] font-bold py-3 px-6 rounded-lg hover:bg-[#d4a574] transition-all shadow-lg"
           >
-            Calculate All Numbers
+            {t.numerology.calculator.calculateButton}
           </button>
 
           {/* Results */}
           {(lifePathNumber || expressionNumber) && (
             <div className="grid md:grid-cols-3 gap-4 mt-8 justify-center">
               {lifePathNumber && (
-                <div className="bg-linear-to-br from-blue-50 to-blue-100 p-6 rounded-xl border-2 border-blue-200">
+                <div className="bg-linear-to-br from-blue-50 to-blue-100 p-6 rounded-xl border-2 border-[#c19670]/30">
                   <div className="flex items-center mb-2">
                     <Calendar className="w-5 h-5 text-blue-600 mr-2" />
-                    <h3 className="font-bold text-gray-800">Life Path</h3>
+                    <h3 className="font-bold text-[#c19670]">{t.numerology.calculator.lifePath}</h3>
                   </div>
                   <div className="text-4xl font-bold text-blue-600">{lifePathNumber}</div>
                 </div>
               )}
 
               {expressionNumber && (
-                <div className="bg-linear-to-br from-purple-50 to-purple-100 p-6 rounded-xl border-2 border-purple-200">
+                <div className="bg-linear-to-br from-purple-50 to-purple-100 p-6 rounded-xl border-2 border-[#c19670]/30">
                   <div className="flex items-center mb-2">
                     <User className="w-5 h-5 text-purple-600 mr-2" />
-                    <h3 className="font-bold text-gray-800">Expression</h3>
+                    <h3 className="font-bold text-[#c19670]">{t.numerology.calculator.expression}</h3>
                   </div>
                   <div className="text-4xl font-bold text-purple-600">{expressionNumber}</div>
                 </div>
@@ -162,77 +161,63 @@ export default function NumerologyGuide() {
         {/* Theory Sections */}
         <div className="space-y-8">
           {/* What is Numerology */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">What is Numerology?</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Numerology is an ancient metaphysical science that studies the mystical relationship between numbers and
-              events in our lives. Dating back to ancient civilizations including Babylon, Egypt, and Greece, numerology
-              teaches that numbers carry vibrational frequencies that influence our personality, life path, and destiny.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              The most widely used system today is the Pythagorean system, named after the Greek mathematician
-              Pythagoras, who believed that the universe is mathematically precise and that numbers are the building
-              blocks of reality.
-            </p>
+          <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-[#c19670] mb-4">{t.numerology.whatIs.title}</h2>
+            <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.whatIs.paragraph1}</p>
+            <p className="text-[#c3beb6] leading-relaxed">{t.numerology.whatIs.paragraph2}</p>
           </div>
 
           {/* Life Path Number */}
-          <div className="bg-linear-to-r from-blue-50 to-cyan-50 rounded-2xl shadow-lg p-8">
+          <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8">
             <div className="flex items-center mb-4">
               <Calendar className="w-8 h-8 text-blue-600 mr-3" />
-              <h2 className="text-3xl font-bold text-gray-800">Life Path Number</h2>
+              <h2 className="text-3xl font-bold text-[#c19670]">{t.numerology.lifePath.title}</h2>
             </div>
 
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Your Life Path Number is the most important number in numerology. It represents your life's purpose,
-              natural talents, and the path you're meant to walk.
-            </p>
+            <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.lifePath.description}</p>
 
-            <div className="bg-white rounded-xl p-6 mb-4">
-              <h3 className="font-bold text-gray-800 mb-3">How to Calculate:</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                <li>Reduce each part of your birth date (day, month, year) to a single digit</li>
-                <li>Add these three numbers together</li>
-                <li>Reduce the sum to a single digit (except for 11, 22, 33 - these are Master Numbers)</li>
+            <div className="bg-[#0f0e0f] rounded-xl p-6 mb-4">
+              <h3 className="font-bold text-[#c19670] mb-3">{t.numerology.lifePath.howToCalculate}</h3>
+              <ol className="list-decimal list-inside space-y-2 text-[#c3beb6]">
+                <li>{t.numerology.lifePath.step1}</li>
+                <li>{t.numerology.lifePath.step2}</li>
+                <li>{t.numerology.lifePath.step3}</li>
               </ol>
 
-              <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-                <p className="font-semibold text-gray-800 mb-2">Example: July 16, 1990</p>
-                <p className="text-gray-700">Month: 7 → 7</p>
-                <p className="text-gray-700">Day: 16 → 1 + 6 = 7</p>
-                <p className="text-gray-700">Year: 1990 → 1 + 9 + 9 + 0 = 19 → 1 + 9 = 10 → 1 + 0 = 1</p>
-                <p className="text-gray-700 font-bold mt-2">Life Path: 7 + 7 + 1 = 15 → 1 + 5 = 6</p>
+              <div className="mt-4 p-4 bg-[#1a1819] rounded-lg">
+                <p className="font-semibold text-[#c19670] mb-2">{t.numerology.lifePath.exampleTitle}</p>
+                <p className="text-[#c3beb6]">{t.numerology.lifePath.exampleMonth}</p>
+                <p className="text-[#c3beb6]">{t.numerology.lifePath.exampleDay}</p>
+                <p className="text-[#c3beb6]">{t.numerology.lifePath.exampleYear}</p>
+                <p className="text-[#c3beb6] font-bold mt-2">{t.numerology.lifePath.exampleResult}</p>
               </div>
             </div>
           </div>
 
           {/* Expression Number */}
-          <div className="bg-linear-to-r from-purple-50 to-pink-50 rounded-2xl shadow-lg p-8">
+          <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8">
             <div className="flex items-center mb-4">
               <User className="w-8 h-8 text-purple-600 mr-3" />
-              <h2 className="text-3xl font-bold text-gray-800">Expression Number (Destiny Number)</h2>
+              <h2 className="text-3xl font-bold text-[#c19670]">{t.numerology.expression.title}</h2>
             </div>
 
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Your Expression Number reveals your natural abilities, talents, and potential. It's calculated from your
-              full birth name and shows what you're meant to express in this lifetime.
-            </p>
+            <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.expression.description}</p>
 
-            <div className="bg-white rounded-xl p-6 mb-4">
-              <h3 className="font-bold text-gray-800 mb-3">How to Calculate:</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-700 mb-4">
-                <li>Use your full name as written on your birth certificate</li>
-                <li>Convert each letter to its corresponding number (A=1, B=2, C=3... I=9, J=1, etc.)</li>
-                <li>Add all numbers together and reduce to a single digit</li>
+            <div className="bg-[#0f0e0f] rounded-xl p-6 mb-4">
+              <h3 className="font-bold text-[#c19670] mb-3">{t.numerology.expression.howToCalculate}</h3>
+              <ol className="list-decimal list-inside space-y-2 text-[#c3beb6] mb-4">
+                <li>{t.numerology.expression.step1}</li>
+                <li>{t.numerology.expression.step2}</li>
+                <li>{t.numerology.expression.step3}</li>
               </ol>
 
-              <div className="bg-purple-50 rounded-lg p-4 mb-4">
-                <h4 className="font-semibold text-gray-800 mb-2">Letter-Number Chart (Pythagorean):</h4>
+              <div className="bg-[#1a1819] rounded-lg p-4 mb-4">
+                <h4 className="font-semibold text-[#c19670] mb-2">{t.numerology.expression.chartTitle}</h4>
                 <div className="grid grid-cols-9 gap-2 text-sm text-center">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
-                    <div key={num} className="bg-white rounded p-2">
+                    <div key={num} className="bg-[#0f0e0f] rounded p-2">
                       <div className="font-bold text-purple-600">{num}</div>
-                      <div className="text-xs text-gray-600">
+                      <div className="text-xs text-[#8a8580]">
                         {num === 1 && 'A J S'}
                         {num === 2 && 'B K T'}
                         {num === 3 && 'C L U'}
@@ -248,96 +233,86 @@ export default function NumerologyGuide() {
                 </div>
               </div>
 
-              <div className="p-4 bg-purple-50 rounded-lg">
-                <p className="font-semibold text-gray-800 mb-2">Example: JOHN</p>
-                <p className="text-gray-700">J=1, O=6, H=8, N=5</p>
-                <p className="text-gray-700 font-bold mt-2">1 + 6 + 8 + 5 = 20 → 2 + 0 = 2</p>
+              <div className="p-4 bg-[#1a1819] rounded-lg">
+                <p className="font-semibold text-[#c19670] mb-2">{t.numerology.expression.exampleTitle}</p>
+                <p className="text-[#c3beb6]">{t.numerology.expression.exampleCalculation}</p>
+                <p className="text-[#c3beb6] font-bold mt-2">{t.numerology.expression.exampleResult}</p>
               </div>
             </div>
           </div>
 
           {/* Master Numbers */}
-          <div className="bg-linear-to-r from-yellow-50 to-amber-50 rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Master Numbers: 11, 22, 33</h2>
+          <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-[#c19670] mb-4">{t.numerology.masterNumbers.title}</h2>
 
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Master Numbers are double-digit numbers that are not reduced to a single digit. They carry powerful
-              vibrations and indicate individuals with heightened potential and spiritual significance.
-            </p>
+            <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.masterNumbers.description}</p>
 
             <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-xl p-6 border-2 border-amber-200">
+              <div className="bg-[#0f0e0f] rounded-xl p-6 border-2 border-[#c19670]/30">
                 <h3 className="text-2xl font-bold text-amber-600 mb-2">11</h3>
-                <p className="text-sm text-gray-700">The Illuminator - Spiritual insight and enlightenment</p>
+                <p className="text-sm text-[#c3beb6]">{t.numerology.masterNumbers.number11}</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-amber-200">
+              <div className="bg-[#0f0e0f] rounded-xl p-6 border-2 border-[#c19670]/30">
                 <h3 className="text-2xl font-bold text-amber-600 mb-2">22</h3>
-                <p className="text-sm text-gray-700">The Master Builder - Turning dreams into reality</p>
+                <p className="text-sm text-[#c3beb6]">{t.numerology.masterNumbers.number22}</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-amber-200">
+              <div className="bg-[#0f0e0f] rounded-xl p-6 border-2 border-[#c19670]/30">
                 <h3 className="text-2xl font-bold text-amber-600 mb-2">33</h3>
-                <p className="text-sm text-gray-700">The Master Teacher - Compassion and spiritual guidance</p>
+                <p className="text-sm text-[#c3beb6]">{t.numerology.masterNumbers.number33}</p>
               </div>
             </div>
           </div>
 
           {/* Resources Section */}
-          <div className="bg-linear-to-r from-indigo-50 to-purple-50 rounded-2xl shadow-lg p-8">
+          <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8">
             <div className="flex items-center mb-4">
               <BookOpen className="w-8 h-8 text-indigo-600 mr-3" />
-              <h2 className="text-3xl font-bold text-gray-800">Learn More</h2>
+              <h2 className="text-3xl font-bold text-[#c19670]">{t.numerology.learnMore.title}</h2>
             </div>
 
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Now that you've calculated your core numbers, explore their detailed meanings and how they interact with
-              each other. Each number carries unique energies and lessons for your life journey.
-            </p>
+            <p className="text-[#c3beb6] leading-relaxed mb-6">{t.numerology.learnMore.description}</p>
 
             <div className="grid md:grid-cols-2 gap-4">
               <a
                 href="https://www.worldnumerology.com/numerology-single-digit-numbers/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
+                className="block bg-[#0f0e0f] rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
               >
-                <h3 className="font-bold text-gray-800 mb-2">Number Meanings (1-9)</h3>
-                <p className="text-sm text-gray-600">
-                  Discover the detailed interpretations of each single-digit number
-                </p>
+                <h3 className="font-bold text-[#c19670] mb-2">{t.numerology.learnMore.numberMeanings}</h3>
+                <p className="text-sm text-[#8a8580]">{t.numerology.learnMore.numberMeaningsDesc}</p>
               </a>
 
               <a
                 href="https://www.numerology.com/articles/about-numerology/master-numbers/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
+                className="block bg-[#0f0e0f] rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
               >
-                <h3 className="font-bold text-gray-800 mb-2">Master Numbers Guide</h3>
-                <p className="text-sm text-gray-600">Deep dive into the powerful vibrations of 11, 22, and 33</p>
+                <h3 className="font-bold text-[#c19670] mb-2">{t.numerology.learnMore.masterNumbersGuide}</h3>
+                <p className="text-sm text-[#8a8580]">{t.numerology.learnMore.masterNumbersGuideDesc}</p>
               </a>
 
               <a
                 href="https://astrologyfutureeye.com/fortune-tellers/personal-year-numerology-calculator"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
+                className="block bg-[#0f0e0f] rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
               >
-                <h3 className="font-bold text-gray-800 mb-2">Personal Year Cycles</h3>
-                <p className="text-sm text-gray-600">Understand the 9-year numerology cycle and where you are now</p>
+                <h3 className="font-bold text-[#c19670] mb-2">{t.numerology.learnMore.personalYear}</h3>
+                <p className="text-sm text-[#8a8580]">{t.numerology.learnMore.personalYearDesc}</p>
               </a>
 
               <a
                 href="https://www.numerology.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
+                className="block bg-[#0f0e0f] rounded-xl p-6 hover:shadow-xl transition-shadow border-2 border-indigo-100 hover:border-indigo-300"
               >
-                <h3 className="font-bold text-gray-800 mb-2">Numerology.com</h3>
-                <p className="text-sm text-gray-600">
-                  Comprehensive resources and tools for deeper numerology insights
-                </p>
+                <h3 className="font-bold text-[#c19670] mb-2">{t.numerology.learnMore.numerologyDotCom}</h3>
+                <p className="text-sm text-[#8a8580]">{t.numerology.learnMore.numerologyDotComDesc}</p>
               </a>
             </div>
           </div>
