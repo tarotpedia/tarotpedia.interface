@@ -1,9 +1,11 @@
 import { useTarot } from '@/context/TarotContext';
 import { getNumerology, getTarotReading } from '@/lib/api';
+import { useI18n } from '@/lib/i18n';
 
 import { toast } from 'sonner';
 
 export function useReadingInterpretation() {
+  const { t } = useI18n();
   const { selectedCards, formData, setStep, setProgress, setProgressText, setReading } = useTarot();
 
   const handleGetInterpretation = async () => {
@@ -13,10 +15,14 @@ export function useReadingInterpretation() {
     }
 
     setStep('reading');
-    setProgress(5);
+    setProgress(10);
+    setProgressText(t.reading.progress.interpreting);
+
+    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
     try {
-      setProgressText('Interpreting tarot reading...');
+      await delay(2000);
+
       const tarotResponse = await getTarotReading({
         name: formData.name,
         question: formData.question,
@@ -34,8 +40,9 @@ export function useReadingInterpretation() {
         },
       });
 
-      setProgress(Math.floor(Math.random() * (60 - 30 + 1)) + 30);
-      setProgressText('Calculating numerology insights...');
+      setProgress(45);
+      setProgressText(t.reading.progress.numerology);
+      await delay(2000);
 
       const numerologyResponse = await getNumerology({
         name: formData.name,
@@ -43,16 +50,20 @@ export function useReadingInterpretation() {
         question: formData.question,
       });
 
-      setProgress(90);
-      setProgressText('Reading complete');
+      setProgress(80);
+      setProgressText(t.reading.progress.finalizing);
+      await delay(2000);
+
+      setProgress(100);
+      setProgressText(t.reading.progress.complete);
+
       setReading({
         ...tarotResponse.data,
         numerology_meaning: numerologyResponse.data.numerology_meaning,
         original_cards: selectedCards,
       });
 
-      setProgress(100);
-      setTimeout(() => setStep('results'), 500);
+      setTimeout(() => setStep('results'), 800);
     } catch (error) {
       console.error('Error getting reading:', error);
       toast.warning('Failed to get reading. Please try again.');

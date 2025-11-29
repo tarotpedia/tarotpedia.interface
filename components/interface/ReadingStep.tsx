@@ -1,4 +1,6 @@
 'use client';
+import { useAnimations } from '@/context/AnimationContext';
+
 import React from 'react';
 
 interface ReadingStepProps {
@@ -7,22 +9,23 @@ interface ReadingStepProps {
 }
 
 const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => {
+  const { animationsEnabled } = useAnimations();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return (
     <>
       <div className="relative max-w-3xl mx-auto text-center px-4 py-16 mt-48 mb-32">
-        {/* Mystical nebula background */}
+        {}
         <div className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
 
-        {/* Cosmic rings */}
+        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(3)].map((_, i) => (
             <div
               key={i}
               className="absolute border-2 rounded-full"
               style={{
-                width: `${200 + i * 40}px`,
-                height: `${200 + i * 40}px`,
+                width: `${150 + i * 30}px`,
+                height: `${150 + i * 30}px`,
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -39,56 +42,123 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
             />
           ))}
         </div>
-
-        {/* Three-body problem chaotic orbits - 3 planets */}
+        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {/* Planet 1 - Golden */}
           <div
-            className="absolute w-8 h-8 rounded-full shadow-lg"
+            className="absolute w-12 h-12 rounded-full shadow-2xl"
             style={{
-              background: 'radial-gradient(circle at 30% 30%, #f4d03f, #c19670)',
-              boxShadow: '0 0 20px rgba(193, 150, 112, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3)',
-              animation: 'chaotic-orbit-1 12s ease-in-out infinite',
-              filter: 'drop-shadow(0 0 8px rgba(193, 150, 112, 0.6))',
+              background: 'radial-gradient(circle at 35% 35%, #d0d0d0, #b0b0b0, #808080)',
+              boxShadow:
+                '0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(193, 150, 112, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.05)',
+              filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.15))',
+              animation: 'gentle-pulse 5s ease-in-out infinite, planet-float 10s ease-in-out infinite',
             }}
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-transparent to-black/5" />
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background: 'radial-gradient(circle at 60% 40%, transparent 30%, rgba(0, 0, 0, 0.05) 70%)',
+              }}
+            />
+
+            <div
+              className="absolute"
+              style={{
+                width: '140px',
+                height: '100px',
+                left: '-70px',
+                top: '-50px',
+                animation: 'orbit-ellipse-1 8s linear infinite',
+              }}
+            >
+              <div
+                className="absolute w-6 h-6 rounded-full"
+                style={{
+                  background: 'radial-gradient(circle at 30% 30%, #e0c24f, #d5a62a, #b08d1e)',
+                  boxShadow:
+                    '0 0 15px rgba(213, 166, 42, 0.7), 0 0 30px rgba(213, 166, 42, 0.3), inset 0 0 7px rgba(255, 255, 255, 0.3)',
+                  filter: 'drop-shadow(0 0 7px rgba(213, 166, 42, 0.7))',
+                  left: '100%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  animation: 'counter-rotate-1 8s linear infinite reverse',
+                }}
+              >
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 to-transparent animate-pulse" />
+              </div>
+            </div>
+
+            <div
+              className="absolute"
+              style={{
+                width: '160px',
+                height: '160px',
+                left: '-80px',
+                top: '-80px',
+                animation: 'orbit-circle-2 12s linear infinite reverse',
+              }}
+            >
+              <div
+                className="absolute w-5 h-5 rounded-full"
+                style={{
+                  background: 'radial-gradient(circle at 30% 30%, #e0c24f, #d5a62a, #b08d1e)',
+                  boxShadow:
+                    '0 0 15px rgba(213, 166, 42, 0.7), 0 0 30px rgba(213, 166, 42, 0.3), inset 0 0 7px rgba(255, 255, 255, 0.3)',
+                  filter: 'drop-shadow(0 0 7px rgba(213, 166, 42, 0.7))',
+                  left: '100%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  animation: 'counter-rotate-2 12s linear infinite',
+                }}
+              >
+                <div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 to-transparent animate-pulse"
+                  style={{ animationDelay: '0.3s' }}
+                />
+              </div>
+            </div>
+
+            <div
+              className="absolute"
+              style={{
+                width: '120px',
+                height: '180px',
+                left: '-60px',
+                top: '-90px',
+                animation: 'orbit-ellipse-3 15s linear infinite',
+                transform: 'rotate(45deg)',
+              }}
+            >
+              <div
+                className="absolute w-5.5 h-5.5 rounded-full"
+                style={{
+                  background: 'radial-gradient(circle at 30% 30%, #e0c24f, #d5a62a, #b08d1e)',
+                  boxShadow:
+                    '0 0 15px rgba(213, 166, 42, 0.7), 0 0 30px rgba(213, 166, 42, 0.3), inset 0 0 7px rgba(255, 255, 255, 0.3)',
+                  filter: 'drop-shadow(0 0 7px rgba(213, 166, 42, 0.7))',
+                  left: '100%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%) rotate(-45deg)',
+                  animation: 'counter-rotate-3 15s linear infinite reverse',
+                }}
+              >
+                <div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 to-transparent animate-pulse"
+                  style={{ animationDelay: '0.6s' }}
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Planet 2 - Silver */}
-          <div
-            className="absolute w-6 h-6 rounded-full shadow-lg"
-            style={{
-              background: 'radial-gradient(circle at 30% 30%, #e8e6e3, #8a8580)',
-              boxShadow: '0 0 20px rgba(138, 133, 128, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3)',
-              animation: 'chaotic-orbit-2 15s ease-in-out infinite',
-              filter: 'drop-shadow(0 0 8px rgba(138, 133, 128, 0.6))',
-            }}
-          >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent" />
-          </div>
-
-          {/* Planet 3 - Bronze */}
-          <div
-            className="absolute w-7 h-7 rounded-full shadow-lg"
-            style={{
-              background: 'radial-gradient(circle at 30% 30%, #d4a574, #a0956b)',
-              boxShadow: '0 0 20px rgba(212, 165, 116, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3)',
-              animation: 'chaotic-orbit-3 18s ease-in-out infinite',
-              filter: 'drop-shadow(0 0 8px rgba(212, 165, 116, 0.6))',
-            }}
-          >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent" />
-          </div>
-
-          {/* Orbit trails */}
-          {[...Array(3)].map((_, i) => (
+          {}
+          {[...Array(2)].map((_, i) => (
             <div
               key={`trail-${i}`}
               className="absolute rounded-full border opacity-10"
               style={{
-                width: `${180 + i * 60}px`,
-                height: `${180 + i * 60}px`,
+                width: `${160 + i * 40}px`,
+                height: `${160 + i * 40}px`,
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -101,7 +171,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {/* Mystical particles */}
+        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {[...Array(16)].map((_, i) => (
             <div
@@ -111,8 +181,8 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
                 background: `radial-gradient(circle, ${
                   i % 3 === 0 ? '#c19670' : i % 3 === 1 ? '#c3beb6' : '#d4a574'
                 }, transparent)`,
-                left: `${50 + Math.cos((i * 22.5 * Math.PI) / 180) * 180}px`,
-                top: `${50 + Math.sin((i * 22.5 * Math.PI) / 180) * 180}px`,
+                left: `${50 + Math.cos((i * 22.5 * Math.PI) / 180) * 120}px`,
+                top: `${50 + Math.sin((i * 22.5 * Math.PI) / 180) * 120}px`,
                 animation: `float-particle ${15 + i * 2}s ease-in-out infinite`,
                 animationDelay: `${i * 0.2}s`,
                 filter: 'blur(1px)',
@@ -122,15 +192,15 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {/* Pulsing waves */}
+        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {[...Array(3)].map((_, i) => (
+          {[...Array(2)].map((_, i) => (
             <div
               key={`wave-${i}`}
               className="absolute rounded-full border opacity-15"
               style={{
-                width: `${450 + i * 120}px`,
-                height: `${450 + i * 120}px`,
+                width: `${300 + i * 80}px`,
+                height: `${300 + i * 80}px`,
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -143,36 +213,89 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {/* Progress content - Fixed width container */}
+        {}
         <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md px-6">
           <h2 className="text-xl md:text-2xl font-bold text-[#c19670] mb-6 tracking-wide drop-shadow-[0_0_10px_rgba(193,150,112,0.5)]">
             {progressText}
           </h2>
 
-          {/* Fixed width progress bar container */}
+          {}
           <div className="w-full max-w-sm mx-auto">
-            <div className="relative w-full h-4 bg-[#1a1819] rounded-full overflow-hidden shadow-inner">
-              {/* Progress bar glow */}
+            <div className="relative w-full h-1.5 bg-[#1a1819]/40 rounded-full overflow-visible">
               <div
-                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#c19670] via-[#d4a574] to-[#c19670] rounded-full transition-all duration-700 ease-out"
+                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#c19670]/60 via-[#d4a574]/70 to-[#c19670]/60 rounded-full transition-all duration-500 ease-out"
                 style={{
                   width: `${progress}%`,
-                  boxShadow: '0 0 15px rgba(193, 150, 112, 0.6)',
+                  boxShadow: '0 0 8px rgba(193, 150, 112, 0.3)',
                 }}
               />
 
-              {/* Shimmer effect */}
-              <div
-                className="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
-                style={{
-                  width: `${progress}%`,
-                }}
-              />
+              {progress > 0 && (
+                <>
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
+                    style={{
+                      left: `calc(${progress}% - 8px)`,
+                    }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" className="animate-pulse">
+                      <path
+                        d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"
+                        fill="#c19670"
+                        opacity="0.8"
+                      />
+                      <circle cx="12" cy="12" r="2" fill="#fffef8" opacity="0.9" />
+                    </svg>
+                  </div>
+
+                  {progress > 25 && (
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
+                      style={{
+                        left: `calc(${progress * 0.6}% - 6px)`,
+                      }}
+                    >
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        className="animate-pulse"
+                        style={{ animationDelay: '0.2s' }}
+                      >
+                        <path
+                          d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"
+                          fill="#d4a574"
+                          opacity="0.6"
+                        />
+                      </svg>
+                    </div>
+                  )}
+
+                  {progress > 50 && (
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
+                      style={{
+                        left: `calc(${progress * 0.3}% - 5px)`,
+                      }}
+                    >
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 24 24"
+                        className="animate-pulse"
+                        style={{ animationDelay: '0.4s' }}
+                      >
+                        <path
+                          d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"
+                          fill="#c3beb6"
+                          opacity="0.5"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
-
-            <p className="text-[#c19670] mt-4 text-base md:text-lg font-bold drop-shadow-[0_0_8px_rgba(193,150,112,0.4)]">
-              {progress}%
-            </p>
           </div>
         </div>
       </div>
@@ -187,69 +310,85 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           }
         }
 
-        @keyframes chaotic-orbit-1 {
+        @keyframes gentle-pulse {
           0%,
           100% {
-            transform: translate(0, 0);
-          }
-          16% {
-            transform: translate(120px, -80px);
-          }
-          33% {
-            transform: translate(80px, 100px);
+            transform: scale(1);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
           }
           50% {
-            transform: translate(-100px, 60px);
-          }
-          66% {
-            transform: translate(-120px, -90px);
-          }
-          83% {
-            transform: translate(60px, -110px);
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1)) drop-shadow(0 0 40px rgba(193, 150, 112, 0.5));
           }
         }
 
-        @keyframes chaotic-orbit-2 {
+        @keyframes planet-float {
           0%,
           100% {
-            transform: translate(0, 0);
+            transform: translate(0px, 0px);
           }
-          20% {
-            transform: translate(-90px, 110px);
+          25% {
+            transform: translate(8px, -10px);
           }
-          40% {
-            transform: translate(110px, 70px);
+          50% {
+            transform: translate(-5px, -18px);
           }
-          60% {
-            transform: translate(70px, -100px);
-          }
-          80% {
-            transform: translate(-110px, -80px);
+          75% {
+            transform: translate(-10px, -5px);
           }
         }
 
-        @keyframes chaotic-orbit-3 {
-          0%,
-          100% {
-            transform: translate(0, 0);
+        @keyframes orbit-ellipse-1 {
+          from {
+            transform: rotate(0deg);
           }
-          14% {
-            transform: translate(100px, 90px);
+          to {
+            transform: rotate(360deg);
           }
-          28% {
-            transform: translate(-80px, 120px);
+        }
+
+        @keyframes orbit-circle-2 {
+          from {
+            transform: rotate(0deg);
           }
-          42% {
-            transform: translate(-110px, -70px);
+          to {
+            transform: rotate(360deg);
           }
-          57% {
-            transform: translate(90px, -100px);
+        }
+
+        @keyframes orbit-ellipse-3 {
+          from {
+            transform: rotate(45deg) rotateZ(0deg);
           }
-          71% {
-            transform: translate(120px, 50px);
+          to {
+            transform: rotate(45deg) rotateZ(360deg);
           }
-          85% {
-            transform: translate(-60px, -110px);
+        }
+
+        @keyframes counter-rotate-1 {
+          from {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(-360deg);
+          }
+        }
+
+        @keyframes counter-rotate-2 {
+          from {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(-360deg);
+          }
+        }
+
+        @keyframes counter-rotate-3 {
+          from {
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(-405deg);
           }
         }
 

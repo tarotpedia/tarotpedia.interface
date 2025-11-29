@@ -10,14 +10,27 @@ const AnimationContext = createContext<AnimationContextType | undefined>(undefin
 
 export function AnimationProvider({ children }: { children: React.ReactNode }) {
   const [animationsEnabled, setAnimationsEnabled] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Load preference from localStorage
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     const saved = localStorage.getItem('animations-enabled');
     if (saved !== null) {
       setAnimationsEnabled(saved === 'true');
+    } else if (isMobile) {
+      setAnimationsEnabled(false);
     }
-  }, []);
+  }, [isMobile]);
 
   const toggleAnimations = () => {
     setAnimationsEnabled(prev => {

@@ -13,17 +13,14 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  // Always start with defaultLocale to prevent hydration mismatch
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
   const [translations, setTranslations] = useState<TranslationKeys>(() => getTranslations(defaultLocale));
   const [mounted, setMounted] = useState(false);
 
-  // Detect and set the actual locale after mount (client-side only)
   useEffect(() => {
     setMounted(true);
 
     try {
-      // Check localStorage first for saved preference
       const savedLocale = localStorage.getItem('locale') as Locale | null;
       if (savedLocale && (savedLocale === 'en' || savedLocale === 'vi')) {
         setLocaleState(savedLocale);
@@ -31,14 +28,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      // Otherwise detect from browser/timezone
       const detectedLocale = detectLocale();
       setLocaleState(detectedLocale);
       setTranslations(getTranslations(detectedLocale));
       localStorage.setItem('locale', detectedLocale);
-    } catch {
-      // If anything fails, stick with defaultLocale
-    }
+    } catch {}
   }, []);
 
   const setLocale = (newLocale: Locale) => {

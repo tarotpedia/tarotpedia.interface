@@ -27,7 +27,7 @@ export function AnimationToggle() {
           <h4 className="font-semibold text-sm text-[#c19670]">Settings</h4>
           <div className="flex items-center justify-between">
             <Label htmlFor="animations-toggle" className="text-[#c3beb6] cursor-pointer">
-              Animations
+              Form Animations
             </Label>
             <Switch
               id="animations-toggle"

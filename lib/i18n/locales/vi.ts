@@ -1,15 +1,15 @@
 export const vi = {
   common: {
-    appName: 'tarotpedia',
-    tagline: 'khi tarot gặp gỡ AI',
+    appName: 'tarotpedia.ai',
+    tagline: 'Những gì bạn cần biết về tarot',
   },
   header: {
-    title: 'tarotpedia',
-    subtitle: '',
+    title: 'tarotpedia.ai',
+    subtitle: 'Những gì bạn cần biết về tarot',
   },
   footer: {
     about: {
-      title: 'Về tarotpedia',
+      title: 'Về tarotpedia.ai',
       description:
         'Kết hợp trí tuệ tarot cổ đại với công nghệ AI hiện đại để cung cấp những lời giải đáp sâu sắc và hướng dẫn cho các câu hỏi trong cuộc sống của bạn.',
     },
@@ -28,19 +28,19 @@ export const vi = {
     forSeekers: 'dành cho những người cũng tin vào vũ trụ',
   },
   form: {
-    title: 'Đặt câu hỏi cho trải bài Tarot',
+    title: 'Vũ trụ đang nhấp nháy vì bạn...',
     name: {
       label: 'Tên Của Bạn',
-      placeholder: 'Nhập tên của bạn',
+      placeholder: 'Tên được sử dụng để tính toán thần số học và trải bài',
     },
     dob: {
       label: 'Ngày Sinh',
-      placeholder: 'Chọn ngày sinh của bạn',
+      placeholder: 'Ngày sinh được sử dụng để tính toán thần số học và trải bài',
     },
     question: {
-      label: 'Câu Hỏi/Vấn Đề Của Bạn',
+      label: 'Đặt Câu Hỏi Với Trải Bài',
       placeholder:
-        'Hãy mô tả vấn đề của bạn cho trải bài. Càng chi tiết, trải bài càng liên hệ được vũ trụ với vấn đề của bạn.',
+        'Hãy mô tả vấn đề của bạn cho Trải Bài. Càng chi tiết, Trải Bài càng liên hệ được vấn đề của bạn với vũ trụ.',
       hint: 'Vũ trụ huyền bí không hiểu những vấn đề ngắn gọn. Vui lòng mô tả rõ ràng hơn.',
     },
     button: 'Trải Bài',
@@ -49,7 +49,7 @@ export const vi = {
       questionTooShort: 'Vui lòng cung cấp thêm chi tiết về câu hỏi của bạn',
     },
     progress: {
-      shuffling: 'Đang xáo bài...',
+      shuffling: 'Đang trộn bài...',
       deckReady: 'Bộ bài đã sẵn sàng! Chọn 3 lá bài...',
     },
     error: {
@@ -61,14 +61,20 @@ export const vi = {
     selected: 'lá bài đã chọn',
     instruction: 'Nhấp vào một lá bài để chọn. Lá bài sẽ tự hiện ra khi được chọn.',
     back: '← Quay Lại',
-    reading: 'Xem Bói',
+    reading: 'Xem Kết Quả',
+    shuffling: {
+      title: 'Đang Trộn Bài',
+      description: 'Vui lòng đợi trong khi chúng tôi chuẩn bị bài...',
+    },
   },
   reading: {
     progress: {
-      shuffling: 'Đang xáo bài...',
+      shuffling: 'Đang trộn bài...',
       analyzing: 'Đang phân tích các lá bài của bạn...',
       interpreting: 'Đang giải mã bài bói...',
-      complete: 'Hoàn tất xem bói!',
+      numerology: 'Đang tính toán thần số học...',
+      finalizing: 'Đang nhận thông điệp...',
+      complete: 'Hoàn tất thông điệp!',
     },
   },
   numerology: {
@@ -126,18 +132,20 @@ export const vi = {
       number22: 'Người Xây Dựng Bậc Thầy - Biến giấc mơ thành hiện thực',
       number33: 'Người Thầy Bậc Thầy - Lòng trắc ẩn và hướng dẫn tâm linh',
     },
-    learnMore: {
-      title: 'Tìm Hiểu Thêm',
-      description:
-        'Bây giờ bạn đã tính toán các con số cốt lõi của mình, hãy khám phá ý nghĩa chi tiết của chúng và cách chúng tương tác với nhau. Mỗi con số mang năng lượng và bài học độc đáo cho hành trình cuộc sống của bạn.',
-      numberMeanings: 'Ý Nghĩa Các Số (1-9)',
-      numberMeaningsDesc: 'Khám phá các giải thích chi tiết của từng số đơn',
-      masterNumbersGuide: 'Hướng Dẫn Số Chủ',
-      masterNumbersGuideDesc: 'Tìm hiểu sâu về rung động mạnh mẽ của 11, 22 và 33',
-      personalYear: 'Chu Kỳ Năm Cá Nhân',
-      personalYearDesc: 'Hiểu chu kỳ thần số học 9 năm và vị trí hiện tại của bạn',
-      numerologyDotCom: 'Numerology.com',
-      numerologyDotComDesc: 'Tài nguyên và công cụ toàn diện để hiểu sâu hơn về thần số học',
+  },
+  results: {
+    newReading: 'Bắt Đầu Trải Bài Mới',
+    numerologyInsight: 'Góc Nhìn Thần Số Học',
+    yourDeck: 'Bộ Bài Tarot Của Bạn',
+    overallReading: 'Tổng Quan Trải Bài',
+    positions: {
+      past: 'Quá Khứ',
+      present: 'Hiện Tại',
+      future: 'Tương Lai',
     },
+    downloadPdf: 'Tải Kết Quả PDF',
+    pdfSuccess: 'Đã tải PDF thành công',
+    pdfError: 'Không thể tạo PDF',
+    aiDisclaimer: 'Kết quả này được tạo bởi AI và chỉ mang tính chất tham khảo.',
   },
 } as const;

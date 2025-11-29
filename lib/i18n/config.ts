@@ -21,12 +21,10 @@ export function detectLocale(): Locale {
   try {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    // Check if timezone is in Vietnam (Asia/Ho_Chi_Minh or Asia/Saigon)
     if (timezone === 'Asia/Ho_Chi_Minh' || timezone === 'Asia/Saigon') {
       return 'vi';
     }
 
-    // Also check browser language as fallback
     const browserLang = navigator.language.toLowerCase();
     if (browserLang.startsWith('vi')) {
       return 'vi';

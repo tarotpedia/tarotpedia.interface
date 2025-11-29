@@ -32,7 +32,7 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
 
   return (
     <div className="w-full py-12 px-4 relative">
-      {/* Mystical background glow */}
+      {}
       <div className="absolute inset-0 bg-gradient-radial from-[#c19670]/5 via-transparent to-transparent pointer-events-none" />
 
       <div className="flex justify-center items-end gap-4 flex-wrap max-w-6xl mx-auto relative">
@@ -57,18 +57,16 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
               onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => onCardSelect(card)}
             >
-              {/* Card Container */}
               <div
                 className="relative cursor-pointer transition-all duration-500 w-[140px] sm:w-[175px]"
                 style={{
-                  aspectRatio: '350/620',
+                  aspectRatio: '350/600',
                   perspective: '1000px',
                   animation: visible ? 'float-in 1.5s ease forwards' : 'none',
                   transform: hovered ? 'translateY(-20px) scale(1.05)' : 'translateY(0) scale(1)',
                   filter: hovered ? 'brightness(1.2)' : 'brightness(1)',
                 }}
               >
-                {/* Magical aura on hover */}
                 {hovered && (
                   <div
                     className="absolute inset-0 pointer-events-none animate-pulse"
@@ -81,7 +79,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                   />
                 )}
 
-                {/* Card Inner */}
                 <div
                   className="relative w-full h-full transition-transform duration-700"
                   style={{
@@ -89,7 +86,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                     transform: revealed ? 'rotateY(180deg)' : 'rotateY(0deg)',
                   }}
                 >
-                  {/* Card Back - NO ROUNDED CORNERS */}
                   <div
                     className="absolute w-full h-full overflow-hidden shadow-2xl"
                     style={{
@@ -101,13 +97,12 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                     }}
                   >
                     <img
-                      src="/cardBack.svg"
+                      src="/cardBack.jpeg"
                       alt="Card back"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover border-2 border-[#c19670]/60"
                       style={{ filter: 'sepia(20%) brightness(1.1)' }}
                     />
 
-                    {/* Mystical overlay pattern */}
                     <div
                       className="absolute inset-0 opacity-20"
                       style={{
@@ -117,9 +112,8 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                     />
                   </div>
 
-                  {/* Card Front - NO ROUNDED CORNERS */}
                   <div
-                    className="absolute w-full h-full overflow-hidden shadow-2xl"
+                    className="absolute w-full h-full overflow-hidden shadow-2xl bg-white"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
@@ -129,14 +123,13 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                     <img
                       src={getCardFrontUrl(card)}
                       alt={card.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover border-2 border-[#c19670]/60"
                       style={{
                         transform: isReversed ? 'rotate(180deg)' : 'none',
                         transition: 'transform 0.6s',
                       }}
                     />
 
-                    {/* Mystical border glow */}
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
@@ -146,7 +139,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                   </div>
                 </div>
 
-                {/* Enhanced Hover Glow - NO ROUNDED CORNERS */}
                 {hovered && !selected && (
                   <>
                     <div
@@ -158,7 +150,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                       }}
                     />
 
-                    {/* Sparkle particles */}
                     {[...Array(3)].map((_, i) => (
                       <div
                         key={i}
@@ -174,7 +165,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                   </>
                 )}
 
-                {/* Selection indicator */}
                 {selected && (
                   <div
                     className="absolute inset-0 pointer-events-none animate-pulse"
@@ -187,7 +177,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                 )}
               </div>
 
-              {/* === Card Label Section on Hover === */}
               {revealed && hovered && (
                 <div
                   className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-50 animate-fade-in"
@@ -211,7 +200,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                     </p>
                   </div>
 
-                  {/* Tooltip arrow */}
                   <div
                     className="absolute left-1/2 -translate-x-1/2 w-0 h-0"
                     style={{
@@ -246,16 +234,16 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
         @keyframes fade-in {
           from {
             opacity: 0;
-            transform: translateX(-50%) translateY(-10px);
+            transform: translateY(-10px);
           }
           to {
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0);
           }
         }
 
         .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
+          animation: fade-in 0.2s ease-out;
         }
       `}</style>
     </div>

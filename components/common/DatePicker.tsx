@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
+import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
@@ -17,52 +18,117 @@ interface DatePickerProps {
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 'Select date' }) => {
+  const [inputValue, setInputValue] = React.useState(value);
+  const [isCalendarOpen, setIsCalendarOpen] = React.useState(false);
   const date = value ? new Date(value) : undefined;
+
+  React.useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   const handleSelect = (newDate: Date | undefined) => {
     if (newDate) {
       const formatted = format(newDate, 'yyyy-MM-dd');
       onChange(formatted);
+      setInputValue(formatted);
+      setIsCalendarOpen(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value.replace(/\D/g, '');
+    let formatted = input;
+    if (input.length > 4) {
+      formatted = `${input.slice(0, 4)}-${input.slice(4)}`;
+    }
+    if (input.length > 6) {
+      formatted = `${formatted.slice(0, 7)}-${formatted.slice(7)}`;
+    }
+
+    formatted = formatted.slice(0, 10);
+
+    setInputValue(formatted);
+
+    if (formatted.length === 10) {
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+      if (dateRegex.test(formatted)) {
+        const parsedDate = new Date(formatted);
+        if (!isNaN(parsedDate.getTime()) && formatted === format(parsedDate, 'yyyy-MM-dd')) {
+          onChange(formatted);
+        }
+      }
+    }
+  };
+
+  const handleInputBlur = () => {
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(inputValue)) {
+      setInputValue(value);
+    } else {
+      const parsedDate = new Date(inputValue);
+      if (isNaN(parsedDate.getTime()) || inputValue !== format(parsedDate, 'yyyy-MM-dd')) {
+        setInputValue(value);
+      }
     }
   };
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant={'outline'}
-          className={cn(
-            'w-full justify-start text-left font-normal bg-[#1a1819] border-[#c19670]/30 text-[#c3beb6] hover:bg-[#1a1819] hover:text-[#c19670] hover:border-[#c19670]',
-            !date && 'text-muted-foreground'
-          )}
-        >
-          <CalendarIcon className="mr-2 h-4 w-4 text-[#c19670]" />
-          {date ? format(date, 'PPP') : <span>{placeholder}</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-[#1a1819] border-[#c19670]/30 text-[#c3beb6]" align="start">
-        <Calendar
-          autoFocus
-          mode="single"
-          selected={date}
-          onSelect={handleSelect}
-          captionLayout="dropdown"
-          startMonth={new Date(2000, 0)}
-          endMonth={new Date(2100, 0)}
-          className="bg-[#1a1819] text-[#c3beb6]"
-          classNames={{
-            day_selected:
-              'bg-[#c19670] text-[#060506] hover:bg-[#c19670] hover:text-[#060506] focus:bg-[#c19670] focus:text-[#060506]',
-            day_today: 'bg-[#c19670]/20 text-[#c19670]',
-            day: 'h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-[#c19670]/20 hover:text-[#c19670]',
-            dropdown: 'bg-[#1a1819] text-[#c3beb6]',
-            vhidden: 'hidden',
-            caption_dropdowns: 'flex gap-1',
-            caption_label: 'hidden',
-          }}
+    <div className="relative w-full group">
+      <div className="relative flex items-center w-full">
+        <Input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onBlur={handleInputBlur}
+          placeholder="YYYY-MM-DD"
+          maxLength={10}
+          className="w-full pl-4 pr-12 h-[56px] rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300 group-hover:border-[#c19670]/60"
         />
-      </PopoverContent>
-    </Popover>
+
+        <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 h-8 w-8 text-[#c19670]/70 hover:text-[#c19670] hover:bg-[#c19670]/10 rounded-full transition-all duration-300"
+            >
+              <CalendarIcon className="h-5 w-5" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            className="w-auto p-0 bg-[#0f0e0f] border border-[#c19670]/30 text-[#c3beb6] shadow-[0_0_30px_-5px_rgba(193,150,112,0.3)]"
+            align="end"
+          >
+            <Calendar
+              autoFocus
+              mode="single"
+              selected={date}
+              onSelect={handleSelect}
+              defaultMonth={date || new Date(2000, 0)}
+              captionLayout="dropdown"
+              startMonth={new Date(1900, 0)}
+              endMonth={new Date(2100, 0)}
+              className="bg-[#0f0e0f] text-[#c3beb6] p-3"
+              classNames={{
+                day_selected:
+                  'bg-[#c19670] text-[#060506] hover:bg-[#c19670] hover:text-[#060506] focus:bg-[#c19670] focus:text-[#060506] font-bold',
+                day_today: 'bg-[#c19670]/10 text-[#c19670] font-semibold border border-[#c19670]/30',
+                day: 'h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-[#c19670]/20 hover:text-[#c19670] rounded-md transition-all duration-200',
+                dropdown: 'bg-[#1a1819] text-[#c3beb6] border border-[#c19670]/30 rounded-md p-1',
+                dropdown_month: 'bg-[#1a1819] text-[#c3beb6]',
+                dropdown_year: 'bg-[#1a1819] text-[#c3beb6]',
+                head_cell: 'text-[#8a8580] font-normal text-[0.8rem]',
+                cell: 'text-center text-sm p-0 relative [&:has([aria-selected])]:bg-[#c19670]/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+                nav_button: 'border border-[#c19670]/30 hover:bg-[#c19670]/10 hover:text-[#c19670] transition-colors',
+                caption: 'flex justify-center pt-1 relative items-center mb-2',
+                caption_label: 'hidden',
+                caption_dropdowns: 'flex gap-2',
+              }}
+            />
+          </PopoverContent>
+        </Popover>
+      </div>
+    </div>
   );
 };
 

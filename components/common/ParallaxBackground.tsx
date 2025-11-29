@@ -74,7 +74,6 @@ const ParallaxBackground: React.FC = () => {
           let transform = `translate(${floatX}px, ${floatY}px)`;
 
           if (obj.type === 'star' || obj.type === 'moon') {
-            // Both now use TarotStar, so rotation applies
             const rotation = obj.rotation + elapsed * obj.rotationSpeed * 10;
             transform += ` rotate(${rotation}deg)`;
           }
@@ -130,7 +129,7 @@ const ParallaxBackground: React.FC = () => {
               <Image
                 key={index}
                 data-celestial
-                src="/cardBack.svg"
+                src="/cardBack.jpeg"
                 alt="Tarot Card Back"
                 className="filter sepia brightness-125 hue-rotate-15"
                 style={{ ...baseStyle, opacity: obj.opacity, transformStyle: 'preserve-3d' }}
@@ -140,7 +139,6 @@ const ParallaxBackground: React.FC = () => {
             );
           }
 
-          // This handles the 'moon' type, now rendering TarotStar
           return <TarotStar key={index} data-celestial className="text-[#c19670] opacity-60" style={baseStyle} />;
         })}
       </div>

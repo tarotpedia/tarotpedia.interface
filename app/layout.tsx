@@ -2,7 +2,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { AnimationProvider } from '@/context/AnimationContext';
 import { I18nProvider } from '@/lib/i18n';
 
-import { Caudex, Geist_Mono } from 'next/font/google';
+import { Caudex } from 'next/font/google';
 
 import './globals.css';
 
@@ -11,11 +11,6 @@ const caudex = Caudex({
   subsets: ['latin'],
   weight: ['400', '700'],
   style: ['normal', 'italic'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
 });
 
 export const metadata = {
@@ -30,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${caudex.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${caudex.variable} antialiased`} suppressHydrationWarning>
         <I18nProvider>
           <AnimationProvider>
             {children}

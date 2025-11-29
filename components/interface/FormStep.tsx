@@ -88,7 +88,7 @@ export default function FormStep() {
           transform: 'translateZ(0)',
         }}
       >
-        <div className="min-h-[500px] flex items-center justify-center py-12">
+        <div className="min-h-[400px] md:min-h-[500px] flex items-center justify-center py-8 md:py-12">
           <div className="p-6 sm:p-10 rounded-2xl border border-[#c19670]/30 bg-[#0f0e0f] shadow-[0_0_60px_-10px_rgba(193,150,112,0.3)] backdrop-blur-xl text-[#c3beb6] font-[Caudex] w-full">
             <div className="relative z-10">
               <h2 className="flex flex-col items-center justify-center gap-2 mb-6 text-lg sm:text-2xl font-bold tracking-wide text-[#c19670] text-center">

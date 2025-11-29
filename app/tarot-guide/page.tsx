@@ -97,7 +97,6 @@ export default function TarotGuidePage() {
             </p>
           </section>
           <section className="mb-12">
-            {/* Major Arcana */}
             <div className="mb-8">
               <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Major Arcana</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
@@ -118,7 +117,6 @@ export default function TarotGuidePage() {
               </div>
             </div>
 
-            {/* Minor Arcana */}
             <div>
               <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Minor Arcana</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
@@ -144,7 +142,7 @@ export default function TarotGuidePage() {
         <Footer />
       </div>
 
-      {/* Modal using shadcn Dialog - Rendered outside main container */}
+      {}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           className="!max-w-6xl w-[95vw] max-h-[90vh] overflow-hidden p-0 bg-[#0f0e0f] border-[#2a2729] !top-[2rem] !translate-y-0"
@@ -165,7 +163,7 @@ export default function TarotGuidePage() {
                 <div className="p-8 border-b border-[#2a2729]">
                   <div className="flex gap-8 flex-wrap">
                     <div className="w-32 md:w-48 flex-shrink-0">
-                      <div className="rounded-lg shadow-md bg-[#1a1819] flex items-center justify-center overflow-hidden">
+                      <div className="rounded-md shadow-md bg-[#1a1819] flex items-center justify-center overflow-hidden">
                         <img
                           src={`${BASE_API_URL}/tarot-cards/images/${selectedCard?.toString()}.jpg`}
                           alt={cardInfo.name}
@@ -206,7 +204,7 @@ export default function TarotGuidePage() {
 
                   {cardInfo.meanings && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                      <div className="bg-[#1a1819] p-6 rounded-lg">
+                      <div className="bg-[#1a1819] p-6 rounded-md">
                         <h4 className="text-xl font-semibold mb-3 text-[#c19670] flex items-center gap-2">
                           <Sun size={20} /> Light Meanings
                         </h4>
@@ -219,7 +217,7 @@ export default function TarotGuidePage() {
                           ))}
                         </ul>
                       </div>
-                      <div className="bg-[#1a1819] p-6 rounded-lg">
+                      <div className="bg-[#1a1819] p-6 rounded-md">
                         <h4 className="text-xl font-semibold mb-3 text-[#c19670] flex items-center gap-2">
                           <Moon size={20} /> Shadow Meanings
                         </h4>
@@ -236,7 +234,7 @@ export default function TarotGuidePage() {
                   )}
 
                   {cardInfo.archetype && (
-                    <div className="bg-[#1a1819] p-6 rounded-lg mb-6">
+                    <div className="bg-[#1a1819] p-6 rounded-md mb-6">
                       <h4 className="text-xl font-semibold mb-2 text-[#c19670] flex items-center gap-2">
                         <User size={20} />
                         Archetype
@@ -260,7 +258,7 @@ export default function TarotGuidePage() {
                   )}
 
                   {(cardInfo.hebrew_alphabet || cardInfo.numerology || cardInfo.elemental) && (
-                    <div className="bg-[#1a1819] p-6 rounded-lg mb-6">
+                    <div className="bg-[#1a1819] p-6 rounded-md mb-6">
                       <h4 className="text-xl font-semibold mb-3 text-[#c19670]">Symbolism & Correspondences</h4>
                       <div className="text-[#c3beb6]">
                         {cardInfo.hebrew_alphabet && (

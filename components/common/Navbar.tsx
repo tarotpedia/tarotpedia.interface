@@ -17,7 +17,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#060506]/80 border-b border-[#c19670]/20">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
-          {/* Logo/Brand */}
+          {}
           <div className="flex items-center gap-2">
             <TarotStar className="w-6 h-6 text-[#c19670]" />
             <a href="/" className="flex items-center gap-2">
@@ -26,7 +26,7 @@ export default function Navbar() {
             <TarotStar className="w-6 h-6 text-[#c19670]" />
           </div>
 
-          {/* Desktop Navigation Links */}
+          {}
           <div className="hidden md:flex items-center gap-6">
             <a
               href="/"
@@ -48,14 +48,13 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Right Side: Animation Toggle, Language Switcher & Mobile Menu Button */}
+          {}
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-2">
               <AnimationToggle />
               <LanguageSwitcher />
             </div>
 
-            {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
@@ -68,38 +67,40 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-[#c19670]/20 animate-fade-in">
-            <div className="flex flex-col gap-4">
-              <a
-                href="/"
-                className="text-[#c3beb6] hover:text-[#c19670] transition-colors text-sm font-medium tracking-wide py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.footer.resources.reading}
-              </a>
-              <a
-                href="/tarot-guide"
-                className="text-[#c3beb6] hover:text-[#c19670] transition-colors text-sm font-medium tracking-wide py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.footer.resources.tarotGuide}
-              </a>
-              <a
-                href="/numerology"
-                className="text-[#c3beb6] hover:text-[#c19670] transition-colors text-sm font-medium tracking-wide py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.footer.resources.numerology}
-              </a>
-              <div className="pt-2 border-t border-[#c19670]/20 flex items-center gap-2">
-                <AnimationToggle />
-                <LanguageSwitcher />
-              </div>
+        {}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-[400px] opacity-100 border-t border-[#c19670]/20' : 'max-h-0 opacity-0 border-t-0'
+          }`}
+        >
+          <div className="py-4 flex flex-col gap-4">
+            <a
+              href="/"
+              className="text-[#c3beb6] hover:text-[#c19670] transition-colors text-sm font-medium tracking-wide py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t.footer.resources.reading}
+            </a>
+            <a
+              href="/tarot-guide"
+              className="text-[#c3beb6] hover:text-[#c19670] transition-colors text-sm font-medium tracking-wide py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t.footer.resources.tarotGuide}
+            </a>
+            <a
+              href="/numerology"
+              className="text-[#c3beb6] hover:text-[#c19670] transition-colors text-sm font-medium tracking-wide py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t.footer.resources.numerology}
+            </a>
+            <div className="pt-2 border-t border-[#c19670]/20 flex items-center gap-2">
+              <AnimationToggle />
+              <LanguageSwitcher />
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
