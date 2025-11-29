@@ -1,6 +1,7 @@
 'use client';
 import Footer from '@/app/footer';
 import Navbar from '@/components/common/Navbar';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { getCardInfo } from '@/lib/api';
 import { BASE_API_URL } from '@/lib/variables';
 
@@ -56,6 +57,12 @@ export default function TarotGuidePage() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (open) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [open]);
+
   const handleCardClick = async (cardNumber: number): Promise<void> => {
     setError(null);
     setSelectedCard(cardNumber);
@@ -64,7 +71,6 @@ export default function TarotGuidePage() {
       const response = await getCardInfo(cardNumber);
       setCardInfo(response.data);
       setOpen(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       console.error('Error fetching card info:', err);
       setError('Failed to load card information. Please try again.');
@@ -79,222 +85,102 @@ export default function TarotGuidePage() {
   };
 
   return (
-    <div className="relative bg-[#060506] min-h-screen flex flex-col overflow-y-hidden">
-      <Navbar />
-      <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Tarot Card Deck Guide</h1>
-          <p className="text-[#c3beb6] max-w-2xl mx-auto">
-            Explore the meanings and symbolism of each tarot card in the deck. Click on any card below to learn more
-            about its significance, fortune telling aspects, and deeper insights.
-          </p>
-        </section>
-        <section className="mb-12">
-          {/* Major Arcana */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Major Arcana</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-              {Array.from({ length: 22 }, (_, i) => i + 1).map(cardNumber => (
-                <div
-                  key={cardNumber}
-                  onClick={() => handleCardClick(cardNumber)}
-                  className="group relative rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:z-10 bg-gray-200"
-                >
-                  <img
-                    src={`${BASE_API_URL}/tarot-cards/images/${cardNumber}.jpg`}
-                    alt={`Tarot Card ${cardNumber}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+    <>
+      <div className="relative bg-[#060506] min-h-screen flex flex-col">
+        <Navbar />
+        <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
+          <section className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-white mb-4">Tarot Card Deck Guide</h1>
+            <p className="text-[#c3beb6] max-w-2xl mx-auto">
+              Explore the meanings and symbolism of each tarot card in the deck. Click on any card below to learn more
+              about its significance, fortune telling aspects, and deeper insights.
+            </p>
+          </section>
+          <section className="mb-12">
+            {/* Major Arcana */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Major Arcana</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                {Array.from({ length: 22 }, (_, i) => i + 1).map(cardNumber => (
+                  <div
+                    key={cardNumber}
+                    onClick={() => handleCardClick(cardNumber)}
+                    className="group relative overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:z-10 bg-gray-200"
+                  >
+                    <img
+                      src={`${BASE_API_URL}/tarot-cards/images/${cardNumber}.jpg`}
+                      alt={`Tarot Card ${cardNumber}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Minor Arcana */}
-          <div>
-            <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Minor Arcana</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-              {Array.from({ length: 56 }, (_, i) => i + 23).map(cardNumber => (
-                <div
-                  key={cardNumber}
-                  onClick={() => handleCardClick(cardNumber)}
-                  className="group relative rounded-lg overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:z-10 bg-gray-200"
-                >
-                  <img
-                    src={`${BASE_API_URL}/tarot-cards/images/${cardNumber}.jpg`}
-                    alt={`Tarot Card ${cardNumber}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+            {/* Minor Arcana */}
+            <div>
+              <h2 className="text-2xl font-semibold text-[#c19670] mb-4 justify-center flex">Minor Arcana</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                {Array.from({ length: 56 }, (_, i) => i + 23).map(cardNumber => (
+                  <div
+                    key={cardNumber}
+                    onClick={() => handleCardClick(cardNumber)}
+                    className="group relative overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:z-10 bg-gray-200"
+                  >
+                    <img
+                      src={`${BASE_API_URL}/tarot-cards/images/${cardNumber}.jpg`}
+                      alt={`Tarot Card ${cardNumber}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+
+        <Footer />
       </div>
 
-      {/* Modal - Rendered at root level */}
-      {open && cardInfo && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 9999,
-            overflow: 'auto',
-          }}
+      {/* Modal using shadcn Dialog - Rendered outside main container */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent
+          className="!max-w-6xl w-[95vw] max-h-[90vh] overflow-hidden p-0 bg-[#0f0e0f] border-[#2a2729] !top-[2rem] !translate-y-0"
+          showCloseButton={false}
         >
-          {/* Backdrop */}
-          <div
-            onClick={closeModal}
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(6, 5, 6, 0.9)',
-            }}
-          />
+          {cardInfo && (
+            <>
+              <DialogTitle className="sr-only">{cardInfo.name} - Tarot Card Details</DialogTitle>
 
-          {/* Modal Content Container */}
-          <div
-            style={{
-              position: 'relative',
-              minHeight: '100vh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '1rem',
-            }}
-          >
-            {/* Modal Panel */}
-            <div
-              onClick={e => e.stopPropagation()}
-              style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '56rem',
-                maxHeight: '90vh',
-                backgroundColor: '#0f0e0f',
-                borderRadius: '1rem',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden',
-              }}
-            >
-              {/* Close Button */}
               <button
                 onClick={closeModal}
-                style={{
-                  position: 'absolute',
-                  top: '0.75rem',
-                  right: '0.75rem',
-                  zIndex: 10,
-                  padding: '0.5rem',
-                  backgroundColor: 'rgba(193, 150, 112, 0.9)',
-                  borderRadius: '9999px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.2s ease',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.backgroundColor = 'rgba(193, 150, 112, 1)';
-                  e.currentTarget.style.transform = 'scale(1.1)';
-                  e.currentTarget.style.boxShadow = '0 6px 12px -2px rgba(0, 0, 0, 0.15)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.backgroundColor = 'rgba(193, 150, 112, 0.9)';
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                }}
+                className="absolute top-3 right-3 z-10 p-2 bg-[#c19670]/90 hover:bg-[#c19670] rounded-full transition-all hover:scale-110"
               >
                 <X size={20} />
               </button>
 
-              {/* Scrollable Content */}
-              <div style={{ overflowY: 'auto', maxHeight: '90vh' }}>
-                {/* Header Section */}
-                <div style={{ padding: '2rem', borderBottom: '1px solid #2a2729' }}>
-                  <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-                    {/* Card Image */}
-                    <div
-                      style={{
-                        width: window.innerWidth <= 768 ? '8rem' : '12rem',
-                        flexShrink: 0,
-                      }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: '0.5rem',
-                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                          backgroundColor: '#1a1819',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          overflow: 'hidden',
-                        }}
-                      >
+              <div className="overflow-y-auto max-h-[90vh]">
+                <div className="p-8 border-b border-[#2a2729]">
+                  <div className="flex gap-8 flex-wrap">
+                    <div className="w-32 md:w-48 flex-shrink-0">
+                      <div className="rounded-lg shadow-md bg-[#1a1819] flex items-center justify-center overflow-hidden">
                         <img
                           src={`${BASE_API_URL}/tarot-cards/images/${selectedCard?.toString()}.jpg`}
                           alt={cardInfo.name}
-                          style={{
-                            width: window.innerWidth <= 768 ? '100%' : '50%',
-                            objectFit: 'cover',
-                          }}
+                          className="w-full md:w-1/2 object-cover"
                         />
                       </div>
                     </div>
 
-                    {/* Card Info */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div
-                        style={{
-                          fontSize: '0.75rem',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.05em',
-                          color: '#8a8580',
-                          marginBottom: '0.5rem',
-                        }}
-                      >
-                        {cardInfo.arcana}
-                      </div>
-                      <h3
-                        style={{
-                          fontSize: '2.25rem',
-                          fontWeight: 'bold',
-                          marginBottom: '0.5rem',
-                          color: '#c19670',
-                        }}
-                      >
-                        {cardInfo.name}
-                      </h3>
-                      <div
-                        style={{
-                          fontSize: '1.125rem',
-                          color: '#c3beb6',
-                          marginBottom: '1rem',
-                        }}
-                      >
-                        Card Number: {selectedCard?.toString()}
-                      </div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-xs uppercase tracking-wider text-[#8a8580] mb-2">{cardInfo.arcana}</div>
+                      <h3 className="text-4xl font-bold mb-2 text-[#c19670]">{cardInfo.name}</h3>
+                      <div className="text-lg text-[#c3beb6] mb-4">Card Number: {selectedCard?.toString()}</div>
+                      <div className="flex flex-wrap gap-2">
                         {cardInfo.keywords.map((keyword, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              padding: '0.25rem 0.75rem',
-                              backgroundColor: '#1a1819',
-                              borderRadius: '9999px',
-                              fontSize: '0.875rem',
-                              color: '#c3beb6',
-                            }}
-                          >
+                          <span key={idx} className="px-3 py-1 bg-[#1a1819] rounded-full text-sm text-[#c3beb6]">
                             {keyword}
                           </span>
                         ))}
@@ -303,96 +189,45 @@ export default function TarotGuidePage() {
                   </div>
                 </div>
 
-                {/* Content Sections */}
-                <div style={{ padding: '2rem' }}>
-                  {/* Fortune Telling */}
+                <div className="p-8">
                   {cardInfo.fortune_telling.length > 0 && (
-                    <div style={{ marginBottom: '1.5rem' }}>
-                      <h4
-                        style={{
-                          fontSize: '1.5rem',
-                          fontWeight: '600',
-                          marginBottom: '0.75rem',
-                          color: '#c19670',
-                        }}
-                      >
-                        Fortune Telling
-                      </h4>
-                      <ul style={{ listStyle: 'none', padding: 0 }}>
+                    <div className="mb-6">
+                      <h4 className="text-2xl font-semibold mb-3 text-[#c19670]">Fortune Telling</h4>
+                      <ul className="list-none p-0">
                         {cardInfo.fortune_telling.map((fortune, idx) => (
-                          <li key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
-                            <span style={{ color: '#9333ea', marginRight: '0.5rem' }}>•</span>
-                            <span style={{ color: '#c3beb6' }}>{fortune}</span>
+                          <li key={idx} className="flex mb-2">
+                            <span className="text-purple-600 mr-2">•</span>
+                            <span className="text-[#c3beb6]">{fortune}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  {/* Meanings */}
                   {cardInfo.meanings && (
-                    <div
-                      style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                        gap: '1.5rem',
-                        marginBottom: '1.5rem',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: '#1a1819',
-                          padding: '1.5rem',
-                          borderRadius: '0.5rem',
-                        }}
-                      >
-                        <h4
-                          style={{
-                            fontSize: '1.25rem',
-                            fontWeight: '600',
-                            marginBottom: '0.75rem',
-                            color: '#c19670',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                          }}
-                        >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      <div className="bg-[#1a1819] p-6 rounded-lg">
+                        <h4 className="text-xl font-semibold mb-3 text-[#c19670] flex items-center gap-2">
                           <Sun size={20} /> Light Meanings
                         </h4>
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                        <ul className="list-none p-0">
                           {cardInfo.meanings.light.map((meaning, idx) => (
-                            <li key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
-                              <span style={{ color: '#d97706', marginRight: '0.5rem' }}>•</span>
-                              <span style={{ color: '#c3beb6', fontSize: '0.875rem' }}>{meaning}</span>
+                            <li key={idx} className="flex mb-2">
+                              <span className="text-amber-600 mr-2">•</span>
+                              <span className="text-[#c3beb6] text-sm">{meaning}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
-                      <div
-                        style={{
-                          backgroundColor: '#1a1819',
-                          padding: '1.5rem',
-                          borderRadius: '0.5rem',
-                        }}
-                      >
-                        <h4
-                          style={{
-                            fontSize: '1.25rem',
-                            fontWeight: '600',
-                            marginBottom: '0.75rem',
-                            color: '#c19670',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                          }}
-                        >
+                      <div className="bg-[#1a1819] p-6 rounded-lg">
+                        <h4 className="text-xl font-semibold mb-3 text-[#c19670] flex items-center gap-2">
                           <Moon size={20} /> Shadow Meanings
                         </h4>
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                        <ul className="list-none p-0">
                           {cardInfo.meanings.shadow.map((meaning, idx) => (
-                            <li key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
-                              <span style={{ color: '#8a8580', marginRight: '0.5rem' }}>•</span>
-                              <span style={{ color: '#c3beb6', fontSize: '0.875rem' }}>{meaning}</span>
+                            <li key={idx} className="flex mb-2">
+                              <span className="text-[#8a8580] mr-2">•</span>
+                              <span className="text-[#c3beb6] text-sm">{meaning}</span>
                             </li>
                           ))}
                         </ul>
@@ -400,106 +235,46 @@ export default function TarotGuidePage() {
                     </div>
                   )}
 
-                  {/* Archetype */}
                   {cardInfo.archetype && (
-                    <div
-                      style={{
-                        backgroundColor: '#1a1819',
-                        padding: '1.5rem',
-                        borderRadius: '0.5rem',
-                        marginBottom: '1.5rem',
-                      }}
-                    >
-                      <h4
-                        style={{
-                          fontSize: '1.25rem',
-                          fontWeight: '600',
-                          marginBottom: '0.5rem',
-                          color: '#c19670',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                        }}
-                      >
+                    <div className="bg-[#1a1819] p-6 rounded-lg mb-6">
+                      <h4 className="text-xl font-semibold mb-2 text-[#c19670] flex items-center gap-2">
                         <User size={20} />
                         Archetype
                       </h4>
-                      <p style={{ color: '#c3beb6' }}>{cardInfo.archetype}</p>
+                      <p className="text-[#c3beb6]">{cardInfo.archetype}</p>
                     </div>
                   )}
 
-                  {/* Questions to Ask */}
                   {cardInfo.questions_to_ask.length > 0 && (
-                    <div style={{ marginBottom: '1.5rem' }}>
-                      <h4
-                        style={{
-                          fontSize: '1.5rem',
-                          fontWeight: '600',
-                          marginBottom: '0.75rem',
-                          color: '#c19670',
-                        }}
-                      >
-                        Questions to Ask
-                      </h4>
-                      <ul style={{ listStyle: 'none', padding: 0 }}>
+                    <div className="mb-6">
+                      <h4 className="text-2xl font-semibold mb-3 text-[#c19670]">Questions to Ask</h4>
+                      <ul className="list-none p-0">
                         {cardInfo.questions_to_ask.map((q, idx) => (
-                          <li
-                            key={idx}
-                            style={{
-                              display: 'flex',
-                              marginBottom: '0.5rem',
-                              alignItems: 'flex-start',
-                            }}
-                          >
-                            <HelpCircle
-                              size={16}
-                              style={{
-                                color: '#4f46e5',
-                                marginRight: '0.5rem',
-                                marginTop: '0.125rem',
-                                flexShrink: 0,
-                              }}
-                            />
-                            <span style={{ color: '#c3beb6', fontStyle: 'italic' }}>{q}</span>
+                          <li key={idx} className="flex mb-2 items-start">
+                            <HelpCircle size={16} className="text-indigo-600 mr-2 mt-0.5 flex-shrink-0" />
+                            <span className="text-[#c3beb6] italic">{q}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  {/* Symbolism */}
                   {(cardInfo.hebrew_alphabet || cardInfo.numerology || cardInfo.elemental) && (
-                    <div
-                      style={{
-                        backgroundColor: '#1a1819',
-                        padding: '1.5rem',
-                        borderRadius: '0.5rem',
-                        marginBottom: '1.5rem',
-                      }}
-                    >
-                      <h4
-                        style={{
-                          fontSize: '1.25rem',
-                          fontWeight: '600',
-                          marginBottom: '0.75rem',
-                          color: '#c19670',
-                        }}
-                      >
-                        Symbolism & Correspondences
-                      </h4>
-                      <div style={{ color: '#c3beb6' }}>
+                    <div className="bg-[#1a1819] p-6 rounded-lg mb-6">
+                      <h4 className="text-xl font-semibold mb-3 text-[#c19670]">Symbolism & Correspondences</h4>
+                      <div className="text-[#c3beb6]">
                         {cardInfo.hebrew_alphabet && (
-                          <p style={{ marginBottom: '0.5rem' }}>
+                          <p className="mb-2">
                             <strong>Hebrew Alphabet:</strong> {cardInfo.hebrew_alphabet}
                           </p>
                         )}
                         {cardInfo.numerology && (
-                          <p style={{ marginBottom: '0.5rem' }}>
+                          <p className="mb-2">
                             <strong>Numerology:</strong> {cardInfo.numerology}
                           </p>
                         )}
                         {cardInfo.elemental && (
-                          <p style={{ marginBottom: '0.5rem' }}>
+                          <p className="mb-2">
                             <strong>Element:</strong> {cardInfo.elemental}
                           </p>
                         )}
@@ -507,68 +282,18 @@ export default function TarotGuidePage() {
                     </div>
                   )}
 
-                  {/* Mythical & Spiritual */}
                   {cardInfo.mythical_spiritual && (
                     <div>
-                      <h4
-                        style={{
-                          fontSize: '1.25rem',
-                          fontWeight: '600',
-                          marginBottom: '0.5rem',
-                          color: '#c19670',
-                        }}
-                      >
-                        Mythical & Spiritual Connections
-                      </h4>
-                      <p style={{ color: '#c3beb6' }}>{cardInfo.mythical_spiritual}</p>
+                      <h4 className="text-xl font-semibold mb-2 text-[#c19670]">Mythical & Spiritual Connections</h4>
+                      <p className="text-[#c3beb6]">{cardInfo.mythical_spiritual}</p>
                     </div>
                   )}
                 </div>
-
-                {/* Footer */}
-                <div
-                  style={{
-                    backgroundColor: '#1a1819',
-                    padding: '1rem 1.5rem',
-                    borderTop: '1px solid #e5e7eb',
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <button
-                    onClick={closeModal}
-                    style={{
-                      padding: '0.5rem 1rem',
-                      fontSize: '0.875rem',
-                      fontWeight: '600',
-                      color: '#c19670',
-                      backgroundColor: '#1a1819',
-                      border: '1px solid #d1d5db',
-                      borderRadius: '0.375rem',
-                      cursor: 'pointer',
-                      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.backgroundColor = '#1a1819';
-                      e.currentTarget.style.transform = 'scale(1.1)';
-                      e.currentTarget.style.boxShadow = '0 6px 12px -2px rgba(0, 0, 0, 0.15)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.backgroundColor = '#1a1819';
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                    }}
-                  >
-                    Close
-                  </button>
-                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <Footer />
-    </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

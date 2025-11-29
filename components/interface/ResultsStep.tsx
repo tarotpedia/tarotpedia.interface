@@ -1,6 +1,7 @@
 'use client';
 import StyledMarkdown from '@/components/common/StyledMarkdown';
 import TarotCardComponent from '@/components/common/TarotCard';
+import { Button } from '@/components/ui/button';
 import { useTarot } from '@/context/TarotContext';
 
 export default function ResultsStep() {
@@ -50,12 +51,12 @@ export default function ResultsStep() {
 
         {/* Reset Button */}
         <div className="text-center mt-12">
-          <button
+          <Button
             onClick={resetReading}
-            className="px-8 py-3 rounded-lg bg-[#c19670] hover:cursor-pointer text-[#060506] font-bold transition-all hover:shadow-lg hover:shadow-[#c19670]/50"
+            className="px-8 py-6 rounded-lg bg-[#c19670] hover:cursor-pointer text-[#060506] font-bold transition-all hover:shadow-lg hover:shadow-[#c19670]/50 hover:bg-[#c19670]/90"
           >
             New Reading (Start Over)
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -2,6 +2,10 @@
 import DatePicker from '@/components/common/DatePicker';
 import GrappleHook from '@/components/common/GrappleHook';
 import { TarotStar } from '@/components/icons/TarotStar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useAnimations } from '@/context/AnimationContext';
 import { useTarot } from '@/context/TarotContext';
 import { drawCards } from '@/lib/api';
 import { useI18n } from '@/lib/i18n';
@@ -11,6 +15,7 @@ import { toast } from 'sonner';
 
 export default function FormStep() {
   const { t } = useI18n();
+  const { animationsEnabled } = useAnimations();
   const {
     formData,
     setFormData,
@@ -71,11 +76,11 @@ export default function FormStep() {
       </style>
       <GrappleHook />
       <div
-        className="relative max-w-2xl mx-auto origin-top animate-swing"
+        className="relative max-w-2xl mx-auto origin-top"
         tabIndex={-1}
         style={{
           filter: 'blur(0px)',
-          animation: 'swing 5s infinite',
+          animation: animationsEnabled ? 'swing 5s infinite' : 'none',
           transformOrigin: 'top center',
           backfaceVisibility: 'hidden',
           transformStyle: 'preserve-3d',
@@ -96,11 +101,11 @@ export default function FormStep() {
                     <User className="w-4 h-4 inline-block mr-1" />
                     {t.form.name.label}
                   </label>
-                  <input
+                  <Input
                     type="text"
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus:border-[#c19670] text-[#c3beb6] placeholder-[#8a8580] focus:ring-0 focus:outline-none transition-all duration-200"
+                    className="w-full px-4 py-6 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-200"
                     placeholder={t.form.name.placeholder}
                   />
                 </div>
@@ -110,26 +115,11 @@ export default function FormStep() {
                     <Calendar className="w-4 h-4" />
                     {t.form.dob.label}
                   </label>
-                  {typeof window !== 'undefined' && window.innerWidth < 768 ? (
-                    <input
-                      type="date"
-                      value={formData.dob ? new Date(formData.dob).toISOString().split('T')[0] : ''}
-                      onChange={e =>
-                        setFormData({
-                          ...formData,
-                          dob: e.target.value ? new Date(e.target.value).toISOString().split('T')[0] : '',
-                        })
-                      }
-                      className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus:border-[#c19670] text-[#c3beb6] placeholder-[#8a8580] focus:ring-0 focus:outline-none transition-all duration-200"
-                      placeholder={t.form.dob.placeholder}
-                    />
-                  ) : (
-                    <DatePicker
-                      value={formData.dob ?? ''}
-                      onChange={date => setFormData({ ...formData, dob: date })}
-                      placeholder={t.form.dob.placeholder}
-                    />
-                  )}
+                  <DatePicker
+                    value={formData.dob ?? ''}
+                    onChange={date => setFormData({ ...formData, dob: date })}
+                    placeholder={t.form.dob.placeholder}
+                  />
                 </div>
 
                 <div>
@@ -137,10 +127,10 @@ export default function FormStep() {
                     <ShieldQuestion className="w-4 h-4 inline-block mr-1" />
                     {t.form.question.label}
                   </label>
-                  <textarea
+                  <Textarea
                     value={formData.question}
                     onChange={e => setFormData({ ...formData, question: e.target.value })}
-                    className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus:border-[#c19670] text-[#c3beb6] placeholder-[#8a8580] focus:ring-0 focus:outline-none resize-none transition-all duration-200"
+                    className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 resize-none transition-all duration-200"
                     placeholder={t.form.question.placeholder}
                     rows={4}
                   />
@@ -151,14 +141,14 @@ export default function FormStep() {
                   )}
                 </div>
 
-                <button
+                <Button
                   onClick={handleGetReading}
-                  className="w-full py-3 mt-4 rounded-md bg-[#fffef8] text-[#060506] font-bold tracking-wide shadow-md hover:shadow-lg hover:shadow-[#c19670]/40 hover:bg-[#fffaed] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full py-6 mt-4 rounded-md bg-[#fffef8] text-[#060506] font-bold tracking-wide shadow-md hover:shadow-lg hover:shadow-[#c19670]/40 hover:bg-[#fffaed] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <TarotStar className="w-4 h-4 text-[#c19670]" />
                   {t.form.button}
                   <TarotStar className="w-4 h-4 text-[#c19670]" />
-                </button>
+                </Button>
               </div>
             </div>
           </div>

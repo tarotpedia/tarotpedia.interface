@@ -1,6 +1,8 @@
 'use client';
+import { AnimationToggle } from '@/components/common/AnimationToggle';
 import { TarotStar } from '@/components/icons/TarotStar';
 import { LanguageSwitcher } from '@/components/language-switcher';
+import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n';
 
 import { useState } from 'react';
@@ -46,20 +48,23 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Right Side: Language Switcher & Mobile Menu Button */}
-          <div className="flex items-center gap-4">
-            <div className="hidden md:block">
+          {/* Right Side: Animation Toggle, Language Switcher & Mobile Menu Button */}
+          <div className="flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2">
+              <AnimationToggle />
               <LanguageSwitcher />
             </div>
 
             {/* Mobile Menu Button */}
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-[#c19670] hover:text-[#d4a574] transition-colors"
+              className="md:hidden text-[#c19670] hover:text-[#d4a574] hover:bg-transparent transition-colors"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -88,7 +93,8 @@ export default function Navbar() {
               >
                 {t.footer.resources.numerology}
               </a>
-              <div className="pt-2 border-t border-[#c19670]/20">
+              <div className="pt-2 border-t border-[#c19670]/20 flex items-center gap-2">
+                <AnimationToggle />
                 <LanguageSwitcher />
               </div>
             </div>
