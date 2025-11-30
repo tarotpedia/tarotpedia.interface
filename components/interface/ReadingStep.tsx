@@ -11,7 +11,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return (
     <>
-      <div className="relative min-h-[600px] max-w-3xl mx-auto text-center px-4 py-8 sm:py-8 mt-24 sm:mt-48 mb-16 sm:mb-32">
+      <div className="relative min-h-[400px] max-w-3xl mx-auto text-center px-4 py-8 sm:py-8 mt-8 sm:mt-12 mb-8 sm:mb-12">
         <div className="absolute top-1/2 left-1/2 w-64 h-64 sm:w-96 sm:h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
