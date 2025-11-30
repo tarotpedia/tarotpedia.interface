@@ -21,7 +21,7 @@ export default function StepDebugger() {
   return (
     <div className="fixed bottom-4 right-4 z-[9999]">
       <div
-        className={`bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] border border-[#c19670]/50 rounded-lg shadow-[0_0_30px_-5px_rgba(193,150,112,0.5)] backdrop-blur-xl overflow-hidden transition-all duration-300 ${
+        className={`bg-linear-to-br from-[#1a1819] to-[#0f0e0f] border border-[#c19670]/50 rounded-lg shadow-[0_0_30px_-5px_rgba(193,150,112,0.5)] backdrop-blur-xl overflow-hidden transition-all duration-300 ${
           isExpanded ? 'w-64' : 'w-auto'
         }`}
       >

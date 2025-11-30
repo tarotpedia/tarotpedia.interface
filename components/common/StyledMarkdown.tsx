@@ -18,7 +18,7 @@ export default function StyledMarkdown({ content }: { content: string }) {
         ol: p => <ol className="list-decimal pl-6 mb-4 text-[#c3beb6] space-y-1" {...p} />,
         li: p => <li className="leading-relaxed" {...p} />,
 
-        strong: p => <strong className="text-[#c19670] font-bold" {...p} />,
+        strong: p => <strong className="text-[#c19670]" {...p} />,
         em: p => <em className="text-[#c19670] italic" {...p} />,
         code: p => <code className="bg-[#1a1819] px-1.5 py-0.5 rounded text-[#c19670] text-sm" {...p} />,
         pre: p => <pre className="bg-[#1a1819] p-4 rounded-md overflow-x-auto mb-4" {...p} />,

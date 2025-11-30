@@ -165,9 +165,9 @@ export default function FormStep() {
 
                 <Button
                   onClick={handleGetReading}
-                  className="w-full py-6 mt-4 rounded-md bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
+                  className="w-full py-6 mt-4 rounded-md bg-linear-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="absolute inset-0 bg-linear-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <TarotStar className="w-4 h-4 text-[#c19670] relative z-10" />
                   <span className="relative z-10">{t.form.button}</span>
                   <TarotStar className="w-4 h-4 text-[#c19670] relative z-10" />

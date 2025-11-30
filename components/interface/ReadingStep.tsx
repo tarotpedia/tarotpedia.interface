@@ -12,7 +12,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
   return (
     <>
       <div className="relative min-h-[400px] max-w-3xl mx-auto text-center px-4 py-8 sm:py-8 mt-8 sm:mt-12 mb-8 sm:mb-12">
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 sm:w-96 sm:h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 sm:w-96 sm:h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
           {[...Array(3)].map((_, i) => (
@@ -50,7 +50,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
               animation: 'gentle-pulse 5s ease-in-out infinite, planet-float 10s ease-in-out infinite',
             }}
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-transparent to-black/5" />
+            <div className="absolute inset-0 rounded-full bg-linear-to-br from-white/20 via-transparent to-black/5" />
             <div
               className="absolute inset-0 rounded-full"
               style={{
@@ -81,7 +81,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
                   animation: 'counter-rotate-1 8s linear infinite reverse',
                 }}
               >
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 to-transparent animate-pulse" />
+                <div className="absolute inset-0 rounded-full bg-linear-to-br from-white/70 to-transparent animate-pulse" />
               </div>
             </div>
 
@@ -109,7 +109,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
                 }}
               >
                 <div
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 to-transparent animate-pulse"
+                  className="absolute inset-0 rounded-full bg-linear-to-br from-white/70 to-transparent animate-pulse"
                   style={{ animationDelay: '0.3s' }}
                 />
               </div>
@@ -140,7 +140,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
                 }}
               >
                 <div
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 to-transparent animate-pulse"
+                  className="absolute inset-0 rounded-full bg-linear-to-br from-white/70 to-transparent animate-pulse"
                   style={{ animationDelay: '0.6s' }}
                 />
               </div>
@@ -214,7 +214,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           <div className="w-full max-w-sm mx-auto">
             <div className="relative w-full h-1.5 bg-[#1a1819]/40 rounded-full overflow-visible">
               <div
-                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#c19670]/60 via-[#d4a574]/70 to-[#c19670]/60 rounded-full transition-all duration-500 ease-out"
+                className="absolute left-0 top-0 h-full bg-linear-to-r from-[#c19670]/60 via-[#d4a574]/70 to-[#c19670]/60 rounded-full transition-all duration-500 ease-out"
                 style={{
                   width: `${progress}%`,
                   boxShadow: '0 0 8px rgba(193, 150, 112, 0.3)',
