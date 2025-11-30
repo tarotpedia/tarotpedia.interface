@@ -112,7 +112,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
               classNames={{
                 day_selected:
                   'bg-[#c19670] text-[#060506] hover:bg-[#c19670] hover:text-[#060506] focus:bg-[#c19670] focus:text-[#060506] font-bold',
-                day_today: 'bg-[#c19670]/10 text-[#c19670] font-semibold border border-[#c19670]/30',
+                day_today: 'bg-[#c19670]/10 text-[#c19670] border border-[#c19670]/30',
                 day: 'h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-[#c19670]/20 hover:text-[#c19670] rounded-md transition-all duration-200',
                 dropdown: 'bg-[#1a1819] text-[#c3beb6] border border-[#c19670]/30 rounded-md p-1',
                 dropdown_month: 'bg-[#1a1819] text-[#c3beb6]',

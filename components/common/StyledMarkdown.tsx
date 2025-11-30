@@ -9,9 +9,9 @@ export default function StyledMarkdown({ content }: { content: string }) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        h1: p => <h1 className="text-2xl font-bold text-[#c19670] mb-4 mt-6" {...p} />,
-        h2: p => <h2 className="text-xl font-bold text-[#c19670] mb-3 mt-5" {...p} />,
-        h3: p => <h3 className="text-lg font-semibold text-[#c19670] mb-2 mt-4" {...p} />,
+        h1: p => <h1 className="text-2xl text-[#c19670] mb-4 mt-6" {...p} />,
+        h2: p => <h2 className="text-xl text-[#c19670] mb-3 mt-5" {...p} />,
+        h3: p => <h3 className="text-lg text-[#c19670] mb-2 mt-4" {...p} />,
         p: p => <p className="text-[#c3beb6] leading-relaxed mb-4" {...p} />,
 
         ul: p => <ul className="list-disc pl-6 mb-4 text-[#c3beb6] space-y-1" {...p} />,
@@ -39,7 +39,7 @@ export default function StyledMarkdown({ content }: { content: string }) {
         thead: p => <thead className="text-[#c19670]" {...p} />,
         tbody: p => <tbody className="divide-y divide-[#c19670]/20" {...p} />,
         tr: p => <tr className="hover:bg-[#1a1819]/40 transition-colors" {...p} />,
-        th: p => <th className="px-3 py-2 text-left font-semibold border-b border-[#c19670]/30" {...p} />,
+        th: p => <th className="px-3 py-2 text-left border-b border-[#c19670]/30" {...p} />,
         td: p => <td className="px-3 py-2 align-top border-b border-[#c19670]/20" {...p} />,
       }}
     >

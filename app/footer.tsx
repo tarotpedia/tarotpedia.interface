@@ -11,11 +11,11 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
           <div>
-            <h3 className="font-semibold text-[#c19670] mb-3">{t.footer.about.title}</h3>
+            <h3 className="text-[#c19670] mb-3">{t.footer.about.title}</h3>
             <p className="text-sm text-[#c3beb6] leading-relaxed">{t.footer.about.description}</p>
           </div>
           <div>
-            <h3 className="font-semibold text-[#c19670] mb-3">{t.footer.resources.title}</h3>
+            <h3 className="text-[#c19670] mb-3">{t.footer.resources.title}</h3>
             <ul className="space-y-2 text-sm text-[#c3beb6]">
               <li>
                 <a href="/tarot-guide" className="hover:text-[#c19670] transition-colors">
@@ -35,7 +35,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-[#c19670] mb-3">{t.footer.connect.title}</h3>
+            <h3 className="text-[#c19670] mb-3">{t.footer.connect.title}</h3>
             <div className="flex gap-4 mb-4">
               <a
                 href="https://github.com/tarotpedia"

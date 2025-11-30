@@ -190,7 +190,7 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
                 >
                   <div className="px-4 py-2 bg-[#0f0e0f]/95 border-2 border-[#c19670]/60 backdrop-blur-md shadow-[0_0_25px_rgba(193,150,112,0.5)]">
                     <h3
-                      className="text-[#c19670] font-bold text-sm tracking-wide whitespace-nowrap drop-shadow-[0_0_8px_rgba(193,150,112,0.8)]"
+                      className="text-[#c19670] text-sm tracking-wide whitespace-nowrap drop-shadow-[0_0_8px_rgba(193,150,112,0.8)]"
                       title={card.name}
                     >
                       {card.name}

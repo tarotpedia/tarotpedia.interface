@@ -8,7 +8,7 @@ import './globals.css';
 
 const caudex = Caudex({
   variable: '--font-caudex',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
   weight: ['400', '700'],
   style: ['normal', 'italic'],
 });

@@ -21,7 +21,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <TarotStar className="w-6 h-6 text-[#c19670]" />
             <a href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-white tracking-wide">{t.header.title}</span>
+              <span className="text-xl text-white tracking-wide">{t.header.title}</span>
             </a>
             <TarotStar className="w-6 h-6 text-[#c19670]" />
           </div>

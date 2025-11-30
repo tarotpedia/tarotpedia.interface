@@ -88,16 +88,16 @@ export default function FormStep() {
           transform: 'translateZ(0)',
         }}
       >
-        <div className="min-h-[400px] md:min-h-[500px] flex items-center justify-center py-8 md:py-12">
+        <div className="min-h-[600px] md:min-h-[500px] flex items-center justify-center py-2 md:py-12">
           <div className="p-6 sm:p-10 rounded-2xl border border-[#c19670]/30 bg-[#0f0e0f] shadow-[0_0_60px_-10px_rgba(193,150,112,0.3)] backdrop-blur-xl text-[#c3beb6] font-[Caudex] w-full">
             <div className="relative z-10">
-              <h2 className="flex flex-col items-center justify-center gap-2 mb-6 text-lg sm:text-2xl font-bold tracking-wide text-[#c19670] text-center">
+              <h2 className="flex flex-col items-center justify-center gap-2 mb-6 text-lg sm:text-2xl tracking-wide text-[#c19670] text-center">
                 {t.form.title}
               </h2>
 
               <div className="space-y-6">
                 <div>
-                  <label className="block mb-2 text-sm font-semibold tracking-wide text-[#c19670]">
+                  <label className="block mb-2 text-sm tracking-wide text-[#c19670]">
                     <User className="w-4 h-4 inline-block mr-1" />
                     {t.form.name.label}
                   </label>
@@ -111,7 +111,7 @@ export default function FormStep() {
                 </div>
 
                 <div>
-                  <label className="flex items-center gap-2 mb-2 text-sm font-semibold tracking-wide text-[#c19670]">
+                  <label className="flex items-center gap-2 mb-2 text-sm tracking-wide text-[#c19670]">
                     <Calendar className="w-4 h-4" />
                     {t.form.dob.label}
                   </label>
@@ -123,7 +123,7 @@ export default function FormStep() {
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm font-semibold tracking-wide text-[#c19670]">
+                  <label className="block mb-2 text-sm tracking-wide text-[#c19670]">
                     <ShieldQuestion className="w-4 h-4 inline-block mr-1" />
                     {t.form.question.label}
                   </label>
@@ -143,7 +143,7 @@ export default function FormStep() {
 
                 <Button
                   onClick={handleGetReading}
-                  className="w-full py-6 mt-4 rounded-md bg-[#fffef8] text-[#060506] font-bold tracking-wide shadow-md hover:shadow-lg hover:shadow-[#c19670]/40 hover:bg-[#fffaed] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full py-6 mt-4 rounded-md bg-[#fffef8] text-[#060506] tracking-wide shadow-md hover:shadow-lg hover:shadow-[#c19670]/40 hover:bg-[#fffaed] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <TarotStar className="w-4 h-4 text-[#c19670]" />
                   {t.form.button}

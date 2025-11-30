@@ -13,9 +13,9 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return (
     <>
-      <div className="relative max-w-3xl mx-auto text-center px-4 py-16 mt-48 mb-32">
+      <div className="relative max-w-3xl mx-auto text-center px-4 py-12 sm:py-16 mt-24 sm:mt-48 mb-16 sm:mb-32">
         {}
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 sm:w-96 sm:h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
 
         {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
@@ -24,8 +24,8 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
               key={i}
               className="absolute border-2 rounded-full"
               style={{
-                width: `${150 + i * 30}px`,
-                height: `${150 + i * 30}px`,
+                width: `${100 + i * 20}px`,
+                height: `${100 + i * 20}px`,
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -45,7 +45,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
         {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
-            className="absolute w-12 h-12 rounded-full shadow-2xl"
+            className="absolute w-8 h-8 sm:w-12 sm:h-12 rounded-full shadow-2xl"
             style={{
               background: 'radial-gradient(circle at 35% 35%, #d0d0d0, #b0b0b0, #808080)',
               boxShadow:
@@ -65,15 +65,15 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
             <div
               className="absolute"
               style={{
-                width: '140px',
-                height: '100px',
-                left: '-70px',
-                top: '-50px',
+                width: '100px',
+                height: '70px',
+                left: '-50px',
+                top: '-35px',
                 animation: 'orbit-ellipse-1 8s linear infinite',
               }}
             >
               <div
-                className="absolute w-6 h-6 rounded-full"
+                className="absolute w-4 h-4 sm:w-6 sm:h-6 rounded-full"
                 style={{
                   background: 'radial-gradient(circle at 30% 30%, #e0c24f, #d5a62a, #b08d1e)',
                   boxShadow:
@@ -92,15 +92,15 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
             <div
               className="absolute"
               style={{
-                width: '160px',
-                height: '160px',
-                left: '-80px',
-                top: '-80px',
+                width: '120px',
+                height: '120px',
+                left: '-60px',
+                top: '-60px',
                 animation: 'orbit-circle-2 12s linear infinite reverse',
               }}
             >
               <div
-                className="absolute w-5 h-5 rounded-full"
+                className="absolute w-3.5 h-3.5 sm:w-5 sm:h-5 rounded-full"
                 style={{
                   background: 'radial-gradient(circle at 30% 30%, #e0c24f, #d5a62a, #b08d1e)',
                   boxShadow:
@@ -122,16 +122,16 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
             <div
               className="absolute"
               style={{
-                width: '120px',
-                height: '180px',
-                left: '-60px',
-                top: '-90px',
+                width: '90px',
+                height: '130px',
+                left: '-45px',
+                top: '-65px',
                 animation: 'orbit-ellipse-3 15s linear infinite',
                 transform: 'rotate(45deg)',
               }}
             >
               <div
-                className="absolute w-5.5 h-5.5 rounded-full"
+                className="absolute w-3.5 h-3.5 sm:w-5.5 sm:h-5.5 rounded-full"
                 style={{
                   background: 'radial-gradient(circle at 30% 30%, #e0c24f, #d5a62a, #b08d1e)',
                   boxShadow:
@@ -157,8 +157,8 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
               key={`trail-${i}`}
               className="absolute rounded-full border opacity-10"
               style={{
-                width: `${160 + i * 40}px`,
-                height: `${160 + i * 40}px`,
+                width: `${120 + i * 30}px`,
+                height: `${120 + i * 30}px`,
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -173,16 +173,16 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
 
         {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {[...Array(16)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={`particle-${i}`}
-              className="absolute w-1.5 h-1.5 rounded-full opacity-60"
+              className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full opacity-60"
               style={{
                 background: `radial-gradient(circle, ${
                   i % 3 === 0 ? '#c19670' : i % 3 === 1 ? '#c3beb6' : '#d4a574'
                 }, transparent)`,
-                left: `${50 + Math.cos((i * 22.5 * Math.PI) / 180) * 120}px`,
-                top: `${50 + Math.sin((i * 22.5 * Math.PI) / 180) * 120}px`,
+                left: `${50 + Math.cos((i * 30 * Math.PI) / 180) * 80}px`,
+                top: `${50 + Math.sin((i * 30 * Math.PI) / 180) * 80}px`,
                 animation: `float-particle ${15 + i * 2}s ease-in-out infinite`,
                 animationDelay: `${i * 0.2}s`,
                 filter: 'blur(1px)',
@@ -199,8 +199,8 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
               key={`wave-${i}`}
               className="absolute rounded-full border opacity-15"
               style={{
-                width: `${300 + i * 80}px`,
-                height: `${300 + i * 80}px`,
+                width: `${200 + i * 60}px`,
+                height: `${200 + i * 60}px`,
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -215,7 +215,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
 
         {}
         <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md px-6">
-          <h2 className="text-xl md:text-2xl font-bold text-[#c19670] mb-6 tracking-wide drop-shadow-[0_0_10px_rgba(193,150,112,0.5)]">
+          <h2 className="text-base sm:text-xl md:text-2xl text-[#c19670] mb-4 sm:mb-6 tracking-wide drop-shadow-[0_0_10px_rgba(193,150,112,0.5)]">
             {progressText}
           </h2>
 

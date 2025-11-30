@@ -93,16 +93,14 @@ export default function NumerologyGuide() {
         <p className="text-xl text-[#c3beb6] max-w-3xl mx-auto">{t.numerology.subtitle}</p>
 
         <div className="bg-[#0f0e0f] rounded-2xl shadow-xl p-8 mb-12 mt-12 border border-[#c19670]/30">
-          <h2 className="text-3xl font-bold text-[#c19670] mb-6 flex items-center">
+          <h2 className="text-3xl text-[#c19670] mb-6 flex items-center">
             <Calculator className="w-8 h-8 text-[#c19670] mr-3" />
             {t.numerology.calculator.title}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label className="block text-sm font-semibold text-[#c19670] mb-2">
-                {t.numerology.calculator.fullName}
-              </label>
+              <label className="block text-sm text-[#c19670] mb-2">{t.numerology.calculator.fullName}</label>
               <input
                 type="text"
                 value={name}
@@ -113,16 +111,14 @@ export default function NumerologyGuide() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-[#c19670] mb-2">
-                {t.numerology.calculator.dateOfBirth}
-              </label>
+              <label className="block text-sm text-[#c19670] mb-2">{t.numerology.calculator.dateOfBirth}</label>
               <DatePicker value={dob} onChange={setDob} placeholder={t.numerology.calculator.dateOfBirth} />
             </div>
           </div>
 
           <button
             onClick={calculateAll}
-            className="w-full bg-[#c19670] text-[#060506] font-bold py-3 px-6 rounded-md hover:bg-[#d4a574] transition-all shadow-lg"
+            className="w-full bg-[#c19670] text-[#060506] py-3 px-6 rounded-md hover:bg-[#d4a574] transition-all shadow-lg"
           >
             {t.numerology.calculator.calculateButton}
           </button>
@@ -133,9 +129,9 @@ export default function NumerologyGuide() {
                 <div className="bg-[#1a1819] p-6 rounded-xl border border-[#c19670]/50 shadow-[0_0_15px_rgba(193,150,112,0.2)]">
                   <div className="flex items-center mb-2">
                     <Calendar className="w-5 h-5 text-[#c19670] mr-2" />
-                    <h3 className="font-bold text-[#c19670]">{t.numerology.calculator.lifePath}</h3>
+                    <h3 className="text-[#c19670]">{t.numerology.calculator.lifePath}</h3>
                   </div>
-                  <div className="text-4xl font-bold text-[#d4a574]">{lifePathNumber}</div>
+                  <div className="text-4xl text-[#d4a574]">{lifePathNumber}</div>
                 </div>
               )}
 
@@ -143,9 +139,9 @@ export default function NumerologyGuide() {
                 <div className="bg-[#1a1819] p-6 rounded-xl border border-[#c19670]/50 shadow-[0_0_15px_rgba(193,150,112,0.2)]">
                   <div className="flex items-center mb-2">
                     <User className="w-5 h-5 text-[#c19670] mr-2" />
-                    <h3 className="font-bold text-[#c19670]">{t.numerology.calculator.expression}</h3>
+                    <h3 className="text-[#c19670]">{t.numerology.calculator.expression}</h3>
                   </div>
-                  <div className="text-4xl font-bold text-[#d4a574]">{expressionNumber}</div>
+                  <div className="text-4xl text-[#d4a574]">{expressionNumber}</div>
                 </div>
               )}
             </div>
@@ -154,7 +150,7 @@ export default function NumerologyGuide() {
 
         <div className="space-y-8">
           <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8 border border-[#c19670]/20">
-            <h2 className="text-3xl font-bold text-[#c19670] mb-4">{t.numerology.whatIs.title}</h2>
+            <h2 className="text-3xl text-[#c19670] mb-4">{t.numerology.whatIs.title}</h2>
             <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.whatIs.paragraph1}</p>
             <p className="text-[#c3beb6] leading-relaxed">{t.numerology.whatIs.paragraph2}</p>
           </div>
@@ -162,13 +158,13 @@ export default function NumerologyGuide() {
           <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8 border border-[#c19670]/20">
             <div className="flex items-center mb-4">
               <Calendar className="w-8 h-8 text-[#c19670] mr-3" />
-              <h2 className="text-3xl font-bold text-[#c19670]">{t.numerology.lifePath.title}</h2>
+              <h2 className="text-3xl text-[#c19670]">{t.numerology.lifePath.title}</h2>
             </div>
 
             <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.lifePath.description}</p>
 
             <div className="bg-[#1a1819]/50 rounded-xl p-6 mb-4 border border-[#c19670]/20">
-              <h3 className="font-bold text-[#c19670] mb-3">{t.numerology.lifePath.howToCalculate}</h3>
+              <h3 className="text-[#c19670] mb-3">{t.numerology.lifePath.howToCalculate}</h3>
               <ol className="list-decimal list-inside space-y-2 text-[#c3beb6]">
                 <li>{t.numerology.lifePath.step1}</li>
                 <li>{t.numerology.lifePath.step2}</li>
@@ -176,11 +172,11 @@ export default function NumerologyGuide() {
               </ol>
 
               <div className="mt-4 p-4 bg-[#0f0e0f] rounded-md border border-[#c19670]/10">
-                <p className="font-semibold text-[#c19670] mb-2">{t.numerology.lifePath.exampleTitle}</p>
+                <p className="text-[#c19670] mb-2">{t.numerology.lifePath.exampleTitle}</p>
                 <p className="text-[#c3beb6]">{t.numerology.lifePath.exampleMonth}</p>
                 <p className="text-[#c3beb6]">{t.numerology.lifePath.exampleDay}</p>
                 <p className="text-[#c3beb6]">{t.numerology.lifePath.exampleYear}</p>
-                <p className="text-[#d4a574] font-bold mt-2">{t.numerology.lifePath.exampleResult}</p>
+                <p className="text-[#d4a574] mt-2">{t.numerology.lifePath.exampleResult}</p>
               </div>
             </div>
           </div>
@@ -188,13 +184,13 @@ export default function NumerologyGuide() {
           <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8 border border-[#c19670]/20">
             <div className="flex items-center mb-4">
               <User className="w-8 h-8 text-[#c19670] mr-3" />
-              <h2 className="text-3xl font-bold text-[#c19670]">{t.numerology.expression.title}</h2>
+              <h2 className="text-3xl text-[#c19670]">{t.numerology.expression.title}</h2>
             </div>
 
             <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.expression.description}</p>
 
             <div className="bg-[#1a1819]/50 rounded-xl p-6 mb-4 border border-[#c19670]/20">
-              <h3 className="font-bold text-[#c19670] mb-3">{t.numerology.expression.howToCalculate}</h3>
+              <h3 className="text-[#c19670] mb-3">{t.numerology.expression.howToCalculate}</h3>
               <ol className="list-decimal list-inside space-y-2 text-[#c3beb6] mb-4">
                 <li>{t.numerology.expression.step1}</li>
                 <li>{t.numerology.expression.step2}</li>
@@ -202,11 +198,11 @@ export default function NumerologyGuide() {
               </ol>
 
               <div className="bg-[#0f0e0f] rounded-md p-4 mb-4 border border-[#c19670]/10">
-                <h4 className="font-semibold text-[#c19670] mb-2">{t.numerology.expression.chartTitle}</h4>
+                <h4 className="text-[#c19670] mb-2">{t.numerology.expression.chartTitle}</h4>
                 <div className="grid grid-cols-9 gap-2 text-sm text-center">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
                     <div key={num} className="bg-[#1a1819] rounded p-2 border border-[#c19670]/20">
-                      <div className="font-bold text-[#d4a574]">{num}</div>
+                      <div className="text-[#d4a574]">{num}</div>
                       <div className="text-xs text-[#8a8580]">
                         {num === 1 && 'A J S'}
                         {num === 2 && 'B K T'}
@@ -224,31 +220,31 @@ export default function NumerologyGuide() {
               </div>
 
               <div className="p-4 bg-[#0f0e0f] rounded-md border border-[#c19670]/10">
-                <p className="font-semibold text-[#c19670] mb-2">{t.numerology.expression.exampleTitle}</p>
+                <p className="text-[#c19670] mb-2">{t.numerology.expression.exampleTitle}</p>
                 <p className="text-[#c3beb6]">{t.numerology.expression.exampleCalculation}</p>
-                <p className="text-[#d4a574] font-bold mt-2">{t.numerology.expression.exampleResult}</p>
+                <p className="text-[#d4a574] mt-2">{t.numerology.expression.exampleResult}</p>
               </div>
             </div>
           </div>
 
           <div className="bg-[#0f0e0f] rounded-2xl shadow-lg p-8 border border-[#c19670]/20">
-            <h2 className="text-3xl font-bold text-[#c19670] mb-4">{t.numerology.masterNumbers.title}</h2>
+            <h2 className="text-3xl text-[#c19670] mb-4">{t.numerology.masterNumbers.title}</h2>
 
             <p className="text-[#c3beb6] leading-relaxed mb-4">{t.numerology.masterNumbers.description}</p>
 
             <div className="grid md:grid-cols-3 gap-4">
               <div className="bg-[#1a1819] rounded-xl p-6 border border-[#c19670]/30 hover:border-[#c19670]/60 transition-colors">
-                <h3 className="text-2xl font-bold text-[#d4a574] mb-2">11</h3>
+                <h3 className="text-2xl text-[#d4a574] mb-2">11</h3>
                 <p className="text-sm text-[#c3beb6]">{t.numerology.masterNumbers.number11}</p>
               </div>
 
               <div className="bg-[#1a1819] rounded-xl p-6 border border-[#c19670]/30 hover:border-[#c19670]/60 transition-colors">
-                <h3 className="text-2xl font-bold text-[#d4a574] mb-2">22</h3>
+                <h3 className="text-2xl text-[#d4a574] mb-2">22</h3>
                 <p className="text-sm text-[#c3beb6]">{t.numerology.masterNumbers.number22}</p>
               </div>
 
               <div className="bg-[#1a1819] rounded-xl p-6 border border-[#c19670]/30 hover:border-[#c19670]/60 transition-colors">
-                <h3 className="text-2xl font-bold text-[#d4a574] mb-2">33</h3>
+                <h3 className="text-2xl text-[#d4a574] mb-2">33</h3>
                 <p className="text-sm text-[#c3beb6]">{t.numerology.masterNumbers.number33}</p>
               </div>
             </div>

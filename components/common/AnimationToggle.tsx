@@ -24,7 +24,7 @@ export function AnimationToggle() {
       </PopoverTrigger>
       <PopoverContent className="w-64 bg-[#0f0e0f] border-[#c19670]/30">
         <div className="space-y-4">
-          <h4 className="font-semibold text-sm text-[#c19670]">Settings</h4>
+          <h4 className="text-sm text-[#c19670]">Settings</h4>
           <div className="flex items-center justify-between">
             <Label htmlFor="animations-toggle" className="text-[#c3beb6] cursor-pointer">
               Form Animations

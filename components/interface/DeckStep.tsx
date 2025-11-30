@@ -25,7 +25,7 @@ export default function DeckStep() {
   const { handleGetInterpretation } = useReadingInterpretation();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return (
-    <div className="space-y-6 z-20 relative">
+    <div className="space-y-6 z-20 relative px-2 sm:px-4">
       {isShuffling ? (
         <CardShuffle
           onComplete={() => {
@@ -37,11 +37,11 @@ export default function DeckStep() {
       ) : (
         <>
           <div className="text-center delay-300 duration-1000 ease-in-out">
-            <h2 className="text-2xl font-bold text-[#c19670]/90 mb-2">{t.deck.title}</h2>
-            <p className="text-[#c19670]/80 mb-1">
+            <h2 className="text-xl sm:text-2xl text-[#c19670]/90 mb-2">{t.deck.title}</h2>
+            <p className="text-base sm:text-lg text-[#c19670]/80 mb-1">
               {selectedCards.length}/3 {t.deck.selected}
             </p>
-            <p className="text-[#c19670]/70 text-sm">{t.deck.instruction}</p>
+            <p className="text-[#c19670]/70 text-xs sm:text-sm px-4">{t.deck.instruction}</p>
           </div>
 
           <TarotCardDeck
@@ -51,21 +51,21 @@ export default function DeckStep() {
             revealedCards={revealedCards}
           />
 
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
             <button
               onClick={() => {
                 setStep('form');
                 setSelectedCards([]);
                 setRevealedCards([]);
               }}
-              className="px-6 py-3 hover:bg-gray-800 hover:text-gray-50 rounded-md text-[#3d3a2a] transition-colors border border-gray-800"
+              className="px-6 py-3 text-sm sm:text-base hover:bg-gray-800 hover:text-gray-50 rounded-md text-[#3d3a2a] transition-colors border border-gray-800 w-full sm:w-auto"
             >
               {t.deck.back}
             </button>
             <button
               onClick={handleGetInterpretation}
               disabled={selectedCards.length !== 3}
-              className="px-8 py-3 bg-linear-to-r from-amber-900 to-amber-800 hover:from-amber-800 hover:to-amber-700 rounded-md text-gray-100 hover:cursor-pointer font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-amber-900/50"
+              className="px-6 sm:px-8 py-3 text-sm sm:text-base bg-linear-to-r from-amber-900 to-amber-800 hover:from-amber-800 hover:to-amber-700 rounded-md text-gray-100 hover:cursor-pointer font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-amber-900/50 w-full sm:w-auto"
             >
               {t.deck.reading}
             </button>

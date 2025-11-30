@@ -55,7 +55,7 @@ const CardShuffle: React.FC<{ onComplete?: () => void }> = ({ onComplete }) => {
     <>
       <div className="flex flex-col items-center justify-center gap-8 animate-fade-in duration-700">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-[#c19670]/90 mb-2">{t.deck.shuffling.title}</h2>
+          <h2 className="text-2xl text-[#c19670]/90 mb-2">{t.deck.shuffling.title}</h2>
           <p className="text-[#c19670]/70 text-sm">{t.deck.shuffling.description}</p>
         </div>
 
