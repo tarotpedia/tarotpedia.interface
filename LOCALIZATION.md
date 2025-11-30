@@ -135,7 +135,7 @@ export default function MyPage() {
 - `lib/i18n/config.ts` - i18n configuration and locale detection
 - `lib/i18n/provider.tsx` - React context provider
 - `lib/i18n/index.ts` - Export utilities
-- `components/language-switcher.tsx` - Language selector component
+- `components/common/LanguageSwitcher.tsx` - Language selector component
 
 ### Modified:
 

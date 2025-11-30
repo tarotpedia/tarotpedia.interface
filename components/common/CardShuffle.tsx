@@ -53,22 +53,21 @@ const CardShuffle: React.FC<{ onComplete?: () => void }> = ({ onComplete }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 animate-fade-in duration-700 px-4">
-        <div className="text-center">
-          <h2 className="text-xl sm:text-2xl text-[#c19670]/90 mb-2">{t.deck.shuffling.title}</h2>
-          <p className="text-[#c19670]/70 text-xs sm:text-sm">{t.deck.shuffling.description}</p>
+      <div className="flex flex-col items-center justify-center gap-8 animate-fade-in duration-700">
+        <div className="text-center mt-8 sm:mt-0">
+          <h2 className="text-2xl text-[#c19670]/90 mb-2">{t.deck.shuffling.title}</h2>
+          <p className="text-[#c19670]/70 text-sm">{t.deck.shuffling.description}</p>
         </div>
 
-        <div className="relative w-full h-64 sm:h-96 flex justify-center items-center overflow-hidden">
-          <div className="relative w-full max-w-[90vw] sm:max-w-[600px] h-[150px] sm:h-[200px] flex items-center justify-center">
+        <div className="relative w-full h-96 flex justify-center items-center overflow-hidden">
+          <div className="relative" style={{ width: '600px', height: '200px' }}>
             {cardPositions.map((pos, i) => (
               <div
                 key={i}
                 className={`card-container ${isFading ? 'animate-fadeout' : 'animate-shuffle'}`}
                 style={{
-                  left: '50%',
-                  top: '50%',
-                  transform: `translate(calc(-50% + ${(pos.x - 24 * 10) * 0.6}px), calc(-50% + ${pos.y}px))`,
+                  left: `calc(50% - 52px + ${pos.x - 24 * 10}px)`,
+                  top: `calc(50% - 90px + ${pos.y}px)`,
                   zIndex: pos.zIndex,
                   animationDelay: `${i * 0.1}s`,
                 }}

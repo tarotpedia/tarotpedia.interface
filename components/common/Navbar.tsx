@@ -1,7 +1,7 @@
 'use client';
 import { AnimationToggle } from '@/components/common/AnimationToggle';
+import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
 import { TarotStar } from '@/components/icons/TarotStar';
-import { LanguageSwitcher } from '@/components/language-switcher';
 import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n';
 

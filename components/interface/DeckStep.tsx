@@ -37,7 +37,7 @@ export default function DeckStep() {
           />
         ) : (
           <>
-            <div className="text-center delay-300 duration-1000 ease-in-out">
+            <div className="text-center delay-300 duration-1000 ease-in-out mt-8 sm:mt-0">
               <h2 className="text-xl sm:text-2xl text-[#c19670]/90 mb-2">{t.deck.title}</h2>
               <p className="text-base sm:text-lg text-[#c19670]/80 mb-1">
                 {selectedCards.length}/3 {t.deck.selected}
@@ -66,7 +66,7 @@ export default function DeckStep() {
               <button
                 onClick={handleGetInterpretation}
                 disabled={selectedCards.length !== 3}
-                className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-[0_0_15px_0_rgba(193,150,112,0.2)] w-full sm:w-auto group relative overflow-hidden"
+                className="px-6 sm:px-8 py-3 rounded-md bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-[0_0_15px_0_rgba(193,150,112,0.2)] w-full sm:w-auto group relative overflow-hidden"
               >
                 <span className="absolute inset-0 bg-gradient-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 <span className="relative z-10">{t.deck.reading}</span>
