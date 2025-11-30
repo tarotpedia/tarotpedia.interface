@@ -17,7 +17,7 @@ export default function ConfirmStep() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <div className="min-h-[600px] flex items-center justify-center px-4 py-8 sm:py-12">
+    <div className="min-h-[600px] flex items-center justify-center px-4 py-8 sm:py-8">
       <div className="max-w-xl w-full">
         <div
           className="backdrop-blur-sm rounded-2xl p-4 sm:p-8 md:p-10 border border-[#c19670]/30 bg-[#0f0e0f]/80 shadow-[0_0_60px_-10px_rgba(193,150,112,0.3)] animate-fade-in"

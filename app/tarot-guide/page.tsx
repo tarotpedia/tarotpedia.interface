@@ -90,7 +90,7 @@ export default function TarotGuidePage() {
     <>
       <div className="relative bg-[#060506] min-h-screen flex flex-col">
         <Navbar />
-        <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
+        <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-8 py-8 max-w-7xl">
           <section className="text-center mb-12">
             <h1 className="text-4xl text-white mb-4">{t.tarotGuide.title}</h1>
             <p className="text-[#c3beb6] max-w-4xl mx-auto">{t.tarotGuide.subtitle}</p>

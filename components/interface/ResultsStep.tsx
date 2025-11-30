@@ -5,9 +5,20 @@ import { Button } from '@/components/ui/button';
 import { useTarot } from '@/context/TarotContext';
 import { useI18n } from '@/lib/i18n';
 
+import { useEffect, useState } from 'react';
+
 export default function ResultsStep() {
   const { t } = useI18n();
   const { reading, selectedCards, resetReading } = useTarot();
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Small delay before starting the sequential animations
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!reading) return null;
 
@@ -17,10 +28,11 @@ export default function ResultsStep() {
         <div className="space-y-6">
           {reading.numerology_meaning && (
             <div
-              className="max-w-5xl mx-auto backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-[#c19670]/30 animate-fade-in"
+              className="max-w-5xl mx-auto backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-[#c19670]/30 transition-all duration-700 ease-out"
               style={{
-                animationDelay: '0.2s',
-                animationFillMode: 'both',
+                opacity: showContent ? 1 : 0,
+                transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '0.2s',
               }}
             >
               <h2 className="text-xl sm:text-2xl text-center text-[#c19670] mb-4">{t.results.numerologyInsight}</h2>
@@ -30,10 +42,11 @@ export default function ResultsStep() {
 
           <div className="max-w-7xl mx-auto">
             <h2
-              className="text-xl sm:text-2xl text-center text-[#c19670] mb-6 animate-fade-in"
+              className="text-xl sm:text-2xl text-center text-[#c19670] mb-6 transition-all duration-700 ease-out"
               style={{
-                animationDelay: reading.numerology_meaning ? '0.3s' : '0.1s',
-                animationFillMode: 'both',
+                opacity: showContent ? 1 : 0,
+                transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: reading.numerology_meaning ? '0.3s' : '0.1s',
               }}
             >
               {t.results.yourDeck}
@@ -43,10 +56,11 @@ export default function ResultsStep() {
               {['past', 'present', 'future'].map((position, idx) => (
                 <div key={position}>
                   <h3
-                    className="text-base sm:text-lg text-center text-[#c3beb6] mb-3 uppercase tracking-wide animate-fade-in"
+                    className="text-base sm:text-lg text-center text-[#c3beb6] mb-3 uppercase tracking-wide transition-all duration-700 ease-out"
                     style={{
-                      animationDelay: `${reading.numerology_meaning ? 0.4 + idx * 0.15 : 0.2 + idx * 0.15}s`,
-                      animationFillMode: 'both',
+                      opacity: showContent ? 1 : 0,
+                      transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                      transitionDelay: `${reading.numerology_meaning ? 0.4 + idx * 0.15 : 0.2 + idx * 0.15}s`,
                     }}
                   >
                     {t.results.positions[position as keyof typeof t.results.positions]}
@@ -54,19 +68,21 @@ export default function ResultsStep() {
                   {selectedCards[idx] && reading.interpretations[idx] && (
                     <>
                       <div
-                        className="animate-fade-in"
+                        className="transition-all duration-700 ease-out"
                         style={{
-                          animationDelay: `${reading.numerology_meaning ? 0.5 + idx * 0.2 : 0.3 + idx * 0.2}s`,
-                          animationFillMode: 'both',
+                          opacity: showContent ? 1 : 0,
+                          transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                          transitionDelay: `${reading.numerology_meaning ? 0.5 + idx * 0.2 : 0.3 + idx * 0.2}s`,
                         }}
                       >
                         <TarotCardComponent card={selectedCards[idx]} />
                       </div>
                       <div
-                        className="mt-4 p-3 sm:p-5 animate-fade-in"
+                        className="mt-4 p-3 sm:p-5 transition-all duration-700 ease-out"
                         style={{
-                          animationDelay: `${reading.numerology_meaning ? 0.6 + idx * 0.2 : 0.4 + idx * 0.2}s`,
-                          animationFillMode: 'both',
+                          opacity: showContent ? 1 : 0,
+                          transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                          transitionDelay: `${reading.numerology_meaning ? 0.6 + idx * 0.2 : 0.4 + idx * 0.2}s`,
                         }}
                       >
                         <StyledMarkdown content={reading.interpretations[idx].meaning} />
@@ -78,10 +94,11 @@ export default function ResultsStep() {
             </div>
 
             <div
-              className="backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-[#c19670]/30 animate-fade-in"
+              className="backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-[#c19670]/30 transition-all duration-700 ease-out"
               style={{
-                animationDelay: reading.numerology_meaning ? '1.2s' : '1.0s',
-                animationFillMode: 'both',
+                opacity: showContent ? 1 : 0,
+                transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: reading.numerology_meaning ? '1.2s' : '1.0s',
               }}
             >
               <h3 className="text-lg sm:text-xl text-[#c19670] mb-4 flex items-center justify-center gap-2">
@@ -92,10 +109,11 @@ export default function ResultsStep() {
           </div>
 
           <div
-            className="flex items-center justify-center mt-8 pb-12 animate-fade-in"
+            className="flex items-center justify-center mt-8 pb-12 transition-all duration-700 ease-out"
             style={{
-              animationDelay: reading.numerology_meaning ? '1.4s' : '1.2s',
-              animationFillMode: 'both',
+              opacity: showContent ? 1 : 0,
+              transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: reading.numerology_meaning ? '1.4s' : '1.2s',
             }}
           >
             <Button

@@ -89,7 +89,7 @@ export default function NumerologyGuide() {
   return (
     <div className="relative bg-[#060506] min-h-screen flex flex-col">
       <Navbar />
-      <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-8 max-w-7xl">
+      <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-8 py-8 max-w-7xl">
         <p className="text-xl text-[#c3beb6] max-w-3xl mx-auto">{t.numerology.subtitle}</p>
 
         <div className="bg-[#0f0e0f] rounded-2xl shadow-xl p-8 mb-12 mt-12 border border-[#c19670]/30">

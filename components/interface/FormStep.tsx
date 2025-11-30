@@ -10,6 +10,7 @@ import { useTarot } from '@/context/TarotContext';
 import { drawCards } from '@/lib/api';
 import { useI18n } from '@/lib/i18n';
 
+import { ArrowRight } from 'lucide-react';
 import { Calendar, ShieldQuestion, User } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -91,7 +92,7 @@ export default function FormStep() {
         <div className="min-h-[600px] md:min-h-[500px] flex items-center justify-center py-2 md:py-12">
           <div className="p-6 sm:p-10 rounded-2xl border border-[#c19670]/30 bg-[#0f0e0f] shadow-[0_0_60px_-10px_rgba(193,150,112,0.3)] backdrop-blur-xl text-[#c3beb6] font-[Caudex] w-full transition-all duration-300">
             <div className="relative z-10">
-              <h2 className="flex flex-col items-center justify-center gap-2 mb-6 text-lg sm:text-2xl tracking-wide text-[#c19670] text-center uppercase font-bold">
+              <h2 className="flex flex-col items-center justify-center gap-2 mb-6 text-base sm:text-2xl tracking-wide text-[#c19670] text-center uppercase font-bold">
                 {t.form.title}
               </h2>
 
@@ -105,7 +106,7 @@ export default function FormStep() {
                     type="text"
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-6 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-200"
+                    className="w-full px-4 py-6 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-sm md:text-base text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-200"
                     placeholder={t.form.name.placeholder}
                   />
                 </div>
@@ -130,7 +131,7 @@ export default function FormStep() {
                   <Textarea
                     value={formData.question}
                     onChange={e => setFormData({ ...formData, question: e.target.value })}
-                    className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 resize-none transition-all duration-200"
+                    className="w-full px-4 py-3 rounded-md border border-[#c19670]/30 bg-[#1a1819] focus-visible:border-[#c19670] text-sm md:text-base text-[#c3beb6] placeholder:text-[#8a8580] focus-visible:ring-0 focus-visible:ring-offset-0 resize-none transition-all duration-200"
                     placeholder={t.form.question.placeholder}
                     rows={4}
                   />
@@ -155,7 +156,7 @@ export default function FormStep() {
                           onClick={() => setFormData({ ...formData, question: example })}
                           className="block w-full text-left text-[#8a8580] text-xs italic hover:text-[#c19670] transition-colors duration-200 cursor-pointer px-2 py-1 rounded hover:bg-[#c19670]/5"
                         >
-                          • {example}
+                          <ArrowRight className="inline-block w-3 h-3 mr-1" /> {example}
                         </button>
                       ))}
                     </div>

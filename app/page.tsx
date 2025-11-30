@@ -11,7 +11,7 @@ export default function TarotpediaApp() {
       <ParallaxBackground />
       <TarotProvider>
         <Navbar />
-        <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-2 max-w-7xl">
+        <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-8 py-2 max-w-7xl">
           <TarotFlow />
         </div>
         <Footer />
