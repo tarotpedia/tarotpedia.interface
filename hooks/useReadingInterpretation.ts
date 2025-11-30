@@ -63,7 +63,7 @@ export function useReadingInterpretation() {
         original_cards: selectedCards,
       });
 
-      setTimeout(() => setStep('results'), 800);
+      setTimeout(() => setStep('confirm'), 800);
     } catch (error) {
       console.error('Error getting reading:', error);
       toast.warning('Failed to get reading. Please try again.');

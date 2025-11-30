@@ -11,7 +11,6 @@ export default function TarotCardComponent({ card }: { card: TarotCard }) {
   return (
     <div className="relative group w-full max-w-[160px] sm:max-w-[200px] mx-auto">
       <div className="relative transform transition-all duration-300">
-        {}
         <div
           className="absolute inset-0 blur-xl opacity-30 transition-opacity duration-300"
           style={{
@@ -35,7 +34,6 @@ export default function TarotCardComponent({ card }: { card: TarotCard }) {
             >
               <img src={imageUrl} alt={card.name} className="w-full h-full object-cover" />
 
-              {}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{

@@ -17,16 +17,14 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#060506]/80 border-b border-[#c19670]/20">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
-          {}
           <div className="flex items-center gap-2">
             <TarotStar className="w-6 h-6 text-[#c19670]" />
             <a href="/" className="flex items-center gap-2">
-              <span className="text-xl text-white tracking-wide">{t.header.title}</span>
+              <span className="text-xl text-white tracking-wide font-bold">{t.header.title}</span>
             </a>
             <TarotStar className="w-6 h-6 text-[#c19670]" />
           </div>
 
-          {}
           <div className="hidden md:flex items-center gap-6">
             <a
               href="/"
@@ -48,7 +46,6 @@ export default function Navbar() {
             </a>
           </div>
 
-          {}
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-2">
               <AnimationToggle />
@@ -67,7 +64,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? 'max-h-[400px] opacity-100 border-t border-[#c19670]/20' : 'max-h-0 opacity-0 border-t-0'

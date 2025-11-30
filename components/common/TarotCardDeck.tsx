@@ -32,7 +32,6 @@ const TarotCardDeck: React.FC<CardDeckProps> = ({ cards, onCardSelect, selectedC
 
   return (
     <div className="w-full py-12 px-4 relative">
-      {}
       <div className="absolute inset-0 bg-gradient-radial from-[#c19670]/5 via-transparent to-transparent pointer-events-none" />
 
       <div className="flex justify-center items-end gap-4 flex-wrap max-w-6xl mx-auto relative">

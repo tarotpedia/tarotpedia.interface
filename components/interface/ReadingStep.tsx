@@ -14,10 +14,8 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
   return (
     <>
       <div className="relative max-w-3xl mx-auto text-center px-4 py-12 sm:py-16 mt-24 sm:mt-48 mb-16 sm:mb-32">
-        {}
         <div className="absolute top-1/2 left-1/2 w-64 h-64 sm:w-96 sm:h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-[#c19670]/40 via-[#8a8580]/20 to-transparent blur-3xl animate-pulse" />
 
-        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
           {[...Array(3)].map((_, i) => (
             <div
@@ -42,7 +40,7 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
             />
           ))}
         </div>
-        {}
+
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
             className="absolute w-8 h-8 sm:w-12 sm:h-12 rounded-full shadow-2xl"
@@ -151,7 +149,6 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
             </div>
           </div>
 
-          {}
           {[...Array(2)].map((_, i) => (
             <div
               key={`trail-${i}`}
@@ -171,7 +168,6 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {[...Array(12)].map((_, i) => (
             <div
@@ -192,7 +188,6 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {[...Array(2)].map((_, i) => (
             <div
@@ -213,13 +208,11 @@ const ReadingStep: React.FC<ReadingStepProps> = ({ progress, progressText }) => 
           ))}
         </div>
 
-        {}
         <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md px-6">
           <h2 className="text-base sm:text-xl md:text-2xl text-[#c19670] mb-4 sm:mb-6 tracking-wide drop-shadow-[0_0_10px_rgba(193,150,112,0.5)]">
             {progressText}
           </h2>
 
-          {}
           <div className="w-full max-w-sm mx-auto">
             <div className="relative w-full h-1.5 bg-[#1a1819]/40 rounded-full overflow-visible">
               <div

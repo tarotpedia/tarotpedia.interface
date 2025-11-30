@@ -42,6 +42,12 @@ export const vi = {
       placeholder:
         'Hãy mô tả vấn đề của bạn cho Trải Bài. Càng chi tiết, Trải Bài càng liên hệ được vấn đề của bạn với vũ trụ.',
       hint: 'Vũ trụ huyền bí không hiểu những vấn đề ngắn gọn. Vui lòng mô tả rõ ràng hơn.',
+      examples: [
+        'Cần chú ý điều gì vào dịp cuối năm nay để có thể đón năm mới thuận lợi hơn?',
+        'Tôi đang phân vân giữa hai hướng đi trong sự nghiệp, liệu con đường nào phù hợp với tôi hơn?',
+        'Mối quan hệ hiện tại của tôi đang gặp khó khăn, tôi nên làm gì để cải thiện tình hình?',
+      ],
+      examplesLabel: 'Gợi ý:',
     },
     button: 'Trải Bài',
     validation: {
@@ -76,6 +82,13 @@ export const vi = {
       finalizing: 'Đang nhận thông điệp...',
       complete: 'Hoàn tất thông điệp!',
     },
+  },
+  confirm: {
+    title: 'Kết Quả Đã Sẵn Sàng',
+    description: 'Vũ trụ đã gửi thông điệp của bạn. Bạn đã sẵn sàng để khám phá ý nghĩa của các lá bài?',
+    disclaimer:
+      'Kết quả này được tạo bởi AI và chỉ mang tính chất tham khảo. Hãy sử dụng trực giác của bạn để diễn giải thông điệp theo cách phù hợp nhất với tình huống của bạn.',
+    button: 'Xem Kết Quả',
   },
   numerology: {
     title: 'Hướng Dẫn Thần Số Học',

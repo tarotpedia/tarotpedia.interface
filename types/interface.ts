@@ -1,7 +1,7 @@
 'use client';
 import { TarotCard, TarotReading } from '@/types/tarot';
 
-export type Step = 'form' | 'deck' | 'reading' | 'results';
+export type Step = 'form' | 'deck' | 'reading' | 'confirm' | 'results';
 
 export interface FormData {
   name: string;

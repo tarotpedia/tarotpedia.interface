@@ -96,8 +96,9 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="w-auto p-0 bg-[#0f0e0f] border border-[#c19670]/30 text-[#c3beb6] shadow-[0_0_30px_-5px_rgba(193,150,112,0.3)]"
-            align="end"
+            className="w-auto max-w-[calc(100vw-2rem)] p-0 bg-[#0f0e0f] border border-[#c19670]/30 text-[#c3beb6] shadow-[0_0_30px_-5px_rgba(193,150,112,0.3)]"
+            align="center"
+            sideOffset={5}
           >
             <Calendar
               autoFocus
@@ -108,26 +109,28 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, placeholder = 
               captionLayout="dropdown"
               startMonth={new Date(1900, 0)}
               endMonth={new Date(2100, 0)}
-              className="bg-[#0f0e0f] text-[#c3beb6] p-3"
+              className="bg-[#0f0e0f] text-[#c3beb6] p-2 sm:p-3"
               classNames={{
                 day_selected:
                   'bg-[#c19670] text-[#060506] hover:bg-[#c19670] hover:text-[#060506] focus:bg-[#c19670] focus:text-[#060506] font-bold',
                 day_today: 'bg-[#c19670]/10 text-[#c19670] border border-[#c19670]/30',
-                day: 'h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-[#c19670]/20 hover:text-[#c19670] rounded-md transition-all duration-200',
-                dropdown: 'bg-[#1a1819] text-[#c3beb6] border border-[#c19670]/30 rounded-md p-1',
+                day: 'h-8 w-8 sm:h-9 sm:w-9 p-0 text-xs sm:text-sm font-normal aria-selected:opacity-100 hover:bg-[#c19670]/20 hover:text-[#c19670] rounded-md transition-all duration-200',
+                dropdown: 'bg-[#1a1819] text-[#c3beb6] border border-[#c19670]/30 rounded-md p-1 text-xs sm:text-sm',
                 dropdown_month: 'bg-[#1a1819] text-[#c3beb6]',
                 dropdown_year: 'bg-[#1a1819] text-[#c3beb6]',
-                head_cell: 'text-[#8a8580] font-normal text-[0.8rem]',
-                cell: 'text-center text-sm p-0 relative [&:has([aria-selected])]:bg-[#c19670]/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
-                nav_button: 'border border-[#c19670]/30 hover:bg-[#c19670]/10 hover:text-[#c19670] transition-colors',
+                head_cell: 'text-[#8a8580] font-normal text-[0.7rem] sm:text-[0.8rem]',
+                cell: 'text-center text-xs sm:text-sm p-0 relative [&:has([aria-selected])]:bg-[#c19670]/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+                nav_button:
+                  'border border-[#c19670]/30 hover:bg-[#c19670]/10 hover:text-[#c19670] transition-colors h-7 w-7',
                 caption: 'flex justify-center pt-1 relative items-center mb-2',
                 caption_label: 'hidden',
-                caption_dropdowns: 'flex gap-2',
+                caption_dropdowns: 'flex gap-1 sm:gap-2',
               }}
             />
           </PopoverContent>
         </Popover>
       </div>
+      {!inputValue && <p className="mt-1 text-[#8a8580] text-xs italic">Format: YYYY-MM-DD</p>}
     </div>
   );
 };
