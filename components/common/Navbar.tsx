@@ -1,5 +1,5 @@
 'use client';
-import { AnimationToggle } from '@/components/common/AnimationToggle';
+import { DebugToggle } from '@/components/common/DebugToggle';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
 import { TarotStar } from '@/components/icons/TarotStar';
 import { Button } from '@/components/ui/button';
@@ -48,7 +48,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-2">
-              <AnimationToggle />
+              <DebugToggle />
               <LanguageSwitcher />
             </div>
 
@@ -92,7 +92,7 @@ export default function Navbar() {
               {t.footer.resources.numerology}
             </a>
             <div className="pt-2 border-t border-[#c19670]/20 flex items-center gap-2">
-              <AnimationToggle />
+              <DebugToggle />
               <LanguageSwitcher />
             </div>
           </div>

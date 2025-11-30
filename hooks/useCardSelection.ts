@@ -19,10 +19,7 @@ export function useCardSelection() {
     } else {
       const newSelected = [...selectedCards, card];
       setSelectedCards(newSelected);
-
-      setTimeout(() => {
-        setRevealedCards([...revealedCards, card]);
-      }, 300);
+      setRevealedCards([...revealedCards, card]);
     }
   };
 

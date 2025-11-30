@@ -92,15 +92,15 @@ body {
   .animate-shuffle {
     animation: casino-shuffle 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     transform-origin: center;
-    max-width: 70px;
-    max-height: 120px;
+    max-width: 50px;
+    max-height: 85px;
   }
 
   .animate-fadeout {
     animation: card-fadeout 1s ease-in-out forwards;
     transform-origin: center;
-    max-width: 70px;
-    max-height: 120px;
+    max-width: 50px;
+    max-height: 85px;
   }
 
   @media (min-width: 640px) {

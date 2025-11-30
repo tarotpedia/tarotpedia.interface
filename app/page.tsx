@@ -9,13 +9,13 @@ export default function TarotpediaApp() {
   return (
     <div className="relative bg-[#060506] min-h-screen flex flex-col">
       <ParallaxBackground />
-      <Navbar />
-      <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-2 max-w-7xl">
-        <TarotProvider>
+      <TarotProvider>
+        <Navbar />
+        <div className="relative flex-1 z-10 container mx-auto px-4 sm:py-16 py-2 max-w-7xl">
           <TarotFlow />
-        </TarotProvider>
-      </div>
-      <Footer />
+        </div>
+        <Footer />
+      </TarotProvider>
     </div>
   );
 }

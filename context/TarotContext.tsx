@@ -6,6 +6,8 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 
 const TarotContext = createContext<TarotContextType | undefined>(undefined);
 
+export { TarotContext };
+
 export function TarotProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState<Step>('form');
   const [progress, setProgress] = useState(0);

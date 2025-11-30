@@ -77,7 +77,7 @@ export const vi = {
     progress: {
       shuffling: 'Đang trộn bài...',
       analyzing: 'Đang phân tích các lá bài của bạn...',
-      interpreting: 'Đang giải mã bài bói...',
+      interpreting: 'Đang giải mã thông điệp...',
       numerology: 'Đang tính toán thần số học...',
       finalizing: 'Đang nhận thông điệp...',
       complete: 'Hoàn tất thông điệp!',

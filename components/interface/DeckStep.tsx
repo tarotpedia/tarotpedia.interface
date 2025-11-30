@@ -23,7 +23,7 @@ export default function DeckStep() {
 
   const { handleCardSelect } = useCardSelection();
   const { handleGetInterpretation } = useReadingInterpretation();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   return (
     <div className="min-h-[600px] flex items-center justify-center">
       <div className="space-y-6 z-20 relative px-2 sm:px-4 w-full">
