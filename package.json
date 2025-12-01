@@ -6,7 +6,7 @@
     "dev": "NEXT_PUBLIC_APP_ENV=development bun --bun next dev",
     "build": "bun --bun next build",
     "start": "bun --bun next start",
-    "uncomment-code": "bun run uncomment app components context hooks lib types",
+    "uncomment-code": "bunx uncomment-cli@latest uncomment app components context hooks lib types",
     "format": "bun --bun prettier --write ."
   },
   "dependencies": {

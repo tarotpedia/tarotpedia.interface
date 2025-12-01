@@ -56,6 +56,10 @@ body {
   -webkit-font-smoothing: subpixel-antialiased !important;
 }
 
+strong {
+  font-weight: 400 !important;
+}
+
 @layer utilities {
   @keyframes casino-shuffle {
     0% {
