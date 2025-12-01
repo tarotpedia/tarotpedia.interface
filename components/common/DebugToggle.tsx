@@ -20,7 +20,7 @@ const STEPS: { value: Step; label: string }[] = [
 ];
 
 export function DebugToggle() {
-  const { animationsEnabled, toggleAnimations } = useAnimations();
+  const { animationsEnabled, toggleAnimations, isMobile } = useAnimations();
 
   const tarotContext = useContext(TarotContext);
   const step = tarotContext?.step;
@@ -28,6 +28,10 @@ export function DebugToggle() {
   const isShuffling = tarotContext?.isShuffling;
   const setIsShuffling = tarotContext?.setIsShuffling;
   const isDev = process.env.NEXT_PUBLIC_APP_ENV === 'development';
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <Popover>

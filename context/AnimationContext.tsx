@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 interface AnimationContextType {
   animationsEnabled: boolean;
   toggleAnimations: () => void;
+  isMobile: boolean;
 }
 
 const AnimationContext = createContext<AnimationContextType | undefined>(undefined);
@@ -24,15 +25,22 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem('animations-enabled');
-    if (saved !== null) {
-      setAnimationsEnabled(saved === 'true');
-    } else if (isMobile) {
+    if (isMobile) {
       setAnimationsEnabled(false);
+      localStorage.setItem('animations-enabled', 'false');
+    } else {
+      const saved = localStorage.getItem('animations-enabled');
+      if (saved !== null) {
+        setAnimationsEnabled(saved === 'true');
+      }
     }
   }, [isMobile]);
 
   const toggleAnimations = () => {
+    if (isMobile) {
+      return;
+    }
+
     setAnimationsEnabled(prev => {
       const newValue = !prev;
       localStorage.setItem('animations-enabled', String(newValue));
@@ -41,7 +49,9 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AnimationContext.Provider value={{ animationsEnabled, toggleAnimations }}>{children}</AnimationContext.Provider>
+    <AnimationContext.Provider value={{ animationsEnabled, toggleAnimations, isMobile }}>
+      {children}
+    </AnimationContext.Provider>
   );
 }
 

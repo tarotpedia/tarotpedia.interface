@@ -21,7 +21,7 @@ export function useReadingInterpretation() {
     const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
     try {
-      await delay(2000);
+      await delay(1000);
 
       const tarotResponse = await getTarotReading({
         name: formData.name,
@@ -42,7 +42,7 @@ export function useReadingInterpretation() {
 
       setProgress(45);
       setProgressText(t.reading.progress.numerology);
-      await delay(2000);
+      await delay(1000);
 
       const numerologyResponse = await getNumerology({
         name: formData.name,
@@ -52,7 +52,7 @@ export function useReadingInterpretation() {
 
       setProgress(80);
       setProgressText(t.reading.progress.finalizing);
-      await delay(2000);
+      await delay(1000);
 
       setProgress(100);
       setProgressText(t.reading.progress.complete);
