@@ -28,7 +28,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/" className="hover:text-[#c19670] transition-colors">
+                <a href="/" className="text-[#c19670] hover:text-[#d4a574] transition-colors">
                   {t.footer.resources.reading}
                 </a>
               </li>

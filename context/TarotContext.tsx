@@ -20,7 +20,7 @@ export function TarotProvider({ children }: { children: ReactNode }) {
   const [showQuestionHint, setShowQuestionHint] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    dob: '2000-01-01',
+    dob: null,
     question: '',
   });
 

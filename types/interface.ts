@@ -5,7 +5,7 @@ export type Step = 'form' | 'deck' | 'reading' | 'confirm' | 'results';
 
 export interface FormData {
   name: string;
-  dob: string;
+  dob: string | null;
   question: string;
 }
 

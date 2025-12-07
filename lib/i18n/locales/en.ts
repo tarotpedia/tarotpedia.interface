@@ -36,6 +36,7 @@ export const en = {
     dob: {
       label: 'Date of Birth',
       placeholder: 'Select your date of birth',
+      format: 'DAY-MONTH-YEAR',
     },
     question: {
       label: 'Your Question/Problem',
@@ -65,7 +66,7 @@ export const en = {
     title: 'Select Your Three Cards',
     selected: 'cards selected',
     instruction: 'Click on a card to select it. The card will reveal itself when chosen.',
-    back: '← Back',
+    back: 'Back',
     reading: 'Reading',
     shuffling: {
       title: 'Shuffling',

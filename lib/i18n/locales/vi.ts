@@ -10,11 +10,10 @@ export const vi = {
   footer: {
     about: {
       title: 'Về tarotpedia.ai',
-      description:
-        'Kết hợp trí tuệ tarot cổ đại với công nghệ AI hiện đại để cung cấp những lời giải đáp sâu sắc và hướng dẫn cho các câu hỏi trong cuộc sống của bạn.',
+      description: 'Khi AI và tarot kết hợp, chúng sẽ giúp bạn tìm hiểu về bản thân và khám phá thông điệp từ vũ trụ.',
     },
     resources: {
-      title: 'Tài liệu',
+      title: 'Khám Phá',
       tarotGuide: 'Hiểu Về Lá Bài Tarot',
       numerology: 'Cơ Bản Thần Số Học',
       reading: 'Trải Bài Tại Đây',
@@ -36,6 +35,7 @@ export const vi = {
     dob: {
       label: 'Ngày Sinh',
       placeholder: 'Ngày sinh được sử dụng để tính toán thần số học và trải bài',
+      format: 'NGÀY-THÁNG-NĂM',
     },
     question: {
       label: 'Đặt Câu Hỏi Với Trải Bài',
@@ -55,7 +55,7 @@ export const vi = {
       questionTooShort: 'Vui lòng cung cấp thêm chi tiết về câu hỏi của bạn',
     },
     progress: {
-      shuffling: 'Đang trộn bài...',
+      shuffling: 'Đang trải bài...',
       deckReady: 'Bộ bài đã sẵn sàng! Chọn 3 lá bài...',
     },
     error: {
@@ -66,16 +66,16 @@ export const vi = {
     title: 'Chọn Ba Lá Bài Của Bạn',
     selected: 'lá bài đã chọn',
     instruction: 'Nhấp vào một lá bài để chọn. Lá bài sẽ tự hiện ra khi được chọn.',
-    back: '← Quay Lại',
+    back: 'Quay Lại',
     reading: 'Xem Kết Quả',
     shuffling: {
-      title: 'Đang Trộn Bài',
-      description: 'Vui lòng đợi trong khi chúng tôi chuẩn bị bài...',
+      title: 'Đang Trải Bài',
+      description: 'Vui lòng đợi trong khi chúng tôi trải bài...',
     },
   },
   reading: {
     progress: {
-      shuffling: 'Đang trộn bài...',
+      shuffling: 'Đang trải bài...',
       analyzing: 'Đang phân tích các lá bài của bạn...',
       interpreting: 'Đang giải mã thông điệp...',
       numerology: 'Đang tính toán thần số học...',

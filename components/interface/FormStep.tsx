@@ -5,29 +5,19 @@ import { TarotStar } from '@/components/icons/TarotStar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useAnimations } from '@/context/AnimationContext';
 import { useTarot } from '@/context/TarotContext';
 import { drawCards } from '@/lib/api';
 import { useI18n } from '@/lib/i18n';
 
-import { ArrowRight } from 'lucide-react';
-import { Calendar, ShieldQuestion, User } from 'lucide-react';
+import { Calendar, Info, ShieldQuestion, User } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function FormStep() {
   const { t } = useI18n();
   const { animationsEnabled } = useAnimations();
-  const {
-    formData,
-    setFormData,
-    showQuestionHint,
-    setShowQuestionHint,
-    setStep,
-    setIsShuffling,
-    setProgress,
-    setProgressText,
-    setDeckCards,
-  } = useTarot();
+  const { formData, setFormData, setStep, setIsShuffling, setProgress, setProgressText, setDeckCards } = useTarot();
 
   const handleGetReading = async () => {
     if (!formData.name || !formData.dob || !formData.question) {
@@ -36,11 +26,10 @@ export default function FormStep() {
     }
 
     if (formData.question.trim().length < 20) {
-      setShowQuestionHint(true);
+      toast.warning(t.form.validation.questionTooShort);
       return;
     }
 
-    setShowQuestionHint(false);
     setStep('deck');
     setIsShuffling(true);
     setProgress(0);
@@ -64,6 +53,8 @@ export default function FormStep() {
     }
   };
 
+  const isFormValid = formData.name && formData.dob && formData.question && formData.question.trim().length >= 20;
+
   return (
     <>
       <style>
@@ -72,6 +63,17 @@ export default function FormStep() {
             0% { transform: rotate(1deg); }
             50% { transform: rotate(-1deg); }
             100% { transform: rotate(1deg); }
+          }
+          
+          @keyframes breathe {
+            0%, 100% { 
+              box-shadow: 0 0 15px 0 rgba(193,150,112,0.2);
+              transform: scale(1);
+            }
+            50% { 
+              box-shadow: 0 0 30px 5px rgba(193,150,112,0.5);
+              transform: scale(1.02);
+            }
           }
         `}
       </style>
@@ -112,10 +114,20 @@ export default function FormStep() {
                 </div>
 
                 <div>
-                  <label className="flex items-center gap-2 mb-2 text-sm tracking-wide text-[#c19670]">
-                    <Calendar className="w-4 h-4" />
-                    {t.form.dob.label}
-                  </label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <label className="flex items-center gap-2 mb-2 text-sm tracking-wide text-[#c19670]">
+                        <Calendar className="w-4 h-4" />
+                        {t.form.dob.label}
+                        <TooltipTrigger asChild>
+                          <Info className="w-4 h-4 cursor-help text-[#c19670]/70 hover:text-[#c19670] transition-colors" />
+                        </TooltipTrigger>
+                      </label>
+                      <TooltipContent className="bg-[#2a2729] border-[#c19670]/50 text-[#e8e3dc] shadow-lg">
+                        <p className="text-sm">{t.form.dob.format}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                   <DatePicker
                     value={formData.dob ?? ''}
                     onChange={date => setFormData({ ...formData, dob: date })}
@@ -124,10 +136,20 @@ export default function FormStep() {
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm tracking-wide text-[#c19670]">
-                    <ShieldQuestion className="w-4 h-4 inline-block mr-1" />
-                    {t.form.question.label}
-                  </label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <label className="flex items-center gap-2 mb-2 text-sm tracking-wide text-[#c19670]">
+                        <ShieldQuestion className="w-4 h-4" />
+                        {t.form.question.label}
+                        <TooltipTrigger asChild>
+                          <Info className="w-4 h-4 cursor-help text-[#c19670]/70 hover:text-[#c19670] transition-colors" />
+                        </TooltipTrigger>
+                      </label>
+                      <TooltipContent className="max-w-xs bg-[#2a2729] border-[#c19670]/50 text-[#e8e3dc] shadow-lg">
+                        <p className="text-sm">{t.form.question.hint}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                   <Textarea
                     value={formData.question}
                     onChange={e => setFormData({ ...formData, question: e.target.value })}
@@ -135,37 +157,25 @@ export default function FormStep() {
                     placeholder={t.form.question.placeholder}
                     rows={4}
                   />
-                  {showQuestionHint && (
-                    <p className="mt-2 text-[#c19670] text-sm italic justify-center flex items-center gap-2 animate-fade-in">
-                      {t.form.question.hint}
-                    </p>
-                  )}
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      !formData.question && !showQuestionHint
-                        ? 'max-h-[500px] opacity-100 mt-3'
-                        : 'max-h-0 opacity-0 mt-0'
-                    }`}
-                  >
-                    <div className="space-y-2">
-                      <p className="text-[#8a8580] text-xs italic">{t.form.question.examplesLabel}</p>
-                      {t.form.question.examples.map((example, index) => (
-                        <button
-                          key={index}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, question: example })}
-                          className="block w-full text-left text-[#8a8580] text-xs italic hover:text-[#c19670] transition-colors duration-200 cursor-pointer px-2 py-1 rounded hover:bg-[#c19670]/5"
-                        >
-                          <ArrowRight className="inline-block w-3 h-3 mr-1" /> {example}
-                        </button>
+                  <div className="mt-2 text-xs text-[#8a8580]">
+                    <p className="mb-1 font-medium">{t.form.question.examplesLabel}</p>
+                    <ul className="space-y-1 list-none pl-0">
+                      {t.form.question.examples.map((example, idx) => (
+                        <li key={idx} className="italic">
+                          • {example}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 </div>
 
                 <Button
                   onClick={handleGetReading}
-                  className="w-full py-6 mt-4 rounded-md bg-linear-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
+                  disabled={!isFormValid}
+                  className="w-full py-6 mt-4 rounded-md bg-linear-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 hover:cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2 group relative overflow-hidden"
+                  style={{
+                    animation: 'breathe 3s ease-in-out infinite',
+                  }}
                 >
                   <span className="absolute inset-0 bg-linear-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <TarotStar className="w-4 h-4 text-[#c19670] relative z-10" />
