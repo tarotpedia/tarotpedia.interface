@@ -39,7 +39,7 @@ export default function FormStep() {
       const response = await drawCards({
         name: formData.name,
         dob: formData.dob,
-        count: 5,
+        count: 6,
         follow_numerology: false,
       });
 

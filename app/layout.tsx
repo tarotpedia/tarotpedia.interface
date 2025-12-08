@@ -14,8 +14,76 @@ const caudex = Caudex({
 });
 
 export const metadata = {
-  title: 'tarotpedia - AI Tarot Reader',
-  description: 'Ancient wisdom meets artificial intelligence',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://tarotpedia.vercel.app'),
+  title: {
+    default: 'tarotpedia - AI Tarot Reader',
+    template: '%s | tarotpedia',
+  },
+  description:
+    'Ancient wisdom meets artificial intelligence. Experience personalized tarot readings and numerology insights powered by AI. Discover your path with professional tarot card interpretations.',
+  keywords: [
+    'tarot',
+    'tarot reading',
+    'AI tarot',
+    'numerology',
+    'divination',
+    'spiritual guidance',
+    'tarot cards',
+    'online tarot',
+    'free tarot reading',
+    'tarot interpretation',
+  ],
+  authors: [{ name: 'tarotpedia' }],
+  creator: 'tarotpedia',
+  publisher: 'tarotpedia',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: ['vi_VN'],
+    url: '/',
+    siteName: 'tarotpedia',
+    title: 'tarotpedia - AI Tarot Reader',
+    description:
+      'Ancient wisdom meets artificial intelligence. Experience personalized tarot readings and numerology insights powered by AI.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'tarotpedia - AI Tarot Reader',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'tarotpedia - AI Tarot Reader',
+    description:
+      'Ancient wisdom meets artificial intelligence. Experience personalized tarot readings and numerology insights powered by AI.',
+    images: ['/og-image.png'],
+    creator: '@tarotpedia',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export const viewport = {
