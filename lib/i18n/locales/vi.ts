@@ -160,7 +160,12 @@ export const vi = {
     pdfSuccess: 'Đã tải PDF thành công',
     pdfError: 'Không thể tạo PDF',
     aiDisclaimer: 'Kết quả này được tạo bởi AI và chỉ mang tính chất tham khảo.',
+    saveReading: 'Lưu & Chia Sẻ',
+    saving: 'Đang lưu...',
+    copyLink: 'Sao Chép Link',
+    loading: 'Đang tải...',
   },
+
   tarotGuide: {
     title: 'Hướng Dẫn Bộ Bài Tarot',
     subtitle:

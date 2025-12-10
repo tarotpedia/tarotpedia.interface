@@ -108,23 +108,102 @@ export default function ResultsStep() {
           </div>
 
           <div
-            className="flex items-center justify-center mt-8 pb-12 transition-all duration-700 ease-out"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 pb-12 transition-all duration-700 ease-out"
             style={{
               opacity: showContent ? 1 : 0,
               transform: showContent ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: reading.numerology_meaning ? '1.4s' : '1.2s',
             }}
           >
+            <SaveReadingButton />
             <Button
               onClick={resetReading}
-              className="px-6 sm:px-8 py-6 rounded-md bg-linear-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden"
+              className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden"
             >
-              <span className="absolute inset-0 bg-linear-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="absolute inset-0 bg-gradient-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative z-10">{t.results.newReading}</span>
             </Button>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function SaveReadingButton() {
+  const { t } = useI18n();
+  const { reading, selectedCards, formData } = useTarot();
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [readingUrl, setReadingUrl] = useState<string | null>(null);
+
+  const handleSave = async () => {
+    if (!reading || !selectedCards.length || saving || saved) return;
+
+    setSaving(true);
+
+    try {
+      const response = await fetch('/api/readings/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_name: formData.name,
+          user_dob: formData.dob,
+          question: formData.question,
+          cards: selectedCards,
+          interpretations: reading.interpretations,
+          summary: reading.summary,
+          numerology_meaning: reading.numerology_meaning,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save reading');
+      }
+
+      const data = await response.json();
+      const url = `${window.location.origin}/reading?read_id=${data.reading_id}`;
+      setReadingUrl(url);
+      setSaved(true);
+    } catch (error) {
+      console.error('Error saving reading:', error);
+      alert('Failed to save reading. Please try again.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCopyLink = () => {
+    if (readingUrl) {
+      navigator.clipboard.writeText(readingUrl);
+      alert('Link copied to clipboard!');
+    }
+  };
+
+  if (saved && readingUrl) {
+    return (
+      <Button
+        onClick={handleCopyLink}
+        className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#c19670] to-[#a17d5a] text-[#1a1819] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden"
+      >
+        <span className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        <span className="relative z-10">{t.results?.copyLink || 'Copy Link'}</span>
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      onClick={handleSave}
+      disabled={saving}
+      className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#c19670] to-[#a17d5a] text-[#1a1819] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      <span className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+      <span className="relative z-10">
+        {saving ? t.results?.saving || 'Saving...' : t.results?.saveReading || 'Save & Share'}
+      </span>
+    </Button>
   );
 }
