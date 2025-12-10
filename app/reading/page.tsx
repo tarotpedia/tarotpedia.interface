@@ -8,7 +8,7 @@ import TarotCardComponent from '@/components/common/TarotCard';
 import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -39,7 +39,7 @@ interface SavedReading {
   created_at: string;
 }
 
-export default function ReadingPage() {
+function ReadingContent() {
   const { t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -240,5 +240,26 @@ export default function ReadingPage() {
       </div>
       <Footer />
     </div>
+  );
+}
+
+export default function ReadingPage() {
+  const { t } = useI18n();
+
+  return (
+    <Suspense
+      fallback={
+        <div className="relative bg-[#060506] min-h-screen flex flex-col">
+          <ParallaxBackground />
+          <Navbar />
+          <div className="relative flex-1 z-10 flex items-center justify-center">
+            <div className="text-[#c19670] text-xl">Loading...</div>
+          </div>
+          <Footer />
+        </div>
+      }
+    >
+      <ReadingContent />
+    </Suspense>
   );
 }
