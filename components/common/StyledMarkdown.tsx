@@ -1,23 +1,12 @@
 'use client';
 import ReactMarkdown from 'react-markdown';
 
-import { ArrowRight } from 'lucide-react';
 import remarkGfm from 'remark-gfm';
 
 export default function StyledMarkdown({ content }: { content: string }) {
   if (!content) return null;
 
-  const renderTextWithArrows = (text: string) => {
-    const parts = text.split('-->');
-    if (parts.length === 1) return text;
-
-    return parts.map((part, index) => (
-      <span key={index}>
-        {part}
-        {index < parts.length - 1 && <ArrowRight className="inline-block w-3 h-3 sm:w-4 sm:h-4 mx-1 text-[#c19670]" />}
-      </span>
-    ));
-  };
+  const processedContent = content.replace(/-->/g, '→');
 
   return (
     <ReactMarkdown
@@ -26,19 +15,11 @@ export default function StyledMarkdown({ content }: { content: string }) {
         h1: p => <h1 className="text-2xl text-[#c19670] mb-4 mt-6" {...p} />,
         h2: p => <h2 className="text-xl text-[#c19670] mb-3 mt-5" {...p} />,
         h3: p => <h3 className="text-lg text-[#c19670] mb-2 mt-4" {...p} />,
-        p: ({ children, ...props }) => (
-          <p className="text-[#c3beb6] leading-relaxed mb-4 break-words overflow-wrap-anywhere" {...props}>
-            {typeof children === 'string' ? renderTextWithArrows(children) : children}
-          </p>
-        ),
+        p: p => <p className="text-[#c3beb6] leading-relaxed mb-4 break-words overflow-wrap-anywhere" {...p} />,
 
         ul: p => <ul className="list-disc pl-6 mb-4 text-[#c3beb6] space-y-1 break-words" {...p} />,
         ol: p => <ol className="list-decimal pl-6 mb-4 text-[#c3beb6] space-y-1 break-words" {...p} />,
-        li: ({ children, ...props }) => (
-          <li className="leading-relaxed break-words" {...props}>
-            {typeof children === 'string' ? renderTextWithArrows(children) : children}
-          </li>
-        ),
+        li: p => <li className="leading-relaxed break-words" {...p} />,
 
         strong: p => <strong className="text-[#c19670]" {...p} />,
         em: p => <em className="text-[#c19670] italic" {...p} />,
@@ -65,7 +46,7 @@ export default function StyledMarkdown({ content }: { content: string }) {
         td: p => <td className="px-3 py-2 align-top border-b border-[#c19670]/20" {...p} />,
       }}
     >
-      {content}
+      {processedContent}
     </ReactMarkdown>
   );
 }

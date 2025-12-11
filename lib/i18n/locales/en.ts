@@ -164,6 +164,14 @@ export const en = {
     saving: 'Saving...',
     copyLink: 'Copy Link',
     loading: 'Loading...',
+    funnyMessages: [
+      'Share your fate... or keep it a secret 🤫',
+      'The universe wants you to share this (probably)',
+      "Don't be shy, let the world know your destiny!",
+      "Share or keep it yourself, the cards don't judge",
+      'A secret shared is... well, not a secret anymore',
+      'To share or not to share? That is the question.',
+    ],
   },
 
   tarotGuide: {

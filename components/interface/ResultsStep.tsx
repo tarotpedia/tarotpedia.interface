@@ -2,21 +2,39 @@
 import StyledMarkdown from '@/components/common/StyledMarkdown';
 import TarotCardComponent from '@/components/common/TarotCard';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useTarot } from '@/context/TarotContext';
 import { useI18n } from '@/lib/i18n';
 
 import { useEffect, useState } from 'react';
 
+import { toast } from 'sonner';
+
 export default function ResultsStep() {
   const { t } = useI18n();
   const { reading, selectedCards, resetReading } = useTarot();
   const [showContent, setShowContent] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
     }, 100);
-    return () => clearTimeout(timer);
+
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   if (!reading) return null;
@@ -118,10 +136,13 @@ export default function ResultsStep() {
             <SaveReadingButton />
             <Button
               onClick={resetReading}
-              className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden"
+              disabled={timeLeft > 0}
+              className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#1a1819] to-[#0f0e0f] text-[#c19670] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="absolute inset-0 bg-gradient-to-br from-[#c19670]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative z-10">{t.results.newReading}</span>
+              <span className="relative z-10">
+                {timeLeft > 0 ? `${t.results.newReading} (${timeLeft}s)` : t.results.newReading}
+              </span>
             </Button>
           </div>
         </div>
@@ -136,6 +157,12 @@ function SaveReadingButton() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [readingUrl, setReadingUrl] = useState<string | null>(null);
+  const [funnyMessage, setFunnyMessage] = useState('');
+
+  useEffect(() => {
+    const messages = t.results.funnyMessages;
+    setFunnyMessage(messages[Math.floor(Math.random() * messages.length)]);
+  }, [t.results.funnyMessages]);
 
   const handleSave = async () => {
     if (!reading || !selectedCards.length || saving || saved) return;
@@ -167,9 +194,10 @@ function SaveReadingButton() {
       const url = `${window.location.origin}/reading?read_id=${data.reading_id}`;
       setReadingUrl(url);
       setSaved(true);
+      toast.success('Reading saved successfully!');
     } catch (error) {
       console.error('Error saving reading:', error);
-      alert('Failed to save reading. Please try again.');
+      toast.error('Failed to save reading. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -178,7 +206,7 @@ function SaveReadingButton() {
   const handleCopyLink = () => {
     if (readingUrl) {
       navigator.clipboard.writeText(readingUrl);
-      alert('Link copied to clipboard!');
+      toast.success('Link copied to clipboard!');
     }
   };
 
@@ -195,15 +223,22 @@ function SaveReadingButton() {
   }
 
   return (
-    <Button
-      onClick={handleSave}
-      disabled={saving}
-      className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#c19670] to-[#a17d5a] text-[#1a1819] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
-    >
-      <span className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-      <span className="relative z-10">
-        {saving ? t.results?.saving || 'Saving...' : t.results?.saveReading || 'Save & Share'}
-      </span>
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          onClick={handleSave}
+          disabled={saving}
+          className="px-6 sm:px-8 py-6 rounded-md bg-gradient-to-br from-[#c19670] to-[#a17d5a] text-[#1a1819] tracking-wide border border-[#c19670]/30 shadow-[0_0_15px_0_rgba(193,150,112,0.2)] hover:shadow-[0_0_25px_0_rgba(193,150,112,0.4)] hover:scale-[1.01] hover:cursor-pointer transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+          <span className="relative z-10">
+            {saving ? t.results?.saving || 'Saving...' : t.results?.saveReading || 'Save & Share'}
+          </span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent className="bg-[#1a1819] text-[#c19670] border border-[#c19670]/30">
+        <p>{funnyMessage}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }

@@ -104,7 +104,7 @@ export default function RootLayout({
         <I18nProvider>
           <AnimationProvider>
             {children}
-            <Toaster theme="dark" position="top-right" richColors />
+            <Toaster theme="dark" position="bottom-right" richColors />
           </AnimationProvider>
         </I18nProvider>
       </body>

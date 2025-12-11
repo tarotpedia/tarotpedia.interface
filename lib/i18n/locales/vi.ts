@@ -164,6 +164,14 @@ export const vi = {
     saving: 'Đang lưu...',
     copyLink: 'Sao Chép Link',
     loading: 'Đang tải...',
+    funnyMessages: [
+      'Chia sẻ vận mệnh... hoặc giữ bí mật 🤫',
+      'Vũ trụ muốn bạn chia sẻ điều này (có lẽ vậy)',
+      'Đừng ngại, hãy cho cả thế giới biết vận mệnh của bạn!',
+      'Chia sẻ hay giữ cho riêng mình, những lá bài không phán xét đâu',
+      'Một bí mật được chia sẻ thì... ừm, không còn là bí mật nữa',
+      'Chia sẻ hay không chia sẻ? Đó là vấn đề.',
+    ],
   },
 
   tarotGuide: {
